@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import status
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.generics import ListAPIView
+from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
@@ -39,3 +40,11 @@ class SignupView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(create_user.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserList(ListAPIView):
+
+    # Only gives admin permission to view user list
+    permission_classes = {IsAdminUser, }
+    pagination_class = None
+    serializer_class = UserSerializer
+    queryset = User.objects.all().order_by('id')

@@ -1,6 +1,5 @@
 from django.contrib.auth import authenticate
 from rest_framework import serializers
-from rest_framework.permissions import AllowAny
 from rest_framework.exceptions import ValidationError
 
 from .models import User
@@ -45,6 +44,8 @@ class SignupSerializer(serializers.Serializer):
     password = serializers.CharField(style={'input_type': 'password'}, write_only=True, required=True)
 
     def create(self, validated_data):
+        # TODO: add in email check and verification
+        # Checks whether the username already exists in database
         try:
             user = User.objects.get(username__iexact=self.validated_data['username'])
         except User.DoesNotExist:
@@ -55,7 +56,8 @@ class SignupSerializer(serializers.Serializer):
 
             return user
 
-        raise ValidationError('Username already in use.')
+        # TODO: get username header to error, similar to that in login error
+        raise ValidationError('A user with that username already exists.')
 
     class Meta:
         model = User
