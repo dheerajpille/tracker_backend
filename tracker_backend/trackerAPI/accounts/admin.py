@@ -7,6 +7,7 @@ class UserAdmin(UserAdmin):
     """
     UserAdmin, which controls the display of user values on administration panel
     """
+    # TODO: remove password field from admin panel
     list_display = ('id', 'username', 'first_name', 'last_name', 'email', 'income', 'password', )
 
 admin.site.register(get_user_model(), UserAdmin)
