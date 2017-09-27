@@ -48,12 +48,26 @@ INSTALLED_APPS = [
 
     # Django REST Framework
     'rest_framework',
+
+    # Django REST OAuth2 Toolkit
+    'oauth2_provider',
 ]
+
+# Django REST Framework settings
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.IsAuthenticated',
     ],
-    'PAGE_SIZE': 10
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
+# TODO: implement OAuth2 for security purposes
+# OAuth2 scopes from OAuth toolkit
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
 }
 
 MIDDLEWARE = [

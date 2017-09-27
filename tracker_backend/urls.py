@@ -20,6 +20,9 @@ urlpatterns = [
     # Admin for Django
     url(r'^admin/', admin.site.urls),
 
+    # OAuth2 toolkit for Django
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+
     # URL for project's resources
     url(r'^tracker/', include('tracker_backend.trackerAPI.urls')),
 ]
