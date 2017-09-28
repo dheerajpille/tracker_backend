@@ -6,6 +6,7 @@ from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .models import User
 from .serializers import *
@@ -15,6 +16,7 @@ class LoginView(APIView):
 
     # Gives any user permission to POST for login
     permission_classes = {AllowAny, }
+    authentication_classes = (JSONWebTokenAuthentication, )
 
     def post(self, request):
         validate_user = LoginSerializer(data=request.data)
@@ -46,5 +48,6 @@ class UserList(ListAPIView):
     # Only gives admin permission to view user list
     permission_classes = {IsAdminUser, }
     pagination_class = None
+    authentication_classes = {JSONWebTokenAuthentication, }
     serializer_class = UserSerializer
     queryset = User.objects.all().order_by('id')

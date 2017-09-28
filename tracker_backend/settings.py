@@ -51,6 +51,12 @@ INSTALLED_APPS = [
 ]
 
 # TODO: implement JWT for security purposes
+
+JWT_AUTH = {
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+}
+
 # Django REST Framework settings
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

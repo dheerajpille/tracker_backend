@@ -1,6 +1,9 @@
 from django.contrib.auth import authenticate
+from django.utils.encoding import force_text
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError, APIException
+from rest_framework.authtoken.models import Token
+from rest_framework_jwt.views import obtain_jwt_token
 
 from .models import User
 
@@ -47,15 +50,22 @@ class SignupSerializer(serializers.Serializer):
         # TODO: add in email check and verification
         # Checks whether the username already exists in database
         try:
-            user = User.objects.get(username__iexact=self.validated_data['username'])
+            username = User.objects.get(username__iexact=self.validated_data['username'])
         except User.DoesNotExist:
-            user = UserSerializer.create(self, validated_data)
-            user.set_password(validated_data['password'])
 
-            user.save()
+            # Checks whether the email already exists in database
+            try:
+                email = User.objects.get(email__iexact=self.validated_data['email'])
+            except User.DoesNotExist:
 
-            return user
+                user = UserSerializer.create(self, validated_data)
+                user.set_password(validated_data['password'])
 
+                user.save()
+
+                return user
+
+            raise ValidationError('A user with that email already exists.')
         # TODO: get username header to error, similar to that in login error
         raise ValidationError('A user with that username already exists.')
 

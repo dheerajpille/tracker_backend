@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
+from .models import User
+
 # Register your models here.
 class UserAdmin(UserAdmin):
     """
@@ -10,4 +12,4 @@ class UserAdmin(UserAdmin):
     # TODO: remove password field from admin panel
     list_display = ('id', 'username', 'first_name', 'last_name', 'email', 'income', 'password', )
 
-admin.site.register(get_user_model(), UserAdmin)
+admin.site.register(User, UserAdmin)
