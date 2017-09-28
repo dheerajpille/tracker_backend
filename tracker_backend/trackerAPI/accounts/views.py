@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import Http404
 from rest_framework import status
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAdminUser
@@ -42,6 +43,42 @@ class SignupView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(create_user.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserDetail(APIView):
+
+    def get_object(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        user = self.get_object(pk)
+        if request.user == user:
+            serializer = UserSerializer(user, context={'request', request})
+            return Response(serializer.data)
+        else:
+            return Response(data={"message": "Not authorized to view this user."}, status=status.HTTP_401_UNAUTHORIZED)
+
+    def put(self, request, pk):
+        user = self.get_object(pk)
+        if request.user == user:
+            serializer = UserSerializer(user, data=request.data, partial=True, context={'request': request})
+            if serializer.is_valid():
+                serializer.save()
+
+                return Response(serializer.data)
+
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(data={"message": "Not authorized to edit this user."}, status=status.HTTP_401_UNAUTHORIZED)
+
+    def delete(self, pk):
+        if self.request.user.is_superuser or self.request.user.pk == int(pk):
+            user = self.get_object(pk)
+            user.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(data={"message": "Not authorized to delete this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
 class UserList(ListAPIView):
 

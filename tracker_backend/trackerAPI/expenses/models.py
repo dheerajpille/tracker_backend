@@ -73,8 +73,8 @@ class Miscellaneous(models.Model):
     other = models.DecimalField(max_digits=8, decimal_places=2)
 
 class Expense(models.Model):
-    # Date for user expenses
-    # Defaults to today's date value
+    # Date for user expenses in ISO 8601 format
+    # Defaults to server's date value today
     date = models.DateField(default=date.today, blank=True)
 
     # Various user expense types

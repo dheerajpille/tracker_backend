@@ -68,6 +68,7 @@ class SignupSerializer(serializers.Serializer):
             raise ValidationError('A user with that email already exists.')
 
         # TODO: change to display multiple errors if triggered
+        # TODO: add custom message preface, similar to userdetail message
 
         raise ValidationError('A user with that username already exists.')
 
