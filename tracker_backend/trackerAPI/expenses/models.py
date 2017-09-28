@@ -45,6 +45,33 @@ class Insurance(models.Model):
     household = models.DecimalField(max_digits=8, decimal_places=2)
     car = models.DecimalField(max_digits=8, decimal_places=2)
 
+class Clothes(models.Model):
+    """
+    Clothes model, containing clothing expense data
+    """
+    clothing = models.DecimalField(max_digits=8, decimal_places=2)
+
+class Entertainment(models.Model):
+    """
+    Entertainment model, containing electronics, games, movies, and bar expense data
+    """
+    electronics = models.DecimalField(max_digits=8, decimal_places=2)
+    games = models.DecimalField(max_digits=8, decimal_places=2)
+    movies = models.DecimalField(max_digits=8, decimal_places=2)
+    bar = models.DecimalField(max_digits=8, decimal_places=2)
+
+class Savings(models.Model):
+    """
+    Savings model, containing deposit expense data
+    """
+    deposit = models.DecimalField(max_digits=8, decimal_places=2)
+
+class Miscellaneous(models.Model):
+    """
+    Miscellaneous model, containing other expense data
+    """
+    other = models.DecimalField(max_digits=8, decimal_places=2)
+
 class Expense(models.Model):
     # Date for user expenses
     # Defaults to today's date value
@@ -56,7 +83,7 @@ class Expense(models.Model):
     utilities = models.OneToOneField(Utilities)
     transportation = models.OneToOneField(Transportation)
     insurance = models.OneToOneField(Insurance)
-    clothes = models.DecimalField(max_digits=8, decimal_places=2)
-    entertainment = models.DecimalField(max_digits=8, decimal_places=2)
-    savings = models.DecimalField(max_digits=8, decimal_places=2)
-    miscellaneous = models.DecimalField(max_digits=8, decimal_places=2)
+    clothes = models.OneToOneField(Clothes)
+    entertainment = models.OneToOneField(Entertainment)
+    savings = models.OneToOneField(Savings)
+    miscellaneous = models.OneToOneField(Miscellaneous)

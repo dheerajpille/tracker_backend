@@ -66,7 +66,9 @@ class SignupSerializer(serializers.Serializer):
                 return user
 
             raise ValidationError('A user with that email already exists.')
-        # TODO: get username header to error, similar to that in login error
+
+        # TODO: change to display multiple errors if triggered
+
         raise ValidationError('A user with that username already exists.')
 
     class Meta:
