@@ -46,6 +46,7 @@ class SignupView(APIView):
 
 class UserDetail(APIView):
 
+    # TODO: delete if not needed (most likely)
     def get_object(self, pk):
         try:
             return User.objects.get(pk=pk)
@@ -84,6 +85,8 @@ class UserList(ListAPIView):
 
     # Only gives admin permission to view user list
     permission_classes = {IsAdminUser, }
+
+    # Disables pagination for GET calls
     pagination_class = None
     authentication_classes = {JSONWebTokenAuthentication, }
     serializer_class = UserSerializer

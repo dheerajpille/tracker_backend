@@ -2,8 +2,8 @@ from django.contrib.auth import authenticate
 from django.utils.encoding import force_text
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError, APIException
-from rest_framework.authtoken.models import Token
 from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework.authtoken.models import Token
 
 from .models import User
 
@@ -22,7 +22,9 @@ class LoginSerializer(serializers.Serializer):
         username = attrs.get('username')
         password = attrs.get('password')
 
-        user = authenticate(request=self.context.get('request'), username=username, password=password)
+        user = authenticate(request=self.context.get('request'), username=username, password=password, token=token)
+
+        print(token)
 
         if user:
             pass
