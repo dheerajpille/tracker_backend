@@ -24,6 +24,7 @@ class LoginView(APIView):
 
         if validate_user.is_valid():
             serializer = UserSerializer(validate_user.validated_data, context={'request': request})
+
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(validate_user.errors, status=status.HTTP_401_UNAUTHORIZED)

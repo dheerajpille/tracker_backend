@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'income', )
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'budget', )
 
 class LoginSerializer(serializers.Serializer):
 
@@ -22,9 +22,7 @@ class LoginSerializer(serializers.Serializer):
         username = attrs.get('username')
         password = attrs.get('password')
 
-        user = authenticate(request=self.context.get('request'), username=username, password=password, token=token)
-
-        print(token)
+        user = authenticate(request=self.context.get('request'), username=username, password=password)
 
         if user:
             pass
@@ -45,7 +43,7 @@ class SignupSerializer(serializers.Serializer):
     first_name = serializers.CharField(required=False)
     last_name = serializers.CharField(required=False)
     email = serializers.CharField(style={'input_type': 'email'}, required=True)
-    income = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    budget = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
     password = serializers.CharField(style={'input_type': 'password'}, write_only=True, required=True)
 
     def create(self, validated_data):

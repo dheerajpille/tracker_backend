@@ -15,14 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 urlpatterns = [
     # Admin for Django
     url(r'^admin/', admin.site.urls),
 
+    # TODO: configure authentication via JWT
     # JWT for Django
     url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^api-token-refresh', refresh_jwt_token),
+    url(r'^api-token-verify', verify_jwt_token),
 
     # URL for project's resources
     url(r'^tracker/', include('tracker_backend.trackerAPI.urls')),
