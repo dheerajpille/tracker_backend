@@ -5,19 +5,19 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .models import User
 from .serializers import *
+
 
 # Create your views here.
 class LoginView(APIView):
 
     # Gives any user permission to POST for login
     permission_classes = {AllowAny, }
-    authentication_classes = (JSONWebTokenAuthentication, )
 
     def post(self, request):
         validate_user = LoginSerializer(data=request.data)
@@ -45,9 +45,8 @@ class SignupView(APIView):
         else:
             return Response(create_user.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class UserDetail(APIView):
 
-    # TODO: delete if not needed (most likely)
+class UserDetail(APIView):
     def get_object(self, pk):
         try:
             return User.objects.get(pk=pk)
@@ -76,7 +75,8 @@ class UserDetail(APIView):
         return Response(data={"message": "Not authorized to edit this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
     def delete(self, pk):
-        if self.request.user.is_superuser or self.request.user.pk == int(pk):
+        user = self.get_object(pk)
+        if request.user.is_superuser or request.user == user:
             user = self.get_object(pk)
             user.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
@@ -84,11 +84,13 @@ class UserDetail(APIView):
 
 class UserList(ListAPIView):
 
-    # Only gives admin permission to view user list
-    permission_classes = {IsAdminUser, }
-
     # Disables pagination for GET calls
     pagination_class = None
-    authentication_classes = {JSONWebTokenAuthentication, }
     serializer_class = UserSerializer
-    queryset = User.objects.all().order_by('id')
+
+    def get(self, request):
+        user = self.get_object(pk)
+        if request.user.is_superuser or request.user == user:
+            queryset = User.objects.all().order_by('id')
+        else:
+            return Response(data={"message": "Not authorized to view the user list."}, status=status.HTTP_401_UNAUTHORIZED)

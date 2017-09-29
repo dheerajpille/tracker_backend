@@ -12,4 +12,5 @@ class UserAdmin(UserAdmin):
     # TODO: remove password field from admin panel
     list_display = ('id', 'username', 'first_name', 'last_name', 'email', 'budget', 'password', )
 
+
 admin.site.register(User, UserAdmin)

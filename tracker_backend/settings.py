@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import binascii
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -48,14 +49,13 @@ INSTALLED_APPS = [
 
     # Django REST Framework
     'rest_framework',
+
+    # Django OAuth toolkit
+    'oauth2_provider',
+    'corsheaders',
 ]
 
-# TODO: implement JWT for security purposes
-
-JWT_AUTH = {
-    'JWT_SECRET_KEY': SECRET_KEY,
-    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
-}
+# TODO: implement token for security purposes
 
 # Django REST Framework settings
 REST_FRAMEWORK = {
@@ -63,7 +63,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ]
@@ -77,7 +76,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # CORS middleware
+    'corsheaders.middleware.CorsMiddleware',
+
+    # Django OAuth2 middleware
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
+
+# TODO: remove before production
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'tracker_backend.urls'
 
@@ -110,6 +119,12 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# OAuth authentication backend
+AUTHENTICATION_BACKENDS = (
+    'oauth2_provider.backends.OAuth2Backend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 
 # Password validation

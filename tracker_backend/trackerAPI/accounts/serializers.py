@@ -1,17 +1,17 @@
 from django.contrib.auth import authenticate
+from django.conf import settings
 from django.utils.encoding import force_text
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError, APIException
-from rest_framework_jwt.views import obtain_jwt_token
-from rest_framework.authtoken.models import Token
-
 from .models import User
+
 
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
         fields = ('id', 'username', 'first_name', 'last_name', 'email', 'budget', )
+
 
 class LoginSerializer(serializers.Serializer):
 
@@ -34,6 +34,7 @@ class LoginSerializer(serializers.Serializer):
     class Meta:
         model = User
         fields = ('username', 'password', )
+
 
 class SignupSerializer(serializers.Serializer):
 
