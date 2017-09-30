@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import binascii
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -56,6 +55,10 @@ INSTALLED_APPS = [
 ]
 
 # TODO: implement token for security purposes
+OAUTH2_PROVIDER = {
+    # List of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+}
 
 # Django REST Framework settings
 REST_FRAMEWORK = {
@@ -63,8 +66,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
     ]
 }
 
@@ -167,3 +170,7 @@ STATIC_URL = '/static/'
 
 # Sets default User model to custom User model, located in accounts.models
 AUTH_USER_MODEL = 'accounts.User'
+
+# OAuth ID and SECRET
+CLIENT_ID: '2NkzDqPEuzKRA4Cr5SdiAPg7vDLEyreA21B4K24l'
+CLIENT_SECRET = 'PMR4jCo1DEymWDOkMYzSBRCYetP3KrNSOw5OWYtpXhDAd2bTSRPcTgOO2tnOEqpqLUY68JOTbU0uiBXOAKxBDjNLcpWHHdDZGSnIno1lbDWgAXyU6mlLG3vcqkoGWCwN'

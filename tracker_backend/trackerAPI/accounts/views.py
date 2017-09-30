@@ -29,6 +29,7 @@ class LoginView(APIView):
         else:
             return Response(validate_user.errors, status=status.HTTP_401_UNAUTHORIZED)
 
+
 class SignupView(APIView):
 
     # Gives any user permission to POST for signup
@@ -47,23 +48,27 @@ class SignupView(APIView):
 
 
 class UserDetail(APIView):
+
+    # Obtains object in question via pk/id value
     def get_object(self, pk):
         try:
             return User.objects.get(pk=pk)
         except User.DoesNotExist:
             raise Http404
 
+    # View the User object
     def get(self, request, pk):
         user = self.get_object(pk)
-        if request.user == user:
+        if request.user.is_superuser or request.user == user:
             serializer = UserSerializer(user, context={'request', request})
             return Response(serializer.data)
         else:
             return Response(data={"message": "Not authorized to view this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
+    # Update the User object
     def put(self, request, pk):
         user = self.get_object(pk)
-        if request.user == user:
+        if request.user.is_superuser or request.user == user:
             serializer = UserSerializer(user, data=request.data, partial=True, context={'request': request})
             if serializer.is_valid():
                 serializer.save()
@@ -74,6 +79,7 @@ class UserDetail(APIView):
 
         return Response(data={"message": "Not authorized to edit this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
+    # Delete the User object
     def delete(self, pk):
         user = self.get_object(pk)
         if request.user.is_superuser or request.user == user:
@@ -82,10 +88,12 @@ class UserDetail(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(data={"message": "Not authorized to delete this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
+
 class UserList(ListAPIView):
 
     # Disables pagination for GET calls
     pagination_class = None
+    permission_classes = {IsAdminUser, }
     serializer_class = UserSerializer
 
     def get(self, request):
