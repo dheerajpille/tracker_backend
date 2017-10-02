@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import Http404
 from rest_framework import status
 from rest_framework.generics import ListAPIView
-from rest_framework.permissions import AllowAny, IsAdminUser
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -59,7 +59,7 @@ class UserDetail(APIView):
     # View the User object
     def get(self, request, pk):
         user = self.get_object(pk)
-        if request.user.is_superuser or request.user == user:
+        if request.user == user:
             serializer = UserSerializer(user, context={'request', request})
             return Response(serializer.data)
         else:
@@ -93,10 +93,9 @@ class UserList(ListAPIView):
 
     # Disables pagination for GET calls
     pagination_class = None
-    permission_classes = {IsAdminUser, }
     serializer_class = UserSerializer
 
-    def get(self, request):
+    def get(self, request, pk):
         user = self.get_object(pk)
         if request.user.is_superuser or request.user == user:
             queryset = User.objects.all().order_by('id')

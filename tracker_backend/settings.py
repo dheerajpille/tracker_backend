@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     # Django OAuth toolkit
     'oauth2_provider',
     'corsheaders',
+
+    # Django's built-in authentication
+    'rest_framework.authtoken',
 ]
 
 # TODO: implement token for security purposes
@@ -66,6 +69,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework.authentication.SessionAuthentication',
     ]
