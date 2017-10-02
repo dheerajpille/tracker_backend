@@ -7,18 +7,32 @@ from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for custom user model
+    """
 
     class Meta:
         model = User
+
+        # Displays the following fields as response body
         fields = ('id', 'username', 'first_name', 'last_name', 'email', 'budget', )
 
 
 class LoginSerializer(serializers.Serializer):
+    """
+    Login serializer, which validates client's username and password with database
+    """
 
+    # JSON fields rendered for input
     username = serializers.CharField(style={'input_type': 'username'}, required=True)
     password = serializers.CharField(style={'input_type': 'password'}, required=True)
 
     def validate(self, attrs):
+        """
+        Validates user credentials with database
+        :param attrs: user credentials passed from API call
+        :return: User object if existing, error if not
+        """
         username = attrs.get('username')
         password = attrs.get('password')
 
@@ -38,8 +52,11 @@ class LoginSerializer(serializers.Serializer):
 
 
 class SignupSerializer(serializers.Serializer):
+    """
+    Signup serializer, which creates a new user account with required/proper credentials
+    """
 
-    # JSON fields rendered for response body
+    # JSON fields rendered for input/response body
     id = serializers.ReadOnlyField()
     username = serializers.CharField(style={'input_type': 'username'}, required=True)
     first_name = serializers.CharField(required=False)
@@ -49,6 +66,12 @@ class SignupSerializer(serializers.Serializer):
     password = serializers.CharField(style={'input_type': 'password'}, write_only=True, required=True)
 
     def create(self, validated_data):
+        """
+        Creates a new user account in database with given credentials
+        :param validated_data: Inputted user credentials, passed from API call
+        :return: Created user object if successful, error(s) if not
+        """
+
         # TODO: add in email check and verification
         # Checks whether the username already exists in database
         try:
@@ -70,7 +93,7 @@ class SignupSerializer(serializers.Serializer):
             raise ValidationError('A user with that email already exists.')
 
         # TODO: change to display multiple errors if triggered
-        # TODO: add custom message preface, similar to userdetail message
+        # TODO: add custom message preface, similar to user detail message
 
         raise ValidationError('A user with that username already exists.')
 

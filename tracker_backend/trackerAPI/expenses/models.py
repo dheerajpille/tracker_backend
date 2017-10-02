@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 
 from datetime import date
 
+
 # Create your models here.
 class Food(models.Model):
     """
@@ -11,12 +12,14 @@ class Food(models.Model):
     restaurant = models.DecimalField(max_digits=8, decimal_places=2)
     groceries = models.DecimalField(max_digits=8, decimal_places=2)
 
+
 class Housing(models.Model):
     """
     Housing model, containing housing and rent expense data
     """
     housing = models.DecimalField(max_digits=8, decimal_places=2)
     rent = models.DecimalField(max_digits=8, decimal_places=2)
+
 
 class Utilities(models.Model):
     """
@@ -29,6 +32,7 @@ class Utilities(models.Model):
     mobile = models.DecimalField(max_digits=8, decimal_places=2)
     television = models.DecimalField(max_digits=8, decimal_places=2)
 
+
 class Transportation(models.Model):
     """
     Transportation model, containing fuel, parking, and public expense data
@@ -36,6 +40,7 @@ class Transportation(models.Model):
     fuel = models.DecimalField(max_digits=8, decimal_places=2)
     parking = models.DecimalField(max_digits=8, decimal_places=2)
     public = models.DecimalField(max_digits=8, decimal_places=2)
+
 
 class Insurance(models.Model):
     """
@@ -51,6 +56,7 @@ class Clothes(models.Model):
     """
     clothing = models.DecimalField(max_digits=8, decimal_places=2)
 
+
 class Entertainment(models.Model):
     """
     Entertainment model, containing electronics, games, movies, and bar expense data
@@ -60,17 +66,20 @@ class Entertainment(models.Model):
     movies = models.DecimalField(max_digits=8, decimal_places=2)
     bar = models.DecimalField(max_digits=8, decimal_places=2)
 
+
 class Savings(models.Model):
     """
     Savings model, containing deposit expense data
     """
     deposit = models.DecimalField(max_digits=8, decimal_places=2)
 
+
 class Miscellaneous(models.Model):
     """
     Miscellaneous model, containing other expense data
     """
     other = models.DecimalField(max_digits=8, decimal_places=2)
+
 
 class Expense(models.Model):
     # Date for user expenses in ISO 8601 format
