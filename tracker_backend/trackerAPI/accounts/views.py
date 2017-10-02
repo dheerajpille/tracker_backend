@@ -58,24 +58,18 @@ class UserDetail(APIView):
 
     # View the User object
     def get(self, request, pk):
-
         user = self.get_object(pk)
-        print(user)
-
-        if request.user.is_superuser or request.user == user:
+        if request.user == user:
             serializer = UserSerializer(user, context={'request', request})
-
             return Response(serializer.data)
-
-        return Response(data={"message": "Not authorized to view this user."}, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(data={"message": "Not authorized to view this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
     # Update the User object
     def put(self, request, pk):
         user = self.get_object(pk)
-
         if request.user.is_superuser or request.user == user:
             serializer = UserSerializer(user, data=request.data, partial=True, context={'request': request})
-
             if serializer.is_valid():
                 serializer.save()
 
@@ -88,13 +82,10 @@ class UserDetail(APIView):
     # Delete the User object
     def delete(self, pk):
         user = self.get_object(pk)
-
         if request.user.is_superuser or request.user == user:
             user = self.get_object(pk)
             user.delete()
-
             return Response(status=status.HTTP_204_NO_CONTENT)
-
         return Response(data={"message": "Not authorized to delete this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
 

@@ -34,6 +34,7 @@ class LoginSerializer(serializers.Serializer):
     class Meta:
         model = User
         fields = ('username', 'password', )
+        write_only_fields = ('password', )
 
 
 class SignupSerializer(serializers.Serializer):
@@ -76,3 +77,4 @@ class SignupSerializer(serializers.Serializer):
     class Meta:
         model = User
         fields = ('username', 'email', 'password', )
+        write_only_fields = ('password', )

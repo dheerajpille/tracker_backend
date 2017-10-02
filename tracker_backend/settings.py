@@ -69,6 +69,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework.authentication.SessionAuthentication',
     ]
@@ -175,5 +176,5 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'accounts.User'
 
 # OAuth ID and SECRET
-CLIENT_ID: '2NkzDqPEuzKRA4Cr5SdiAPg7vDLEyreA21B4K24l'
-CLIENT_SECRET = 'PMR4jCo1DEymWDOkMYzSBRCYetP3KrNSOw5OWYtpXhDAd2bTSRPcTgOO2tnOEqpqLUY68JOTbU0uiBXOAKxBDjNLcpWHHdDZGSnIno1lbDWgAXyU6mlLG3vcqkoGWCwN'
+CLIENT_ID: 'tQkWWpwMafMEEzzjp8xazsnI6FYFP9V21ls4SiSm'
+CLIENT_SECRET = 'hpppMrtSDdzyP4aiK78WkMZn0llaO7Hq20G9gnyUkhW7MsgnU5p2M407a1UJZzW3HpC0jmo3WVlPbVVIaCBjaFSaowQIgjCTLpdjZlzPiYaoOBn7TmYULK3Wc8SeaW8x'

@@ -15,10 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views
+from tracker_backend.trackerAPI.accounts.views import LoginView, SignupView
 
 urlpatterns = [
     # Admin for Django
     url(r'^admin/', admin.site.urls),
+
+    # TODO: remove this when not needed (soon)
+    url(r'^login/$', LoginView.as_view(), name='login'),
+
+    url(r'^signup/$', SignupView.as_view(), name='signup'),
 
     # TODO: configure authentication via OAuth
     # OAuth for Django
