@@ -58,18 +58,24 @@ class UserDetail(APIView):
 
     # View the User object
     def get(self, request, pk):
+
         user = self.get_object(pk)
-        if request.user == user:
+        print(user)
+
+        if request.user.is_superuser or request.user == user:
             serializer = UserSerializer(user, context={'request', request})
+
             return Response(serializer.data)
-        else:
-            return Response(data={"message": "Not authorized to view this user."}, status=status.HTTP_401_UNAUTHORIZED)
+
+        return Response(data={"message": "Not authorized to view this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
     # Update the User object
     def put(self, request, pk):
         user = self.get_object(pk)
+
         if request.user.is_superuser or request.user == user:
             serializer = UserSerializer(user, data=request.data, partial=True, context={'request': request})
+
             if serializer.is_valid():
                 serializer.save()
 
@@ -82,10 +88,13 @@ class UserDetail(APIView):
     # Delete the User object
     def delete(self, pk):
         user = self.get_object(pk)
+
         if request.user.is_superuser or request.user == user:
             user = self.get_object(pk)
             user.delete()
+
             return Response(status=status.HTTP_204_NO_CONTENT)
+
         return Response(data={"message": "Not authorized to delete this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
 
@@ -93,11 +102,6 @@ class UserList(ListAPIView):
 
     # Disables pagination for GET calls
     pagination_class = None
+    permission_classes = {IsAdminUser, }
     serializer_class = UserSerializer
-
-    def get(self, request, pk):
-        user = self.get_object(pk)
-        if request.user.is_superuser or request.user == user:
-            queryset = User.objects.all().order_by('id')
-        else:
-            return Response(data={"message": "Not authorized to view the user list."}, status=status.HTTP_401_UNAUTHORIZED)
+    queryset = User.objects.all().order_by('id')
