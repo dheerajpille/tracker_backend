@@ -2,19 +2,18 @@ from django.shortcuts import render
 from django.http import Http404
 from rest_framework import status
 from rest_framework.generics import ListAPIView
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
-from rest_framework import viewsets
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.decorators import login_required
+from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import User
 from .serializers import *
 
 
 # Create your views here.
 class LoginView(APIView):
+    """
+    Allows client to login with user credentials (username/password)
+    """
 
     # Gives any user permission to POST for login
     permission_classes = {AllowAny, }
@@ -31,6 +30,10 @@ class LoginView(APIView):
 
 
 class SignupView(APIView):
+    """
+    Allows client to signup with user credentials (username/email/password)
+    Other fields are optional
+    """
 
     # Gives any user permission to POST for signup
     permission_classes = {AllowAny, }
@@ -48,6 +51,9 @@ class SignupView(APIView):
 
 
 class UserDetail(APIView):
+    """
+    Allows client to view, update, and delete their own data after authentication
+    """
 
     # Obtains object in question via pk/id value
     def get_object(self, pk):
@@ -82,17 +88,28 @@ class UserDetail(APIView):
     # Delete the User object
     def delete(self, pk):
         user = self.get_object(pk)
+
         if request.user.is_superuser or request.user == user:
             user = self.get_object(pk)
             user.delete()
+
             return Response(status=status.HTTP_204_NO_CONTENT)
+
         return Response(data={"message": "Not authorized to delete this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class UserList(ListAPIView):
+    """
+    Allows admin to view all users in database
+    """
 
     # Disables pagination for GET calls
     pagination_class = None
+
+    # Gives list-viewing access to superuser/admin accounts only
     permission_classes = {IsAdminUser, }
+
     serializer_class = UserSerializer
+
+    # Orders queryset of user accounts by pk/id value
     queryset = User.objects.all().order_by('id')
