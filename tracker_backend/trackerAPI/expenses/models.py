@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 
 from datetime import date
 
@@ -49,6 +48,7 @@ class Insurance(models.Model):
     health = models.DecimalField(max_digits=8, decimal_places=2)
     household = models.DecimalField(max_digits=8, decimal_places=2)
     car = models.DecimalField(max_digits=8, decimal_places=2)
+
 
 class Clothes(models.Model):
     """

@@ -115,6 +115,24 @@ class UserList(ListAPIView):
     queryset = User.objects.all().order_by('id')
 
 
+class FoodDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404
+
+    def post(self, request):
+        food_data = FoodSerializer(data=request.data)
+
+        if food_data.is_valid():
+            food_data.save()
+            serializer = UserSerializer(food_data.data, context={'request': request})
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(create_user.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class ExpenseDetail(APIView):
 
     def get_object(self, pk):

@@ -103,6 +103,87 @@ class SignupSerializer(serializers.Serializer):
         fields = ('username', 'email', 'password', )
         write_only_fields = ('password', )
 
+
+class FoodSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for food model
+    """
+
+    class Meta:
+        model = Food
+        fields = ('groceries', 'restaurants', )
+
+
+class HousingSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for housing model
+    """
+
+    class Meta:
+        model = Housing
+        fields = ('housing', 'rent', )
+
+
+class UtilitiesSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for utilities model
+    """
+
+    class Meta:
+        model = Utilities
+        fields = ('hydro', 'electricity', 'gas', 'internet', 'mobile', 'television', )
+
+
+class TransportationSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for transportation model
+    """
+
+    class Meta:
+        model = Transportation
+        fields = ('fuel', 'parking', 'public', )
+
+
+class InsuranceSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for insurance model
+    """
+
+    class Meta:
+        model = Insurance
+        fields = ('health', 'household', 'car', )
+
+
+class ClothesSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for clothes model
+    """
+
+    class Meta:
+        model = Clothes
+        fields = ('clothing', )
+
+
+class EntertainmentSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for entertainment model
+    """
+
+    class Meta:
+        model = Entertainment
+        fields = ('electronics', 'games', 'movies', 'bar', )
+
+
+class Miscellaneous(serializers.ModelSerializer):
+    """
+    Standard serializer for miscellaneous model
+    """
+
+    class Meta:
+        model = Miscellaneous
+        fields = ('other', )
+
+
 class ExpenseSerializer(serializers.ModelSerializer):
     """
     Standard serializer for expense model

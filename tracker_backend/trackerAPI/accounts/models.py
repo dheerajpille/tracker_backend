@@ -11,12 +11,13 @@ class User(AbstractUser):
     budget = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
 
+# Expense models hereon
 class Food(models.Model):
     """
     Food model, containing restaurant and groceries expense data
     """
-    restaurant = models.DecimalField(max_digits=8, decimal_places=2)
     groceries = models.DecimalField(max_digits=8, decimal_places=2)
+    restaurants = models.DecimalField(max_digits=8, decimal_places=2)
 
 
 class Housing(models.Model):
