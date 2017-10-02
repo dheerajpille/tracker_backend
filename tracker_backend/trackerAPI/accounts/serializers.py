@@ -3,7 +3,8 @@ from django.conf import settings
 from django.utils.encoding import force_text
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError, APIException
-from .models import User
+
+from .models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -101,3 +102,15 @@ class SignupSerializer(serializers.Serializer):
         model = User
         fields = ('username', 'email', 'password', )
         write_only_fields = ('password', )
+
+class ExpenseSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for expense model
+    """
+
+    class Meta:
+        model = Expense
+
+        # Lists various expenses defined in expense model
+        fields = ('food', 'housing', 'utilities', 'transportation', 'insurance', 'clothes', 'entertainment', 'savings',
+                  'miscellaneous')

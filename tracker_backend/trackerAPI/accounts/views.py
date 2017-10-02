@@ -113,3 +113,20 @@ class UserList(ListAPIView):
 
     # Orders queryset of user accounts by pk/id value
     queryset = User.objects.all().order_by('id')
+
+
+class ExpenseDetail(APIView):
+
+    def get_object(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        user = self.get_object(pk)
+        if request.user == user:
+            serializer = ExpenseSerializer(user, context={'request', request})
+            return Response(serializer.data)
+        else:
+            return Response(data={"message": "Not authorized to view this user."}, status=status.HTTP_401_UNAUTHORIZED)
