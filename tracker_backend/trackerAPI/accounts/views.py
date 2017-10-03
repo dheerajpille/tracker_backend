@@ -65,7 +65,7 @@ class UserDetail(APIView):
     # View the User object
     def get(self, request, pk):
         user = self.get_object(pk)
-        if request.user == user:
+        if request.user.is_superuser or request.user == user:
             serializer = UserSerializer(user, context={'request', request})
             return Response(serializer.data)
         else:
