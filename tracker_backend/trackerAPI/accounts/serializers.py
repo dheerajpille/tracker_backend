@@ -203,5 +203,5 @@ class ExpenseSerializer(serializers.ModelSerializer):
         model = Expense
 
         # Lists various expenses defined in expense model
-        fields = ('food', 'housing', 'utilities', 'transportation', 'insurance', 'clothes', 'entertainment', 'savings',
-                  'miscellaneous')
+        fields = ('food', 'housing', 'utilities', 'transportation', 'insurance', 'clothes', 'entertainment',
+                  'education', 'savings', 'miscellaneous', )

@@ -115,5 +115,6 @@ class Expense(models.Model):
     insurance = models.OneToOneField(Insurance)
     clothes = models.OneToOneField(Clothes)
     entertainment = models.OneToOneField(Entertainment)
+    education = models.OneToOneField(Education)
     savings = models.OneToOneField(Savings)
     miscellaneous = models.OneToOneField(Miscellaneous)
