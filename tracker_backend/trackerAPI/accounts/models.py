@@ -18,86 +18,86 @@ class Food(models.Model):
     """
     Food model, containing restaurant and groceries expense data
     """
-    groceries = models.DecimalField(max_digits=8, decimal_places=2)
-    restaurants = models.DecimalField(max_digits=8, decimal_places=2)
+    groceries = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    restaurants = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
 
 class Housing(models.Model):
     """
     Housing model, containing housing and rent expense data
     """
-    mortgage = models.DecimalField(max_digits=8, decimal_places=2)
-    rent = models.DecimalField(max_digits=8, decimal_places=2)
+    mortgage = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    rent = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
 
 class Utilities(models.Model):
     """
     Utilities model, containing hydro, electricity, gas, internet, mobile, and television expense data
     """
-    hydro = models.DecimalField(max_digits=8, decimal_places=2)
-    electricity = models.DecimalField(max_digits=8, decimal_places=2)
-    gas = models.DecimalField(max_digits=8, decimal_places=2)
-    internet = models.DecimalField(max_digits=8, decimal_places=2)
-    mobile = models.DecimalField(max_digits=8, decimal_places=2)
-    television = models.DecimalField(max_digits=8, decimal_places=2)
+    hydro = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    electricity = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    gas = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    internet = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    mobile = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    television = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
 
 class Transportation(models.Model):
     """
     Transportation model, containing fuel, parking, and public expense data
     """
-    fuel = models.DecimalField(max_digits=8, decimal_places=2)
-    parking = models.DecimalField(max_digits=8, decimal_places=2)
-    public = models.DecimalField(max_digits=8, decimal_places=2)
+    fuel = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    parking = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    public = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
 
 class Insurance(models.Model):
     """
     Insurance model, containing health, household, and car expense data
     """
-    health = models.DecimalField(max_digits=8, decimal_places=2)
-    household = models.DecimalField(max_digits=8, decimal_places=2)
-    car = models.DecimalField(max_digits=8, decimal_places=2)
+    health = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    household = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    car = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
 
 class Clothes(models.Model):
     """
     Clothes model, containing clothing expense data
     """
-    clothing = models.DecimalField(max_digits=8, decimal_places=2)
+    clothing = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
 
 class Entertainment(models.Model):
     """
     Entertainment model, containing electronics, games, movies, and bar expense data
     """
-    electronics = models.DecimalField(max_digits=8, decimal_places=2)
-    games = models.DecimalField(max_digits=8, decimal_places=2)
-    movies = models.DecimalField(max_digits=8, decimal_places=2)
-    bar = models.DecimalField(max_digits=8, decimal_places=2)
+    electronics = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    games = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    movies = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    bar = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
 
 class Education(models.Model):
     """
     Education model, containing tuition, textbooks, and fees expense data
     """
-    tuition = models.DecimalField(max_digits=8, decimal_places=2)
-    textbooks = models.DecimalField(max_digits=8, decimal_places=2)
-    fees = models.DecimalField(max_digits=8, decimal_places=2)
+    tuition = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    textbooks = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    fees = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
 
 class Savings(models.Model):
     """
     Savings model, containing deposit expense data
     """
-    deposit = models.DecimalField(max_digits=8, decimal_places=2)
+    deposit = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
 
 class Miscellaneous(models.Model):
     """
     Miscellaneous model, containing other expense data
     """
-    other = models.DecimalField(max_digits=8, decimal_places=2)
+    other = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
 
 class Expense(models.Model):
@@ -108,6 +108,9 @@ class Expense(models.Model):
     # Date for user expenses in ISO 8601 format
     # Defaults to server's date value today
     date = models.DateField(default=date.today, blank=True)
+
+    # User object that expense is connected to
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     # Various user expense types
     food = models.OneToOneField(Food)

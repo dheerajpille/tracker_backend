@@ -175,6 +175,6 @@ STATIC_URL = '/static/'
 # Sets default User model to custom User model, located in accounts.models
 AUTH_USER_MODEL = 'accounts.User'
 
-# OAuth ID and SECRET
+# OAuth ID and SECRET derived from /o/applications
 CLIENT_ID: 'XUea079woVZEqWDB8eizjCyaHU7umx9y13SZU2P1'
 CLIENT_SECRET = 'rKsgL41b6P0KLSkT04BEa1WRindpjX7i7wuPcB5vF7BboFq2fyItTgm1QTLm4rRKeLfZ4YsVvtJFO2WNiKctYRvsfsCReK8wss47ELpK3onyXt6NC9BNnMCdnY4gseBO'

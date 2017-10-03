@@ -109,6 +109,8 @@ class FoodSerializer(serializers.ModelSerializer):
     """
     Standard serializer for food model
     """
+    groceries = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    restaurants = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
 
     class Meta:
         model = Food
@@ -119,6 +121,8 @@ class HousingSerializer(serializers.ModelSerializer):
     """
     Standard serializer for housing model
     """
+    mortgage = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    rent = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
 
     class Meta:
         model = Housing
@@ -129,6 +133,12 @@ class UtilitiesSerializer(serializers.ModelSerializer):
     """
     Standard serializer for utilities model
     """
+    hydro = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    electricity = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    gas = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    internet = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    mobile = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    television = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
 
     class Meta:
         model = Utilities
@@ -139,6 +149,9 @@ class TransportationSerializer(serializers.ModelSerializer):
     """
     Standard serializer for transportation model
     """
+    fuel = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    parking = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    public = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
 
     class Meta:
         model = Transportation
@@ -149,6 +162,9 @@ class InsuranceSerializer(serializers.ModelSerializer):
     """
     Standard serializer for insurance model
     """
+    health = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    household = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    car = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
 
     class Meta:
         model = Insurance
@@ -159,6 +175,7 @@ class ClothesSerializer(serializers.ModelSerializer):
     """
     Standard serializer for clothes model
     """
+    clothing = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
 
     class Meta:
         model = Clothes
@@ -169,6 +186,10 @@ class EntertainmentSerializer(serializers.ModelSerializer):
     """
     Standard serializer for entertainment model
     """
+    electronics = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    games = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    movies = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    bar = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
 
     class Meta:
         model = Entertainment
@@ -179,16 +200,31 @@ class EducationSerializer(serializers.ModelSerializer):
     """
     Standard serializer for education model
     """
+    tuition = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    textbooks = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    fees = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
 
     class Meta:
         model = Education
         fields = ('tuition', ' textbooks', 'fees', )
 
 
-class Miscellaneous(serializers.ModelSerializer):
+class SavingsSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for savings model
+    """
+    deposit = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+
+    class Meta:
+        model = Savings
+        fields = ('deposit', )
+
+
+class MiscellaneousSerializer(serializers.ModelSerializer):
     """
     Standard serializer for miscellaneous model
     """
+    other = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
 
     class Meta:
         model = Miscellaneous
@@ -199,10 +235,23 @@ class ExpenseSerializer(serializers.ModelSerializer):
     """
     Standard serializer for expense model
     """
+    date = serializers.CharField(required=True)
+    user = UserSerializer()
+
+    food = FoodSerializer()
+    housing = HousingSerializer()
+    utilities = UtilitiesSerializer()
+    transportation = TransportationSerializer()
+    insurance = InsuranceSerializer()
+    clothes = ClothesSerializer()
+    entertainment = EntertainmentSerializer()
+    education = EducationSerializer()
+    savings = SavingsSerializer()
+    miscellaneous = MiscellaneousSerializer()
 
     class Meta:
         model = Expense
 
         # Lists various expenses defined in expense model
-        fields = ('food', 'housing', 'utilities', 'transportation', 'insurance', 'clothes', 'entertainment',
-                  'education', 'savings', 'miscellaneous', )
+        fields = ('date', 'user', 'food', 'housing', 'utilities', 'transportation', 'insurance', 'clothes',
+                  'entertainment', 'education', 'savings', 'miscellaneous', )
