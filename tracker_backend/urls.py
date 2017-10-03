@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views
-from tracker_backend.trackerAPI.accounts.views import LoginView, SignupView, ExpenseDetail
+from tracker_backend.trackerAPI.accounts.views import *
 
 urlpatterns = [
     # Admin for Django
@@ -26,6 +26,11 @@ urlpatterns = [
     url(r'^login/$', LoginView.as_view(), name='login'),
 
     url(r'^signup/$', SignupView.as_view(), name='signup'),
+
+    url(r'^list/$', UserList.as_view(), name='userList'),
+    url(r'^user/(?P<pk>[0-9]+)/', UserDetail.as_view(), name='userDetail'),
+
+    url(r'^user/(?P<pk>[0-9]+)/added/$', ExpenseDetail.as_view(), name='expenseDetail'),
 
     # TODO: configure authentication via OAuth
     # OAuth for Django

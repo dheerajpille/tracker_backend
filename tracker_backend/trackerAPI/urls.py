@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^list/$', UserList.as_view(), name='userList'),
     url(r'^user/(?P<pk>[0-9]+)/', UserDetail.as_view(), name='userDetail'),
 
-    url(r'^user/(?P<pk>[0-9]+)/(?P<date>)/$', ExpenseDetail.as_view(), name='expense'),
+    url(r'^addexpense/$', ExpenseDetail.as_view(), name='expense'),
 ]

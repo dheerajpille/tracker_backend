@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7a8df52-0b93-4281-ac53-2d95db8fcf4e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/settings.py" afterPath="$PROJECT_DIR$/tracker_backend/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/urls.py" afterPath="$PROJECT_DIR$/tracker_backend/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,23 +49,13 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="131" column="33" lean-forward="false" selection-start-line="131" selection-start-column="33" selection-end-line="131" selection-end-column="33" />
+            <state relative-caret-position="28">
+              <caret line="118" column="29" lean-forward="false" selection-start-line="118" selection-start-column="29" selection-end-line="118" selection-end-column="29" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <element signature="e#383#953#0" expanded="false" />
                 <element signature="e#3377#3754#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tracker_backend/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="67" column="39" lean-forward="false" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -80,8 +75,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+            <state relative-caret-position="170">
+              <caret line="10" column="61" lean-forward="true" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -114,11 +109,21 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tracker_backend/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+            <state relative-caret-position="249">
+              <caret line="32" column="85" lean-forward="false" selection-start-line="32" selection-start-column="85" selection-end-line="32" selection-end-column="85" />
               <folding>
                 <element signature="e#649#690#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="12" column="93" lean-forward="false" selection-start-line="12" selection-start-column="93" selection-end-line="12" selection-end-column="93" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -162,9 +167,9 @@
       <find>p</find>
       <find>dep</find>
       <find>detail</find>
-      <find>partial</find>
       <find>part</find>
       <find>auth</find>
+      <find>partial</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -178,16 +183,16 @@
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/v1/urls.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/serializers.py" />
-        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/urls.py" />
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/models.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py" />
-        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py" />
-        <option value="$PROJECT_DIR$/tracker_backend/urls.py" />
-        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py" />
         <option value="$PROJECT_DIR$/tracker_backend/settings.py" />
+        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py" />
+        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py" />
+        <option value="$PROJECT_DIR$/tracker_backend/urls.py" />
+        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py" />
       </list>
     </option>
   </component>
@@ -244,13 +249,6 @@
               <item name="tracker_backend" type="462c0819:PsiDirectoryNode" />
               <item name="trackerAPI" type="462c0819:PsiDirectoryNode" />
               <item name="accounts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tracker_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tracker_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="tracker_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="trackerAPI" type="462c0819:PsiDirectoryNode" />
-              <item name="expenses" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -450,14 +448,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tracker_backend/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="49" column="21" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -702,13 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -790,28 +773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="116" column="38" lean-forward="false" selection-start-line="116" selection-start-column="38" selection-end-line="116" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="131" column="33" lean-forward="false" selection-start-line="131" selection-start-column="33" selection-end-line="131" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#383#953#0" expanded="false" />
-            <element signature="e#3377#3754#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1716">
@@ -830,30 +791,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/urls.py">
+    <entry file="file://$PROJECT_DIR$/tracker_backend/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="27" column="59" lean-forward="false" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+        <state relative-caret-position="79">
+          <caret line="66" column="6" lean-forward="true" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="116" column="38" lean-forward="false" selection-start-line="116" selection-start-column="38" selection-end-line="116" selection-end-column="38" />
           <folding>
-            <element signature="e#649#690#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="118" column="29" lean-forward="false" selection-start-line="118" selection-start-column="29" selection-end-line="118" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#383#953#0" expanded="false" />
+            <element signature="e#3377#3754#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+        <state relative-caret-position="170">
+          <caret line="10" column="61" lean-forward="true" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/settings.py">
+    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="67" column="39" lean-forward="false" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tracker_backend/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="32" column="85" lean-forward="false" selection-start-line="32" selection-start-column="85" selection-end-line="32" selection-end-column="85" />
+          <folding>
+            <element signature="e#649#690#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" column="93" lean-forward="false" selection-start-line="12" selection-start-column="93" selection-end-line="12" selection-end-column="93" />
           <folding />
         </state>
       </provider>
