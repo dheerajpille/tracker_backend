@@ -116,3 +116,22 @@ class UserList(ListAPIView):
 
 
 # TODO: replace get_object with get_object_or_404?
+class ExpenseDetail(APIView):
+
+    # Obtains object in question via pk/id value
+    def get_object(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404
+
+    def post(self, request):
+        create_expense = ExpenseSerializer(data=request.data)
+
+        if create_expense.is_valid():
+            create_expense.save()
+            serializer = ExpenseSerializer(create_expense.data, partial=True, context={'request': request})
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(create_expense.errors, status=status.HTTP_400_BAD_REQUEST)

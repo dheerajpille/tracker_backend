@@ -104,7 +104,7 @@ class SignupSerializer(serializers.Serializer):
         fields = ('username', 'email', 'password', )
         write_only_fields = ('password', )
 
-
+# TODO: add depth
 class FoodSerializer(serializers.ModelSerializer):
     """
     Standard serializer for food model
@@ -236,7 +236,6 @@ class ExpenseSerializer(serializers.ModelSerializer):
     Standard serializer for expense model
     """
     date = serializers.CharField(required=True)
-    user = UserSerializer()
 
     food = FoodSerializer()
     housing = HousingSerializer()
@@ -249,9 +248,27 @@ class ExpenseSerializer(serializers.ModelSerializer):
     savings = SavingsSerializer()
     miscellaneous = MiscellaneousSerializer()
 
+    def create(self, validated_data):
+        food_data = validated_data.pop('food')
+        housing_data = validated_data.pop('housing')
+        utilities_data = validated_data.pop('utilities')
+        transportation_data = validated_data.pop('transportation')
+        insurance_data = validated_data.pop('insurance')
+        clothes_data = validated_data.pop('clothes')
+        entertainment_data = validated_data.pop('entertainment')
+        education_data = validated_data.pop('education')
+        savings_data = validated_data.pop('savings')
+        miscellaneous_data = validated_data.pop('savings')
+
+        expense = Expense.objects.create(expense=expense, date=date, **food_data, **housing_data, **utilities_data,
+                                         **transportation_data, **insurance_data, **clothes_data, **entertainment_data,
+                                         **education_data, **savings_data, **miscellaneous_data)
+
+        return expense
+
     class Meta:
         model = Expense
 
         # Lists various expenses defined in expense model
-        fields = ('date', 'user', 'food', 'housing', 'utilities', 'transportation', 'insurance', 'clothes',
+        fields = ('date', 'food', 'housing', 'utilities', 'transportation', 'insurance', 'clothes',
                   'entertainment', 'education', 'savings', 'miscellaneous', )
