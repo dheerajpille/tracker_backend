@@ -60,7 +60,7 @@ INSTALLED_APPS = [
 # TODO: implement token for security purposes
 OAUTH2_PROVIDER = {
     # List of available scopes
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope'}
 }
 
 # Django REST Framework settings
@@ -176,5 +176,5 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'accounts.User'
 
 # OAuth ID and SECRET
-CLIENT_ID: 'tQkWWpwMafMEEzzjp8xazsnI6FYFP9V21ls4SiSm'
-CLIENT_SECRET = 'hpppMrtSDdzyP4aiK78WkMZn0llaO7Hq20G9gnyUkhW7MsgnU5p2M407a1UJZzW3HpC0jmo3WVlPbVVIaCBjaFSaowQIgjCTLpdjZlzPiYaoOBn7TmYULK3Wc8SeaW8x'
+CLIENT_ID: 'XUea079woVZEqWDB8eizjCyaHU7umx9y13SZU2P1'
+CLIENT_SECRET = 'rKsgL41b6P0KLSkT04BEa1WRindpjX7i7wuPcB5vF7BboFq2fyItTgm1QTLm4rRKeLfZ4YsVvtJFO2WNiKctYRvsfsCReK8wss47ELpK3onyXt6NC9BNnMCdnY4gseBO'
