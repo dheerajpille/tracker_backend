@@ -6,9 +6,11 @@ from datetime import date
 # Create your models here.
 class User(AbstractUser):
     """
-    Custom user model with additional (monthly) budget parameter
+    Custom user model with additional (monthly) budget and currency parameter
     """
+
     budget = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    currency = models.CharField(max_length=3)
 
 
 # Expense models hereon

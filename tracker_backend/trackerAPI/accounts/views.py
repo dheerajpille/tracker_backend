@@ -115,36 +115,4 @@ class UserList(ListAPIView):
     queryset = User.objects.all().order_by('id')
 
 
-class FoodDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return User.objects.get(pk=pk)
-        except User.DoesNotExist:
-            raise Http404
-
-    def post(self, request):
-        food_data = FoodSerializer(data=request.data)
-
-        if food_data.is_valid():
-            food_data.save()
-            serializer = UserSerializer(food_data.data, context={'request': request})
-
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(create_user.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class ExpenseDetail(APIView):
-
-    def get_object(self, pk):
-        try:
-            return User.objects.get(pk=pk)
-        except User.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk):
-        user = self.get_object(pk)
-        if request.user == user:
-            serializer = ExpenseSerializer(user, context={'request', request})
-            return Response(serializer.data)
-        else:
-            return Response(data={"message": "Not authorized to view this user."}, status=status.HTTP_401_UNAUTHORIZED)
+# TODO: replace get_object with get_object_or_404?

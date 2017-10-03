@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
 
         # Displays the following fields as response body
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'budget', )
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'budget', 'currency', )
 
 
 class LoginSerializer(serializers.Serializer):
@@ -64,6 +64,7 @@ class SignupSerializer(serializers.Serializer):
     last_name = serializers.CharField(required=False)
     email = serializers.CharField(style={'input_type': 'email'}, required=True)
     budget = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    currency = serializers.CharField(required=False)
     password = serializers.CharField(style={'input_type': 'password'}, write_only=True, required=True)
 
     def create(self, validated_data):
