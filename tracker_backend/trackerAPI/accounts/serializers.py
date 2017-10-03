@@ -121,7 +121,7 @@ class HousingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Housing
-        fields = ('housing', 'rent', )
+        fields = ('mortgage', 'rent', )
 
 
 class UtilitiesSerializer(serializers.ModelSerializer):
@@ -172,6 +172,16 @@ class EntertainmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Entertainment
         fields = ('electronics', 'games', 'movies', 'bar', )
+
+
+class EducationSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for education model
+    """
+
+    class Meta:
+        model = Education
+        fields = ('tuition', ' textbooks', 'fees', )
 
 
 class Miscellaneous(serializers.ModelSerializer):

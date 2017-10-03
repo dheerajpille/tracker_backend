@@ -24,7 +24,7 @@ class Housing(models.Model):
     """
     Housing model, containing housing and rent expense data
     """
-    housing = models.DecimalField(max_digits=8, decimal_places=2)
+    mortgage = models.DecimalField(max_digits=8, decimal_places=2)
     rent = models.DecimalField(max_digits=8, decimal_places=2)
 
 
@@ -75,6 +75,15 @@ class Entertainment(models.Model):
     bar = models.DecimalField(max_digits=8, decimal_places=2)
 
 
+class Education(models.Model):
+    """
+    Education model, containing tuition, textbooks, and fees expense data
+    """
+    tuition = models.DecimalField(max_digits=8, decimal_places=2)
+    textbooks = models.DecimalField(max_digits=8, decimal_places=2)
+    fees = models.DecimalField(max_digits=8, decimal_places=2)
+
+
 class Savings(models.Model):
     """
     Savings model, containing deposit expense data
@@ -93,6 +102,7 @@ class Expense(models.Model):
     """
     Expense model, which tracks all defined types of user expenses
     """
+
     # Date for user expenses in ISO 8601 format
     # Defaults to server's date value today
     date = models.DateField(default=date.today, blank=True)
