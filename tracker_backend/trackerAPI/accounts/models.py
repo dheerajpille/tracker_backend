@@ -105,6 +105,7 @@ class Expense(models.Model):
     """
 
     # Date for user expenses in ISO 8601 format
+    date = models.CharField(max_length=10)
 
     # User object that expense is connected to
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
