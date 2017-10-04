@@ -4,11 +4,7 @@
     <list default="true" id="d7a8df52-0b93-4281-ac53-2d95db8fcf4e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/urls.py" afterPath="$PROJECT_DIR$/tracker_backend/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,6 +35,12 @@
         <item name="Django default" type="e3449647:DbNodeDescriptor" />
         <item name="main" type="e3449647:DbNodeDescriptor" />
       </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="Django default" type="e3449647:DbNodeDescriptor" />
+        <item name="main" type="e3449647:DbNodeDescriptor" />
+        <item name="expenses_food" type="e3449647:DbNodeDescriptor" />
+      </path>
     </expand>
     <select />
   </component>
@@ -64,21 +66,22 @@
       <file leaf-file-name="serializers.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="283" column="38" lean-forward="false" selection-start-line="283" selection-start-column="38" selection-end-line="283" selection-end-column="38" />
+            <state relative-caret-position="62">
+              <caret line="275" column="0" lean-forward="true" selection-start-line="275" selection-start-column="0" selection-end-line="275" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
                 <element signature="e#243#492#0" expanded="false" />
                 <element signature="e#546#1531#0" expanded="false" />
-                <element signature="e#4138#4444#0" expanded="false" />
-                <element signature="e#4507#5215#0" expanded="false" />
-                <element signature="e#5283#5697#0" expanded="false" />
-                <element signature="e#5760#6166#0" expanded="false" />
-                <element signature="e#6227#6441#0" expanded="false" />
-                <element signature="e#6508#7020#0" expanded="false" />
-                <element signature="e#7083#7493#0" expanded="false" />
-                <element signature="e#7554#7766#0" expanded="false" />
-                <element signature="e#7833#8053#0" expanded="false" />
+                <element signature="e#3723#4061#0" expanded="false" />
+                <element signature="e#4122#4450#0" expanded="false" />
+                <element signature="e#4513#5287#0" expanded="false" />
+                <element signature="e#5355#5802#0" expanded="false" />
+                <element signature="e#5865#6304#0" expanded="false" />
+                <element signature="e#6365#6590#0" expanded="false" />
+                <element signature="e#6657#7213#0" expanded="false" />
+                <element signature="e#7276#7719#0" expanded="false" />
+                <element signature="e#7780#8003#0" expanded="false" />
+                <element signature="e#8070#8301#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -142,7 +145,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>BACKEND</find>
       <find>middleware</find>
       <find>json</find>
       <find>bin</find>
@@ -172,6 +174,7 @@
       <find>part</find>
       <find>date</find>
       <find>date</find>
+      <find>PRINT</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -446,27 +449,30 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py</url>
-          <line>148</line>
+          <line>147</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py</url>
-          <line>199</line>
+          <line>198</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py</url>
+          <line>160</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py</url>
+          <line>211</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -475,15 +481,16 @@
             <element signature="e#0#23#0" expanded="true" />
             <element signature="e#243#492#0" expanded="false" />
             <element signature="e#546#1531#0" expanded="false" />
-            <element signature="e#4138#4444#0" expanded="false" />
-            <element signature="e#4507#5215#0" expanded="false" />
-            <element signature="e#5283#5697#0" expanded="false" />
-            <element signature="e#5760#6166#0" expanded="false" />
-            <element signature="e#6227#6441#0" expanded="false" />
-            <element signature="e#6508#7020#0" expanded="false" />
-            <element signature="e#7083#7493#0" expanded="false" />
-            <element signature="e#7554#7766#0" expanded="false" />
-            <element signature="e#7833#8053#0" expanded="false" />
+            <element signature="e#3723#4061#0" expanded="false" />
+            <element signature="e#4122#4450#0" expanded="false" />
+            <element signature="e#4513#5287#0" expanded="false" />
+            <element signature="e#5355#5802#0" expanded="false" />
+            <element signature="e#5865#6304#0" expanded="false" />
+            <element signature="e#6365#6590#0" expanded="false" />
+            <element signature="e#6657#7213#0" expanded="false" />
+            <element signature="e#7276#7719#0" expanded="false" />
+            <element signature="e#7780#8003#0" expanded="false" />
+            <element signature="e#8070#8301#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -554,15 +561,16 @@
             <element signature="e#0#23#0" expanded="true" />
             <element signature="e#243#492#0" expanded="false" />
             <element signature="e#546#1531#0" expanded="false" />
-            <element signature="e#4138#4444#0" expanded="false" />
-            <element signature="e#4507#5215#0" expanded="false" />
-            <element signature="e#5283#5697#0" expanded="false" />
-            <element signature="e#5760#6166#0" expanded="false" />
-            <element signature="e#6227#6441#0" expanded="false" />
-            <element signature="e#6508#7020#0" expanded="false" />
-            <element signature="e#7083#7493#0" expanded="false" />
-            <element signature="e#7554#7766#0" expanded="false" />
-            <element signature="e#7833#8053#0" expanded="false" />
+            <element signature="e#3723#4061#0" expanded="false" />
+            <element signature="e#4122#4450#0" expanded="false" />
+            <element signature="e#4513#5287#0" expanded="false" />
+            <element signature="e#5355#5802#0" expanded="false" />
+            <element signature="e#5865#6304#0" expanded="false" />
+            <element signature="e#6365#6590#0" expanded="false" />
+            <element signature="e#6657#7213#0" expanded="false" />
+            <element signature="e#7276#7719#0" expanded="false" />
+            <element signature="e#7780#8003#0" expanded="false" />
+            <element signature="e#8070#8301#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -626,15 +634,16 @@
             <element signature="e#0#23#0" expanded="true" />
             <element signature="e#243#492#0" expanded="false" />
             <element signature="e#546#1531#0" expanded="false" />
-            <element signature="e#4138#4444#0" expanded="false" />
-            <element signature="e#4507#5215#0" expanded="false" />
-            <element signature="e#5283#5697#0" expanded="false" />
-            <element signature="e#5760#6166#0" expanded="false" />
-            <element signature="e#6227#6441#0" expanded="false" />
-            <element signature="e#6508#7020#0" expanded="false" />
-            <element signature="e#7083#7493#0" expanded="false" />
-            <element signature="e#7554#7766#0" expanded="false" />
-            <element signature="e#7833#8053#0" expanded="false" />
+            <element signature="e#3723#4061#0" expanded="false" />
+            <element signature="e#4122#4450#0" expanded="false" />
+            <element signature="e#4513#5287#0" expanded="false" />
+            <element signature="e#5355#5802#0" expanded="false" />
+            <element signature="e#5865#6304#0" expanded="false" />
+            <element signature="e#6365#6590#0" expanded="false" />
+            <element signature="e#6657#7213#0" expanded="false" />
+            <element signature="e#7276#7719#0" expanded="false" />
+            <element signature="e#7780#8003#0" expanded="false" />
+            <element signature="e#8070#8301#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -889,23 +898,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://table:/11cdb8c1/20c1c346-d9db-4aa5-b139-d4aac4b6b52e/main.expenses_food">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="283" column="38" lean-forward="false" selection-start-line="283" selection-start-column="38" selection-end-line="283" selection-end-column="38" />
+        <state relative-caret-position="62">
+          <caret line="275" column="0" lean-forward="true" selection-start-line="275" selection-start-column="0" selection-end-line="275" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
             <element signature="e#243#492#0" expanded="false" />
             <element signature="e#546#1531#0" expanded="false" />
-            <element signature="e#4138#4444#0" expanded="false" />
-            <element signature="e#4507#5215#0" expanded="false" />
-            <element signature="e#5283#5697#0" expanded="false" />
-            <element signature="e#5760#6166#0" expanded="false" />
-            <element signature="e#6227#6441#0" expanded="false" />
-            <element signature="e#6508#7020#0" expanded="false" />
-            <element signature="e#7083#7493#0" expanded="false" />
-            <element signature="e#7554#7766#0" expanded="false" />
-            <element signature="e#7833#8053#0" expanded="false" />
+            <element signature="e#3723#4061#0" expanded="false" />
+            <element signature="e#4122#4450#0" expanded="false" />
+            <element signature="e#4513#5287#0" expanded="false" />
+            <element signature="e#5355#5802#0" expanded="false" />
+            <element signature="e#5865#6304#0" expanded="false" />
+            <element signature="e#6365#6590#0" expanded="false" />
+            <element signature="e#6657#7213#0" expanded="false" />
+            <element signature="e#7276#7719#0" expanded="false" />
+            <element signature="e#7780#8003#0" expanded="false" />
+            <element signature="e#8070#8301#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -84,7 +84,6 @@ class SignupSerializer(serializers.Serializer):
             try:
                 email = User.objects.get(email__iexact=self.validated_data['email'])
             except User.DoesNotExist:
-                print(validated_data)
                 user = UserSerializer.create(self, validated_data)
                 user.set_password(validated_data['password'])
 
@@ -110,8 +109,8 @@ class FoodSerializer(serializers.ModelSerializer):
     """
     Standard serializer for food model
     """
-    groceries = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    restaurants = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    groceries = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    restaurants = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
 
     class Meta:
         model = Food
@@ -122,8 +121,8 @@ class HousingSerializer(serializers.ModelSerializer):
     """
     Standard serializer for housing model
     """
-    mortgage = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    rent = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    mortgage = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    rent = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
 
     class Meta:
         model = Housing
@@ -134,12 +133,12 @@ class UtilitiesSerializer(serializers.ModelSerializer):
     """
     Standard serializer for utilities model
     """
-    hydro = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    electricity = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    gas = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    internet = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    mobile = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    television = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    hydro = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    electricity = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    gas = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    internet = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    mobile = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    television = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
 
     class Meta:
         model = Utilities
@@ -150,9 +149,9 @@ class TransportationSerializer(serializers.ModelSerializer):
     """
     Standard serializer for transportation model
     """
-    fuel = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    parking = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    public = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    fuel = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    parking = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    public = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
 
     class Meta:
         model = Transportation
@@ -163,9 +162,9 @@ class InsuranceSerializer(serializers.ModelSerializer):
     """
     Standard serializer for insurance model
     """
-    health = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    household = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    car = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    health = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    household = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    car = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
 
     class Meta:
         model = Insurance
@@ -176,7 +175,7 @@ class ClothesSerializer(serializers.ModelSerializer):
     """
     Standard serializer for clothes model
     """
-    clothing = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    clothing = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
 
     class Meta:
         model = Clothes
@@ -187,10 +186,10 @@ class EntertainmentSerializer(serializers.ModelSerializer):
     """
     Standard serializer for entertainment model
     """
-    electronics = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    games = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    movies = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    bar = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    electronics = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    games = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    movies = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    bar = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
 
     class Meta:
         model = Entertainment
@@ -201,9 +200,9 @@ class EducationSerializer(serializers.ModelSerializer):
     """
     Standard serializer for education model
     """
-    tuition = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    textbooks = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
-    fees = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    tuition = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    textbooks = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
+    fees = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
 
     class Meta:
         model = Education
@@ -214,7 +213,7 @@ class SavingsSerializer(serializers.ModelSerializer):
     """
     Standard serializer for savings model
     """
-    deposit = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    deposit = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
 
     class Meta:
         model = Savings
@@ -225,7 +224,7 @@ class MiscellaneousSerializer(serializers.ModelSerializer):
     """
     Standard serializer for miscellaneous model
     """
-    other = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
+    other = serializers.DecimalField(max_digits=8, decimal_places=2, default=0, required=False)
 
     class Meta:
         model = Miscellaneous
@@ -249,39 +248,37 @@ class ExpenseSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         food_data = self.validated_data['food']
-        food = simplejson.dumps(food_data)
-
-        print(food)
+        foodJSON = simplejson.dumps(food_data)
 
         housing_data = validated_data['housing']
-        housing = Housing.objects.create(**housing_data)
+        housingJSON = simplejson.dumps(housing_data)
 
         utilities_data = validated_data['utilities']
-        utilities = Utilities.objects.create(**utilities_data)
+        utilitiesJSON = simplejson.dumps(utilities_data)
 
         transportation_data = validated_data['transportation']
-        transportation = Transportation.objects.create(**transportation_data)
+        transportationJSON = simplejson.dumps(transportation_data)
 
         insurance_data = validated_data['insurance']
-        insurance = Insurance.objects.create(**insurance_data)
+        insuranceJSON = simplejson.dumps(insurance_data)
 
         clothes_data = validated_data['clothes']
-        clothes = Clothes.objects.create(**clothes_data)
+        clothesJSON = simplejson.dumps(clothes_data)
 
         entertainment_data = validated_data['entertainment']
-        entertainment = Entertainment.objects.create(**entertainment_data)
+        entertainmentJSON = simplejson.dumps(entertainment_data)
 
         education_data = validated_data['education']
-        education = Education.objects.create(**education_data)
+        educationJSON = simplejson.dumps(education_data)
 
         savings_data = validated_data['savings']
-        savings = Savings.objects.create(**savings_data)
+        savingsJSON = simplejson.dumps(savings_data)
 
         miscellaneous_data = validated_data['miscellaneous']
-        miscellaneous = Miscellaneous.objects.create(**miscellaneous_data)
+        miscellaneousJSON = simplejson.dumps(miscellaneous_data)
 
 
-        raise ValidationError("TESTME1")
+        raise ValidationError("TESTME!")
 
     class Meta:
         model = Expense
