@@ -1,8 +1,8 @@
+import json, simplejson
+
 from django.contrib.auth import authenticate
-from django.conf import settings
-from django.utils.encoding import force_text
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError, APIException
+from rest_framework.exceptions import ValidationError
 
 from .models import *
 
@@ -84,7 +84,7 @@ class SignupSerializer(serializers.Serializer):
             try:
                 email = User.objects.get(email__iexact=self.validated_data['email'])
             except User.DoesNotExist:
-
+                print(validated_data)
                 user = UserSerializer.create(self, validated_data)
                 user.set_password(validated_data['password'])
 
@@ -103,6 +103,7 @@ class SignupSerializer(serializers.Serializer):
         model = User
         fields = ('username', 'email', 'password', )
         write_only_fields = ('password', )
+
 
 # TODO: add depth
 class FoodSerializer(serializers.ModelSerializer):
@@ -206,7 +207,7 @@ class EducationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Education
-        fields = ('tuition', ' textbooks', 'fees', )
+        fields = ('tuition', 'textbooks', 'fees', )
 
 
 class SavingsSerializer(serializers.ModelSerializer):
@@ -235,8 +236,6 @@ class ExpenseSerializer(serializers.ModelSerializer):
     """
     Standard serializer for expense model
     """
-    date = serializers.CharField(required=True)
-
     food = FoodSerializer()
     housing = HousingSerializer()
     utilities = UtilitiesSerializer()
@@ -249,26 +248,44 @@ class ExpenseSerializer(serializers.ModelSerializer):
     miscellaneous = MiscellaneousSerializer()
 
     def create(self, validated_data):
-        food_data = validated_data.pop('food')
-        housing_data = validated_data.pop('housing')
-        utilities_data = validated_data.pop('utilities')
-        transportation_data = validated_data.pop('transportation')
-        insurance_data = validated_data.pop('insurance')
-        clothes_data = validated_data.pop('clothes')
-        entertainment_data = validated_data.pop('entertainment')
-        education_data = validated_data.pop('education')
-        savings_data = validated_data.pop('savings')
-        miscellaneous_data = validated_data.pop('savings')
+        food_data = self.validated_data['food']
+        food = simplejson.dumps(food_data)
 
-        expense = Expense.objects.create(expense=expense, date=date, **food_data, **housing_data, **utilities_data,
-                                         **transportation_data, **insurance_data, **clothes_data, **entertainment_data,
-                                         **education_data, **savings_data, **miscellaneous_data)
+        print(food)
 
-        return expense
+        housing_data = validated_data['housing']
+        housing = Housing.objects.create(**housing_data)
+
+        utilities_data = validated_data['utilities']
+        utilities = Utilities.objects.create(**utilities_data)
+
+        transportation_data = validated_data['transportation']
+        transportation = Transportation.objects.create(**transportation_data)
+
+        insurance_data = validated_data['insurance']
+        insurance = Insurance.objects.create(**insurance_data)
+
+        clothes_data = validated_data['clothes']
+        clothes = Clothes.objects.create(**clothes_data)
+
+        entertainment_data = validated_data['entertainment']
+        entertainment = Entertainment.objects.create(**entertainment_data)
+
+        education_data = validated_data['education']
+        education = Education.objects.create(**education_data)
+
+        savings_data = validated_data['savings']
+        savings = Savings.objects.create(**savings_data)
+
+        miscellaneous_data = validated_data['miscellaneous']
+        miscellaneous = Miscellaneous.objects.create(**miscellaneous_data)
+
+
+        raise ValidationError("TESTME1")
 
     class Meta:
         model = Expense
 
         # Lists various expenses defined in expense model
-        fields = ('date', 'food', 'housing', 'utilities', 'transportation', 'insurance', 'clothes',
+        fields = ('food', 'housing', 'utilities', 'transportation', 'insurance', 'clothes',
                   'entertainment', 'education', 'savings', 'miscellaneous', )

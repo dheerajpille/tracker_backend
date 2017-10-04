@@ -30,7 +30,8 @@ urlpatterns = [
     url(r'^list/$', UserList.as_view(), name='userList'),
     url(r'^user/(?P<pk>[0-9]+)/', UserDetail.as_view(), name='userDetail'),
 
-    url(r'^user/(?P<pk>[0-9]+)/added/$', ExpenseDetail.as_view(), name='expenseDetail'),
+    # TODO: change to addexpense View
+    url(r'^user/(?P<pk>[0-9]+)/addexpense/$', ExpenseDetail.as_view(), name='expenseDetail'),
 
     # TODO: configure authentication via OAuth
     # OAuth for Django

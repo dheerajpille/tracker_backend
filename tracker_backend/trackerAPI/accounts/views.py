@@ -117,7 +117,6 @@ class UserList(ListAPIView):
 
 # TODO: replace get_object with get_object_or_404?
 class ExpenseDetail(APIView):
-
     def post(self, request):
         create_expense = ExpenseSerializer(data=request.data)
 

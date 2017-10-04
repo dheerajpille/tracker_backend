@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from datetime import date
 
 
 # Create your models here.
@@ -97,7 +96,7 @@ class Miscellaneous(models.Model):
     """
     Miscellaneous model, containing other expense data
     """
-    other = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    other = models.DecimalField(max_digits=8, decimal_places=2, default=0.0)
 
 
 class Expense(models.Model):
@@ -106,8 +105,6 @@ class Expense(models.Model):
     """
 
     # Date for user expenses in ISO 8601 format
-    # Defaults to server's date value today
-    date = models.DateField(default=date.today, blank=True)
 
     # User object that expense is connected to
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
