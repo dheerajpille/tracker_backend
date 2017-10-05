@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 from datetime import date
+from django.utils import timezone
 
 
 # Create your models here.
@@ -124,7 +125,7 @@ class Expense(models.Model):
 
 
 class ExpenseItem(models.Model):
-    date = models.DateField(default=date.today())
+    date = models.DateField(blank=False, null=False)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

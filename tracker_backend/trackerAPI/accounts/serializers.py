@@ -295,3 +295,19 @@ class ExpenseSerializer(serializers.ModelSerializer):
         # Lists various expenses defined in expense model
         fields = ('date', 'food', 'housing', 'utilities', 'transportation', 'insurance', 'clothes',
                   'entertainment', 'education', 'savings', 'miscellaneous', )
+
+
+class ExpenseItemSerializer(serializers.ModelSerializer):
+    date = serializers.DateField(required=True)
+
+    user = UserSerializer()
+
+    category = serializers.CharField(max_length=32, required=True)
+    type = serializers.CharField(max_length=32, required=True)
+    value = serializers.DecimalField(max_digits=8, decimal_places=2, required=True)
+    currency = serializers.CharField(max_length=3, required=True)
+
+    class Meta:
+        model = ExpenseItem
+
+        fields = ('date', 'user', 'category', 'type', 'value', 'currency', )
