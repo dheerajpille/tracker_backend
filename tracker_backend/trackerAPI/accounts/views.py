@@ -90,7 +90,6 @@ class UserDetail(APIView):
         user = self.get_object(pk)
 
         if request.user.is_superuser or request.user == user:
-            user = self.get_object(pk)
             user.delete()
 
             return Response(status=status.HTTP_204_NO_CONTENT)
@@ -116,7 +115,8 @@ class UserList(ListAPIView):
 
 
 # TODO: replace get_object with get_object_or_404?
-class ExpenseDetail(APIView):
+class CreateExpenseView(APIView):
+
     def post(self, request):
         create_expense = ExpenseSerializer(data=request.data)
 
@@ -127,3 +127,8 @@ class ExpenseDetail(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(create_expense.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ExpenseList(ListAPIView):
+    serializer_class = ExpenseSerializer
+    queryset = Expense.objects.all().order_by('id')

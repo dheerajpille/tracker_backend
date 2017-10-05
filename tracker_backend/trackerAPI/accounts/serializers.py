@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
 
         # Displays the following fields as response body
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'budget', 'currency', )
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'budget', )
 
 
 class LoginSerializer(serializers.Serializer):
@@ -104,7 +104,6 @@ class SignupSerializer(serializers.Serializer):
         write_only_fields = ('password', )
 
 
-# TODO: add depth
 class FoodSerializer(serializers.ModelSerializer):
     """
     Standard serializer for food model

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py" line="5" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="d7a8df52-0b93-4281-ac53-2d95db8fcf4e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/urls.py" afterPath="$PROJECT_DIR$/tracker_backend/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,57 +54,75 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="tracker_backend" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tracker_backend/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="175" column="145" lean-forward="false" selection-start-line="175" selection-start-column="145" selection-end-line="175" selection-end-column="145" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2550">
-              <caret line="285" column="84" lean-forward="false" selection-start-line="285" selection-start-column="84" selection-end-line="285" selection-end-column="84" />
+            <state relative-caret-position="204">
+              <caret line="18" column="82" lean-forward="false" selection-start-line="18" selection-start-column="82" selection-end-line="18" selection-end-column="82" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <element signature="e#243#492#0" expanded="false" />
-                <element signature="e#546#1531#0" expanded="false" />
-                <element signature="e#3723#4061#0" expanded="false" />
-                <element signature="e#4122#4450#0" expanded="false" />
-                <element signature="e#4513#5287#0" expanded="false" />
-                <element signature="e#5355#5802#0" expanded="false" />
-                <element signature="e#5865#6304#0" expanded="false" />
-                <element signature="e#6365#6590#0" expanded="false" />
-                <element signature="e#6657#7213#0" expanded="false" />
-                <element signature="e#7276#7719#0" expanded="false" />
-                <element signature="e#7780#8003#0" expanded="false" />
-                <element signature="e#8070#8301#0" expanded="false" />
+                <element signature="e#3693#4031#0" expanded="false" />
+                <element signature="e#4092#4420#0" expanded="false" />
+                <element signature="e#4483#5257#0" expanded="false" />
+                <element signature="e#5325#5772#0" expanded="false" />
+                <element signature="e#5835#6274#0" expanded="false" />
+                <element signature="e#6335#6560#0" expanded="false" />
+                <element signature="e#6627#7183#0" expanded="false" />
+                <element signature="e#7246#7689#0" expanded="false" />
+                <element signature="e#7750#7973#0" expanded="false" />
+                <element signature="e#8040#8271#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="319">
+              <caret line="133" column="51" lean-forward="false" selection-start-line="133" selection-start-column="51" selection-end-line="133" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#383#953#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="67" lean-forward="false" selection-start-line="8" selection-start-column="67" selection-end-line="8" selection-end-column="67" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tracker_backend/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="33" column="57" lean-forward="false" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
+              <folding>
+                <element signature="e#649#690#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="114" column="43" lean-forward="true" selection-start-line="114" selection-start-column="43" selection-end-line="114" selection-end-column="43" />
+            <state relative-caret-position="144">
+              <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -117,7 +142,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>json</find>
       <find>bin</find>
       <find>rest_fram</find>
       <find>settings</find>
@@ -144,9 +168,10 @@
       <find>partial</find>
       <find>part</find>
       <find>date</find>
-      <find>date</find>
       <find>PRINT</find>
       <find>u</find>
+      <find>get</find>
+      <find>get(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -164,12 +189,12 @@
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/models.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py" />
+        <option value="$PROJECT_DIR$/tracker_backend/settings.py" />
+        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py" />
         <option value="$PROJECT_DIR$/tracker_backend/urls.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py" />
-        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py" />
-        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py" />
-        <option value="$PROJECT_DIR$/tracker_backend/settings.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py" />
+        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py" />
       </list>
     </option>
   </component>
@@ -245,7 +270,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ec-portal-backend" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RunDashboard">
@@ -366,11 +391,11 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23676248" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="manage.py@tracker_backend" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39967105" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" x="-37" y="92" width="1366" height="728" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23676248" sideWeight="0.49041095" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="manage.py@tracker_backend" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40460527" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" x="-37" y="92" width="1366" height="728" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23676248" sideWeight="0.509589" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.39967105" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -417,7 +442,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py</url>
-          <line>10</line>
+          <line>11</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py</url>
@@ -430,22 +455,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py</url>
-          <line>147</line>
+          <line>146</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py</url>
-          <line>198</line>
+          <line>197</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py</url>
-          <line>160</line>
+          <line>159</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py</url>
-          <line>211</line>
+          <line>210</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
@@ -460,18 +485,16 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#243#492#0" expanded="false" />
-            <element signature="e#546#1531#0" expanded="false" />
-            <element signature="e#3723#4061#0" expanded="false" />
-            <element signature="e#4122#4450#0" expanded="false" />
-            <element signature="e#4513#5287#0" expanded="false" />
-            <element signature="e#5355#5802#0" expanded="false" />
-            <element signature="e#5865#6304#0" expanded="false" />
-            <element signature="e#6365#6590#0" expanded="false" />
-            <element signature="e#6657#7213#0" expanded="false" />
-            <element signature="e#7276#7719#0" expanded="false" />
-            <element signature="e#7780#8003#0" expanded="false" />
-            <element signature="e#8070#8301#0" expanded="false" />
+            <element signature="e#3693#4031#0" expanded="false" />
+            <element signature="e#4092#4420#0" expanded="false" />
+            <element signature="e#4483#5257#0" expanded="false" />
+            <element signature="e#5325#5772#0" expanded="false" />
+            <element signature="e#5835#6274#0" expanded="false" />
+            <element signature="e#6335#6560#0" expanded="false" />
+            <element signature="e#6627#7183#0" expanded="false" />
+            <element signature="e#7246#7689#0" expanded="false" />
+            <element signature="e#7750#7973#0" expanded="false" />
+            <element signature="e#8040#8271#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -490,7 +513,6 @@
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#383#953#0" expanded="false" />
-            <element signature="e#3377#3754#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -540,18 +562,16 @@
           <caret line="0" column="44" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="63" selection-end-column="52" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#243#492#0" expanded="false" />
-            <element signature="e#546#1531#0" expanded="false" />
-            <element signature="e#3723#4061#0" expanded="false" />
-            <element signature="e#4122#4450#0" expanded="false" />
-            <element signature="e#4513#5287#0" expanded="false" />
-            <element signature="e#5355#5802#0" expanded="false" />
-            <element signature="e#5865#6304#0" expanded="false" />
-            <element signature="e#6365#6590#0" expanded="false" />
-            <element signature="e#6657#7213#0" expanded="false" />
-            <element signature="e#7276#7719#0" expanded="false" />
-            <element signature="e#7780#8003#0" expanded="false" />
-            <element signature="e#8070#8301#0" expanded="false" />
+            <element signature="e#3693#4031#0" expanded="false" />
+            <element signature="e#4092#4420#0" expanded="false" />
+            <element signature="e#4483#5257#0" expanded="false" />
+            <element signature="e#5325#5772#0" expanded="false" />
+            <element signature="e#5835#6274#0" expanded="false" />
+            <element signature="e#6335#6560#0" expanded="false" />
+            <element signature="e#6627#7183#0" expanded="false" />
+            <element signature="e#7246#7689#0" expanded="false" />
+            <element signature="e#7750#7973#0" expanded="false" />
+            <element signature="e#8040#8271#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -563,7 +583,6 @@
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#383#953#0" expanded="false" />
-            <element signature="e#3377#3754#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -613,18 +632,16 @@
           <caret line="0" column="44" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="63" selection-end-column="52" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#243#492#0" expanded="false" />
-            <element signature="e#546#1531#0" expanded="false" />
-            <element signature="e#3723#4061#0" expanded="false" />
-            <element signature="e#4122#4450#0" expanded="false" />
-            <element signature="e#4513#5287#0" expanded="false" />
-            <element signature="e#5355#5802#0" expanded="false" />
-            <element signature="e#5865#6304#0" expanded="false" />
-            <element signature="e#6365#6590#0" expanded="false" />
-            <element signature="e#6657#7213#0" expanded="false" />
-            <element signature="e#7276#7719#0" expanded="false" />
-            <element signature="e#7780#8003#0" expanded="false" />
-            <element signature="e#8070#8301#0" expanded="false" />
+            <element signature="e#3693#4031#0" expanded="false" />
+            <element signature="e#4092#4420#0" expanded="false" />
+            <element signature="e#4483#5257#0" expanded="false" />
+            <element signature="e#5325#5772#0" expanded="false" />
+            <element signature="e#5835#6274#0" expanded="false" />
+            <element signature="e#6335#6560#0" expanded="false" />
+            <element signature="e#6627#7183#0" expanded="false" />
+            <element signature="e#7246#7689#0" expanded="false" />
+            <element signature="e#7750#7973#0" expanded="false" />
+            <element signature="e#8040#8271#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -636,7 +653,6 @@
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#383#953#0" expanded="false" />
-            <element signature="e#3377#3754#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -806,39 +822,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="124" column="33" lean-forward="false" selection-start-line="124" selection-start-column="33" selection-end-line="124" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#383#953#0" expanded="false" />
-            <element signature="e#3377#3754#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/11cdb8c1/20c1c346-d9db-4aa5-b139-d4aac4b6b52e/main.expenses_food">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="10" lean-forward="false" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -849,19 +836,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/urls.py">
+    <entry file="file://$PROJECT_DIR$/tracker_backend/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="32" column="21" lean-forward="false" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+        <state relative-caret-position="215">
+          <caret line="175" column="145" lean-forward="false" selection-start-line="175" selection-start-column="145" selection-end-line="175" selection-end-column="145" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py">
+    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="114" column="43" lean-forward="true" selection-start-line="114" selection-start-column="43" selection-end-line="114" selection-end-column="43" />
+        <state relative-caret-position="68">
+          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tracker_backend/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="33" column="57" lean-forward="false" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#649#690#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -874,32 +870,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/settings.py">
+    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="175" column="145" lean-forward="false" selection-start-line="175" selection-start-column="145" selection-end-line="175" selection-end-column="145" />
-          <folding />
+        <state relative-caret-position="136">
+          <caret line="8" column="67" lean-forward="false" selection-start-line="8" selection-start-column="67" selection-end-line="8" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="133" column="51" lean-forward="false" selection-start-line="133" selection-start-column="51" selection-end-line="133" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#383#953#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="285" column="84" lean-forward="false" selection-start-line="285" selection-start-column="84" selection-end-line="285" selection-end-column="84" />
+        <state relative-caret-position="204">
+          <caret line="18" column="82" lean-forward="false" selection-start-line="18" selection-start-column="82" selection-end-line="18" selection-end-column="82" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#243#492#0" expanded="false" />
-            <element signature="e#546#1531#0" expanded="false" />
-            <element signature="e#3723#4061#0" expanded="false" />
-            <element signature="e#4122#4450#0" expanded="false" />
-            <element signature="e#4513#5287#0" expanded="false" />
-            <element signature="e#5355#5802#0" expanded="false" />
-            <element signature="e#5865#6304#0" expanded="false" />
-            <element signature="e#6365#6590#0" expanded="false" />
-            <element signature="e#6657#7213#0" expanded="false" />
-            <element signature="e#7276#7719#0" expanded="false" />
-            <element signature="e#7780#8003#0" expanded="false" />
-            <element signature="e#8070#8301#0" expanded="false" />
+            <element signature="e#3693#4031#0" expanded="false" />
+            <element signature="e#4092#4420#0" expanded="false" />
+            <element signature="e#4483#5257#0" expanded="false" />
+            <element signature="e#5325#5772#0" expanded="false" />
+            <element signature="e#5835#6274#0" expanded="false" />
+            <element signature="e#6335#6560#0" expanded="false" />
+            <element signature="e#6627#7183#0" expanded="false" />
+            <element signature="e#7246#7689#0" expanded="false" />
+            <element signature="e#7750#7973#0" expanded="false" />
+            <element signature="e#8040#8271#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>

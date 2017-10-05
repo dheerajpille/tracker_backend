@@ -1,15 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from datetime import date
+
 
 # Create your models here.
 class User(AbstractUser):
     """
     Custom user model with additional (monthly) budget and currency parameter
     """
-
     budget = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
-    currency = models.CharField(max_length=3, default="CAD")
 
 
 # Expense models hereon
@@ -121,3 +121,14 @@ class Expense(models.Model):
     education = models.OneToOneField(Education)
     savings = models.OneToOneField(Savings)
     miscellaneous = models.OneToOneField(Miscellaneous)
+
+
+class ExpenseItem(models.Model):
+    date = models.DateField(default=date.today())
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    category = models.CharField(max_length=32, blank=False, null=False)
+    type = models.CharField(max_length=32, blank=False, null=False)
+    value = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    currency = models.CharField(max_length=3, blank=False, null=False, default='CAD')
