@@ -4,8 +4,6 @@
     <list default="true" id="d7a8df52-0b93-4281-ac53-2d95db8fcf4e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/settings.py" afterPath="$PROJECT_DIR$/tracker_backend/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,8 +72,8 @@
       <file leaf-file-name="serializers.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="305" column="8" lean-forward="false" selection-start-line="305" selection-start-column="8" selection-end-line="305" selection-end-column="8" />
+            <state relative-caret-position="2550">
+              <caret line="285" column="84" lean-forward="false" selection-start-line="285" selection-start-column="84" selection-end-line="285" selection-end-column="84" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
                 <element signature="e#243#492#0" expanded="false" />
@@ -886,8 +884,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="305" column="8" lean-forward="false" selection-start-line="305" selection-start-column="8" selection-end-line="305" selection-end-column="8" />
+        <state relative-caret-position="2550">
+          <caret line="285" column="84" lean-forward="false" selection-start-line="285" selection-start-column="84" selection-end-line="285" selection-end-column="84" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
             <element signature="e#243#492#0" expanded="false" />

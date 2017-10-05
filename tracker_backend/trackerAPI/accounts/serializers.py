@@ -252,55 +252,39 @@ class ExpenseSerializer(serializers.ModelSerializer):
         date = self.validated_data['date']
 
         food_data = self.validated_data['food']
-
-        # this makes a food object!
         food = Food.objects.create(**food_data)
-        print(food)
-
-        foodJSON = simplejson.dumps(food_data)
 
         housing_data = validated_data['housing']
         housing = Housing.objects.create(**housing_data)
 
-        housingJSON = simplejson.dumps(housing_data)
-
         utilities_data = validated_data['utilities']
         utilities = Utilities.objects.create(**utilities_data)
 
-        utilitiesJSON = simplejson.dumps(utilities_data)
-
         transportation_data = validated_data['transportation']
         transportation = Transportation.objects.create(**transportation_data)
-        transportationJSON = simplejson.dumps(transportation_data)
 
         insurance_data = validated_data['insurance']
         insurance = Insurance.objects.create(**insurance_data)
-        insuranceJSON = simplejson.dumps(insurance_data)
 
         clothes_data = validated_data['clothes']
         clothes = Clothes.objects.create(**clothes_data)
-        clothesJSON = simplejson.dumps(clothes_data)
 
         entertainment_data = validated_data['entertainment']
         entertainment = Entertainment.objects.create(**entertainment_data)
-        entertainmentJSON = simplejson.dumps(entertainment_data)
 
         education_data = validated_data['education']
         education = Education.objects.create(**education_data)
-        educationJSON = simplejson.dumps(education_data)
 
         savings_data = validated_data['savings']
         savings = Savings.objects.create(**savings_data)
-        savingsJSON = simplejson.dumps(savings_data)
 
         miscellaneous_data = validated_data['miscellaneous']
         miscellaneous = Miscellaneous.objects.create(**miscellaneous_data)
 
-        miscellaneousJSON = simplejson.dumps(miscellaneous_data)
-
-        expense = Expense.objects.create(date=date, food=food, housing=housing, utilities=utilities, transportation=transportation,
-                                         insurance=insurance, clothes=clothes, entertainment=entertainment,
-                                         education=education, savings=savings, miscellaneous=miscellaneous)
+        expense = Expense.objects.create(date=date, food=food, housing=housing, utilities=utilities,
+                                         transportation=transportation, insurance=insurance, clothes=clothes,
+                                         entertainment=entertainment, education=education, savings=savings,
+                                         miscellaneous=miscellaneous)
 
         expense.save()
 
