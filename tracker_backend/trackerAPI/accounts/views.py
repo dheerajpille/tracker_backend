@@ -116,14 +116,26 @@ class UserList(ListAPIView):
 
 # TODO: replace get_object with get_object_or_404?
 class CreateExpenseItem(APIView):
+    def get_serializer_context(self):
+        """
+        Extra context provided to the serializer class.
+        """
+        return {
+            'request': self.request,
+            'format': self.format_kwarg,
+            'view': self
+        }
+
     def post(self, request):
 
-        create_expenseItem = ExpenseItemSerializer(data=request.data)
+        create_expenseItem = ExpenseItemSerializer(data=request.data, context={'request': request})
 
         if create_expenseItem.is_valid():
             create_expenseItem.save()
 
-            serializer = ExpenseItemSerializer(create_expenseItem.data, content={'request': request})
+            print(create_expenseItem.data)
+
+            serializer = ExpenseItemSerializer(create_expenseItem.data)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:

@@ -17,7 +17,7 @@ class User(AbstractUser):
 class ExpenseItem(models.Model):
     date = models.DateField(blank=False, null=False)
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     category = models.CharField(max_length=32, blank=False, null=False)
     type = models.CharField(max_length=32, blank=False, null=False)

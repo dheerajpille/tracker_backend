@@ -14,7 +14,7 @@ class UserAdmin(UserAdmin):
 
 
 class ExpenseItemAdmin(admin.ModelAdmin):
-    list_display = ('date', 'category', 'type', 'value', 'currency', )
+    list_display = ('date', 'user', 'category', 'type', 'value', 'currency', )
 
 
 admin.site.register(User, UserAdmin)

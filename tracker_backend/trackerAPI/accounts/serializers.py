@@ -107,6 +107,8 @@ class SignupSerializer(serializers.Serializer):
 class ExpenseItemSerializer(serializers.ModelSerializer):
     date = serializers.DateField(required=True)
 
+    user = UserSerializer(required=False)
+
     category = serializers.CharField(max_length=32, required=True)
     type = serializers.CharField(max_length=32, required=True)
     value = serializers.DecimalField(max_digits=8, decimal_places=2, required=True)
@@ -114,22 +116,22 @@ class ExpenseItemSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
 
-        print(self.context)
-
         date = self.validated_data['date']
+
+        user = self.context['request'].user
+
         category = self.validated_data['category']
         type = self.validated_data['type']
         value = self.validated_data['value']
         currency = self.validated_data['currency']
 
-        expenseItem = ExpenseItem.objects.create(date=date, category=category, type=type, value=value,
+        expenseItem = ExpenseItem.objects.create(date=date, user=user, category=category, type=type, value=value,
                                                  currency=currency, )
-
         expenseItem.save()
 
         return expenseItem
 
     class Meta:
         model = ExpenseItem
-
-        fields = ('date', 'category', 'type', 'value', 'currency', )
+        fields = ('date', 'user', 'category', 'type', 'value', 'currency', )
+        depth = 1
