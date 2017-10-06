@@ -103,6 +103,9 @@ class SignupSerializer(serializers.Serializer):
 
 
 class ExpenseSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for expense model
+    """
     date = serializers.DateField(required=True)
 
     user = UserSerializer(required=False)

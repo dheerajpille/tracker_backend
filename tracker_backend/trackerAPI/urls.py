@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^list/$', UserList.as_view(), name='userList'),
     url(r'^user/(?P<pk>[0-9]+)/', UserDetail.as_view(), name='userDetail'),
     url(r'^doom/$', CreateExpenseItem.as_view(), name='expense'),
+    url(r'^expenselist/$', ExpenseList.as_view(), name='expenseList'),
 ]

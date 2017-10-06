@@ -145,3 +145,20 @@ class CreateExpenseItem(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(create_expense.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ExpenseList(ListAPIView):
+    """
+    Allows user to view their own expense list
+    """
+
+    # Disables pagination for GET calls
+    pagination_class = None
+
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    # TODO: make an error for empty queryset
+    def get_queryset(self):
+        queryset = self.model.objects.filter(user=self.request.user)
+        return queryset.order_by('-date').order_by('category').order_by('type')
