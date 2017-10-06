@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^user/(?P<pk>[0-9]+)/', UserDetail.as_view(), name='userDetail'),
 
     # TODO: change to addexpense View
-    url(r'^user/(?P<pk>[0-9]+)/addexpense/$', ExpenseList.as_view(), name='expenseDetail'),
+    url(r'^user/(?P<pk>[0-9]+)/addexpense/$', CreateExpenseItem.as_view(), name='expenseDetail'),
 
     # TODO: configure authentication via OAuth
     # OAuth for Django
