@@ -14,7 +14,7 @@ class User(AbstractUser):
 
 
 # Expense models hereon
-class ExpenseItem(models.Model):
+class Expense(models.Model):
     date = models.DateField(blank=False, null=False)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)

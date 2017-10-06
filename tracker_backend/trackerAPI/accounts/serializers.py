@@ -1,5 +1,3 @@
-import json, simplejson
-
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
@@ -104,7 +102,7 @@ class SignupSerializer(serializers.Serializer):
         write_only_fields = ('password', )
 
 
-class ExpenseItemSerializer(serializers.ModelSerializer):
+class ExpenseSerializer(serializers.ModelSerializer):
     date = serializers.DateField(required=True)
 
     user = UserSerializer(required=False)
@@ -115,7 +113,6 @@ class ExpenseItemSerializer(serializers.ModelSerializer):
     currency = serializers.CharField(max_length=3, required=False)
 
     def create(self, validated_data):
-
         date = self.validated_data['date']
 
         user = self.context['request'].user
@@ -125,13 +122,13 @@ class ExpenseItemSerializer(serializers.ModelSerializer):
         value = self.validated_data['value']
         currency = self.validated_data['currency']
 
-        expenseItem = ExpenseItem.objects.create(date=date, user=user, category=category, type=type, value=value,
-                                                 currency=currency, )
-        expenseItem.save()
+        expense = Expense.objects.create(date=date, user=user, category=category, type=type, value=value,
+                                         currency=currency, )
+        expense.save()
 
-        return expenseItem
+        return expense
 
     class Meta:
-        model = ExpenseItem
+        model = Expense
         fields = ('date', 'user', 'category', 'type', 'value', 'currency', )
         depth = 1

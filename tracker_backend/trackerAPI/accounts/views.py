@@ -115,7 +115,10 @@ class UserList(ListAPIView):
 
 
 # TODO: replace get_object with get_object_or_404?
+# TODO: change this to Expense, since EI is too long for me
 class CreateExpenseItem(APIView):
+
+    # TODO: remove this later, it was useful for the most frustrating problem
     def get_serializer_context(self):
         """
         Extra context provided to the serializer class.
@@ -126,17 +129,19 @@ class CreateExpenseItem(APIView):
             'view': self
         }
 
+    def get(self, request):
+        serializer = ExpenseSerializer(context={'request', request})
+        return Response(serializer.data)
+
     def post(self, request):
 
-        create_expenseItem = ExpenseItemSerializer(data=request.data, context={'request': request})
+        create_expense = ExpenseSerializer(data=request.data, context={'request': request})
 
-        if create_expenseItem.is_valid():
-            create_expenseItem.save()
+        if create_expense.is_valid():
+            create_expense.save()
 
-            print(create_expenseItem.data)
-
-            serializer = ExpenseItemSerializer(create_expenseItem.data)
+            serializer = ExpenseSerializer(create_expense.data)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(create_expenseItem.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(create_expense.errors, status=status.HTTP_400_BAD_REQUEST)
