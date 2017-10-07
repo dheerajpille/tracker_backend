@@ -19,22 +19,14 @@ from django.contrib.auth import views
 from tracker_backend.trackerAPI.accounts.views import *
 
 urlpatterns = [
-    # Admin for Django
+    # Admin URL for Django
     url(r'^admin/', admin.site.urls),
 
-    # TODO: remove this when not needed (soon)
+    # Login and Signup calls for Tracker
     url(r'^login/$', LoginView.as_view(), name='login'),
-
     url(r'^signup/$', SignupView.as_view(), name='signup'),
 
-    url(r'^list/$', UserList.as_view(), name='userList'),
-    url(r'^user/(?P<pk>[0-9]+)/', UserDetail.as_view(), name='userDetail'),
-
-    # TODO: change to addexpense View
-    url(r'^user/(?P<pk>[0-9]+)/addexpense/$', CreateExpenseItem.as_view(), name='expenseDetail'),
-
-    # TODO: configure authentication via OAuth
-    # OAuth for Django
+    # OAuth 2.0 verification for Django
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 
     # URL for project's resources
