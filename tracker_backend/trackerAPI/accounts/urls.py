@@ -1,8 +1,14 @@
 from django.conf.urls import url, include
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
-from tracker_backend.trackerAPI.accounts.views import *
+from .views import *
 
 urlpatterns = [
     # Add any URLs if needed
+
+    url(r'^create/$', CreateExpense.as_view(), name='createExpense'),
+
+    url(r'^expenselist/$', ExpenseList.as_view(), name='expenseList'),
+
+    # User index, which directs to UserDetail view
+    url(r'^$', UserDetail.as_view(), name='userDetail'),
 ]

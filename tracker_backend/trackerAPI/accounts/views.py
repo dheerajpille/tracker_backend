@@ -116,7 +116,7 @@ class UserList(ListAPIView):
 
 # TODO: replace get_object with get_object_or_404?
 # TODO: change this to Expense, since EI is too long for me
-class CreateExpenseItem(APIView):
+class CreateExpense(APIView):
 
     # TODO: remove this later, it was useful for the most frustrating problem
     def get_serializer_context(self):
@@ -129,11 +129,8 @@ class CreateExpenseItem(APIView):
             'view': self
         }
 
-    def get(self, request):
-        serializer = ExpenseSerializer(context={'request', request})
-        return Response(serializer.data)
 
-    def post(self, request):
+    def post(self, request, pk):
 
         create_expense = ExpenseSerializer(data=request.data, context={'request': request})
 
@@ -143,8 +140,8 @@ class CreateExpenseItem(APIView):
             if not Expense.objects.filter(date__exact=self.request.data['date'],
                                           category__iexact=self.request.data['category'],
                                           type__iexact=self.request.data['type']).exists():
-                create_expense.save()
 
+                create_expense.save()
                 serializer = ExpenseSerializer(create_expense.data)
 
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -152,7 +149,7 @@ class CreateExpenseItem(APIView):
 
                 return Response(data={"message": "Expense already created."}, status=status.HTTP_400_BAD_REQUEST)
         else:
-
+            print('yolo')
             return Response(create_expense.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -169,5 +166,19 @@ class ExpenseList(ListAPIView):
 
     # TODO: make an error for empty queryset
     def get_queryset(self):
+        # Filters all expense objects that were created by the current user
         queryset = self.model.objects.filter(user=self.request.user)
+
+        # Sorts printed response by date chronologically and by category/type alphabetically
         return queryset.order_by('-date').order_by('category').order_by('type')
+
+
+class ExpenseCategoryList(ListAPIView):
+    pagination_class = None
+
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    def get_queryset(self):
+        queryset = self.model.objects.filter(user=self.request.user, category__iexact=self.request.data['category'])
+        return queryset
