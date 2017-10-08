@@ -13,8 +13,11 @@ class User(AbstractUser):
     budget = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
 
-# Expense models hereon
 class Expense(models.Model):
+    """
+    Expense model with customizable category/type/value/currency values
+    Defined by the date and user submitting the request
+    """
     date = models.DateField(blank=False, null=False)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)

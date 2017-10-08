@@ -138,11 +138,17 @@ class CreateExpenseItem(APIView):
         create_expense = ExpenseSerializer(data=request.data, context={'request': request})
 
         if create_expense.is_valid():
-            create_expense.save()
+            if Expense.objects.filter(date__exact=self.request.data['date'],
+                                      category__iexact=self.request.data['category'],
+                                      type__iexact=self.request.data['type']).exists():
 
-            serializer = ExpenseSerializer(create_expense.data)
+                return Response(data={"message": "Expense already created."}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                create_expense.save()
 
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+                serializer = ExpenseSerializer(create_expense.data)
+
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(create_expense.errors, status=status.HTTP_400_BAD_REQUEST)
 
