@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'tracker_backend.trackerAPI.accounts',
     'tracker_backend.trackerAPI.expenses',
     'tracker_backend.trackerAPI.reports',
-    'tracker_backend.trackerAPI.v1',
 
     # Django REST Framework
     'rest_framework',
