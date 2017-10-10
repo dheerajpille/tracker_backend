@@ -17,7 +17,7 @@ urlpatterns = [
     # TODO: configure this for reporting purposes
     url(r'^(?P<date>\d{4}-\d{2}-\d{2})/$', ExpenseDateList.as_view(), name='expenseDateList'),
 
-
+    # TODO: also figure this out, please and thank you!
     # Category expense list
     url(r'^(?P<category>\w{0,32})/$', ExpenseCategoryList.as_view(), name='expenseCategoryList'),
 

@@ -192,7 +192,7 @@ class ExpenseCategoryList(ListAPIView):
     model = Expense
 
     def get(self, request, pk, category):
-        queryset = self.model.objects.filter(user=self.request.user, category__iexact=category)
+        queryset = self.model.objects.filter(user=self.request.user, category__iexact=category).order_by('-date')
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -204,6 +204,7 @@ class ExpenseTypeList(ListAPIView):
     model = Expense
 
     def get(self, request, pk, category, type):
-        queryset = self.model.objects.filter(user=self.request.user, category__iexact=category, type__iexact=type)
+        queryset = self.model.objects.filter(user=self.request.user, category__iexact=category, type__iexact=type)\
+            .order_by('-date')
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
