@@ -12,4 +12,4 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
 
         # Displays the following fields as response body
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'budget', )
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', )
