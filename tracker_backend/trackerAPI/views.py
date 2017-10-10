@@ -11,7 +11,7 @@ from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
 from django.utils.timezone import now
 
-from tracker_backend.trackerAPI.accounts.models import User
+from django.contrib.auth.models import User
 from tracker_backend.trackerAPI.accounts.serializers import UserSerializer
 from tracker_backend.trackerAPI.serializers import LoginSerializer, SignupSerializer
 

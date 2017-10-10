@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from tracker_backend.trackerAPI.expenses.models import Expense
+from django.contrib.auth.models import User
 from tracker_backend.trackerAPI.accounts.serializers import UserSerializer
 from tracker_backend.trackerAPI.expenses.serializers import ExpenseSerializer
 from datetime import date, timedelta

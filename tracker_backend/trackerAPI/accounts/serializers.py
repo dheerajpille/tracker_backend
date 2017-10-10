@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from tracker_backend.trackerAPI.accounts.models import User
+from django.contrib.auth.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):

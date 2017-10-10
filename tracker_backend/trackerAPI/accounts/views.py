@@ -6,7 +6,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from tracker_backend.trackerAPI.accounts.serializers import UserSerializer
-from tracker_backend.trackerAPI.accounts.models import User
+
+from django.contrib.auth.models import User
 from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
 from django.utils.timezone import now

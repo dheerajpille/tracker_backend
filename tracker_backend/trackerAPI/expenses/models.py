@@ -1,6 +1,6 @@
 from django.db import models
 
-from tracker_backend.trackerAPI.accounts.models import User
+from django.contrib.auth.models import User
 
 
 class Expense(models.Model):
