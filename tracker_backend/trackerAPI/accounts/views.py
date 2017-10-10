@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import Http404
+from django.core import serializers
+from django.http import Http404, HttpResponse
 from rest_framework import status
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAdminUser
@@ -7,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .serializers import *
-
+import json
 
 # Create your views here.
 class LoginView(APIView):
@@ -149,7 +150,6 @@ class CreateExpense(APIView):
 
                 return Response(data={"message": "Expense already created."}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            print('yolo')
             return Response(create_expense.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -172,13 +172,13 @@ class ExpenseList(ListAPIView):
         # Sorts printed response by date chronologically and by category/type alphabetically
         return queryset.order_by('-date').order_by('category').order_by('type')
 
-
-class ExpenseCategoryList(ListAPIView):
+class ExpenseDateList(APIView):
     pagination_class = None
 
     serializer_class = ExpenseSerializer
     model = Expense
 
-    def get_queryset(self):
-        queryset = self.model.objects.filter(user=self.request.user, category__iexact=self.request.data['category'])
-        return queryset
+    def get(self, request, pk, date):
+        queryset = self.model.objects.filter(user=self.request.user, date=date)
+        serializer = ExpenseSerializer(queryset, many=True)
+        return Response(serializer.data)

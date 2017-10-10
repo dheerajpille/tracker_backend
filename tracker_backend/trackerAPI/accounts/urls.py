@@ -14,6 +14,6 @@ urlpatterns = [
     # Gets all expenses ever created for a user
     url(r'^expenselist/$', ExpenseList.as_view(), name='expenseList'),
 
-    # TODO: configure this for report
-    url(r'^report/', include('tracker_backend.trackerAPI.reports.urls')),
+    # TODO: configure this for reporting purposes
+    url(r'^(?P<date>\d{4}-\d{2}-\d{2})/$', ExpenseDateList.as_view(), name='expenseDateList'),
 ]
