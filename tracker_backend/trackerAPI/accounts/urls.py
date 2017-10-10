@@ -3,9 +3,10 @@ from django.conf.urls import url, include
 from .views import *
 
 urlpatterns = [
-    # Add any URLs if needed
-
     # User index, which directs to UserDetail view
+    url(r'^weeklylist/$', WeeklyExpenseList.as_view()),
+    url(r'^monthlylist/$', MonthlyExpenseList.as_view()),
+    url(r'^yearlylist/$', YearlyExpenseList.as_view()),
     url(r'^$', UserDetail.as_view(), name='userDetail'),
 
     # Creates an expense for current User with given details
@@ -27,5 +28,4 @@ urlpatterns = [
 
     # Type expense list
     url(r'^(?P<category>\w{0,32})/(?P<type>\w{0,32})/$', ExpenseTypeList.as_view(), name='expenseTypeList'),
-
 ]

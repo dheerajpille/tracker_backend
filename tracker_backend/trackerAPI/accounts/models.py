@@ -18,7 +18,7 @@ class Expense(models.Model):
     Defined by the date and user submitting the request
     """
     # TODO: figure out how to implement default date to today
-    date = models.DateField(blank=True, null=True, default=now().date())
+    date = models.DateField(blank=True, null=True)
 
     # TODO: hide this from expense response
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)

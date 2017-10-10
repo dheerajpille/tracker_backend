@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.core import serializers
+
 from django.http import Http404, HttpResponse
 from rest_framework import status
 from rest_framework.generics import ListAPIView
@@ -8,6 +7,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .serializers import *
+from datetime import date
+from dateutil.relativedelta import relativedelta
 from django.utils.timezone import now
 
 # Create your views here.
@@ -116,9 +117,7 @@ class UserList(ListAPIView):
 
 
 # TODO: replace get_object with get_object_or_404?
-# TODO: change this to Expense, since EI is too long for me
 class CreateExpense(APIView):
-
     # TODO: remove this later, it was useful for the most frustrating problem
     def get_serializer_context(self):
         """
@@ -210,6 +209,7 @@ class ExpenseTypeList(ListAPIView):
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
 class ExpenseDateCategoryList(ListAPIView):
     pagination_class = None
 
@@ -232,5 +232,51 @@ class ExpenseDateTypeList(ListAPIView):
     def get(self, request, pk, date, category, type):
         queryset = self.model.objects.filter(user=self.request.user, date=date, category__iexact=category,
                                              type__iexact=type).order_by('-date')
+        serializer = ExpenseSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class WeeklyExpenseList(ListAPIView):
+    pagination_class = None
+
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    def get(self, request, pk):
+        today = date.today()
+        week_ago = today - relativedelta(weeks=1)
+
+        queryset = self.model.objects.filter(user=self.request.user, date__range=(week_ago, today))
+        serializer = ExpenseSerializer(queryset, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class MonthlyExpenseList(ListAPIView):
+    pagination_class = None
+
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    def get(self, request, pk):
+        today = date.today()
+        month_ago = today - relativedelta(months=1)
+
+        queryset = self.model.objects.filter(user=self.request.user, date__range=[month_ago, today])
+        serializer = ExpenseSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class YearlyExpenseList(ListAPIView):
+    pagination_class = None
+
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    def get(self, request, pk):
+        today = date.today()
+        year_ago = today - relativedelta(years=1)
+
+        queryset = self.model.objects.filter(user=self.request.user, date__range=[year_ago, today])
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
