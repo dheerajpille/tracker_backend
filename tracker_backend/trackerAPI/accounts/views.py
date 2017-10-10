@@ -260,9 +260,9 @@ class MonthlyExpenseList(ListAPIView):
 
     def get(self, request, pk):
         today = date.today()
-        month_ago = today - relativedelta(months=1)
+        month_start = today.replace(day=1)
 
-        queryset = self.model.objects.filter(user=self.request.user, date__range=[month_ago, today])
+        queryset = self.model.objects.filter(user=self.request.user, date__range=[month_start, today])
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -275,8 +275,8 @@ class YearlyExpenseList(ListAPIView):
 
     def get(self, request, pk):
         today = date.today()
-        year_ago = today - relativedelta(years=1)
+        year_start = today.replace(month=1, day=1)
 
-        queryset = self.model.objects.filter(user=self.request.user, date__range=[year_ago, today])
+        queryset = self.model.objects.filter(user=self.request.user, date__range=[year_start, today])
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
