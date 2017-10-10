@@ -167,12 +167,13 @@ class ExpenseList(ListAPIView):
     # TODO: make an error for empty queryset
     def get_queryset(self):
         # Filters all expense objects that were created by the current user
-        queryset = self.model.objects.filter(user=self.request.user)
+        queryset = self.model.objects.filter(user=self.request.user).order_by('-date').order_by('category')\
+            .order_by('type')
 
         # Sorts printed response by date chronologically and by category/type alphabetically
-        return queryset.order_by('-date').order_by('category').order_by('type')
+        return queryset
 
-class ExpenseDateList(APIView):
+class ExpenseDateList(ListAPIView):
     pagination_class = None
 
     serializer_class = ExpenseSerializer
@@ -181,4 +182,15 @@ class ExpenseDateList(APIView):
     def get(self, request, pk, date):
         queryset = self.model.objects.filter(user=self.request.user, date=date)
         serializer = ExpenseSerializer(queryset, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class ExpenseCategoryList(ListAPIView):
+    pagination_class = None
+
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    def get(self, request, pk, category):
+        queryset = self.model.objects.filter(user=self.request.user, category__iexact=category)
+        serializer = ExpenseSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
