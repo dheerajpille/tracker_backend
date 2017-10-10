@@ -230,10 +230,40 @@ class ExpenseDateTypeList(ListAPIView):
     model = Expense
 
     def get(self, request, pk, date, category, type):
-        queryset = self.model.objects.filter(user=self.request.user, date=date, category__iexact=category,
-                                             type__iexact=type).order_by('-date')
-        serializer = ExpenseSerializer(queryset, many=True)
+        expense = self.model.objects.filter(user=self.request.user, date=date, category__iexact=category,
+                                            type__iexact=type).first()
+
+        if expense is None:
+            return Response(data={"message": "Expense not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = ExpenseSerializer(expense)
+
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk, date, category, type):
+        expense = self.model.objects.filter(user=self.request.user, date=date, category__iexact=category,
+                                            type__iexact=type).first()
+        if expense is None:
+            return Response(data={"message": "Expense not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = ExpenseSerializer(expense, data=request.data, partial=True, context={'request': request})
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, date, category, type):
+        expense = self.model.objects.filter(user=self.request.user, date=date, category__iexact=category,
+                                            type__iexact=type).first()
+        if expense is None:
+            return Response(data={"message": "Expense not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        expense.delete()
+
+        # TODO: include a message
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class WeeklyExpenseList(ListAPIView):

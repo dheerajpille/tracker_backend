@@ -73,13 +73,13 @@
         <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="143">
-              <caret line="247" column="0" lean-forward="true" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
+              <caret line="260" column="22" lean-forward="true" selection-start-line="260" selection-start-column="22" selection-end-line="260" selection-end-column="22" />
               <folding>
                 <element signature="e#1#46#0" expanded="true" />
                 <element signature="e#485#1055#0" expanded="false" />
                 <element signature="e#1089#1715#0" expanded="false" />
                 <element signature="e#3440#3817#0" expanded="false" />
-                <element signature="e#9333#9935#0" expanded="false" />
+                <element signature="e#10591#11193#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -539,7 +539,7 @@
             <element signature="e#485#1055#0" expanded="false" />
             <element signature="e#1089#1715#0" expanded="false" />
             <element signature="e#3440#3817#0" expanded="false" />
-            <element signature="e#9333#9935#0" expanded="false" />
+            <element signature="e#10591#11193#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -607,7 +607,7 @@
             <element signature="e#485#1055#0" expanded="false" />
             <element signature="e#1089#1715#0" expanded="false" />
             <element signature="e#3440#3817#0" expanded="false" />
-            <element signature="e#9333#9935#0" expanded="false" />
+            <element signature="e#10591#11193#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -850,7 +850,7 @@
         <state relative-caret-position="187">
           <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -883,13 +883,13 @@
     <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
-          <caret line="247" column="0" lean-forward="true" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
+          <caret line="260" column="22" lean-forward="true" selection-start-line="260" selection-start-column="22" selection-end-line="260" selection-end-column="22" />
           <folding>
             <element signature="e#1#46#0" expanded="true" />
             <element signature="e#485#1055#0" expanded="false" />
             <element signature="e#1089#1715#0" expanded="false" />
             <element signature="e#3440#3817#0" expanded="false" />
-            <element signature="e#9333#9935#0" expanded="false" />
+            <element signature="e#10591#11193#0" expanded="false" />
           </folding>
         </state>
       </provider>
