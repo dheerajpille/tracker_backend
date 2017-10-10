@@ -1,98 +1,20 @@
 from django.db import models
 
-from datetime import date
-
-
-# Create your models here.
-class Food(models.Model):
-    """
-    Food model, containing restaurant and groceries expense data
-    """
-    restaurant = models.DecimalField(max_digits=8, decimal_places=2)
-    groceries = models.DecimalField(max_digits=8, decimal_places=2)
-
-
-class Housing(models.Model):
-    """
-    Housing model, containing housing and rent expense data
-    """
-    housing = models.DecimalField(max_digits=8, decimal_places=2)
-    rent = models.DecimalField(max_digits=8, decimal_places=2)
-
-
-class Utilities(models.Model):
-    """
-    Utilities model, containing hydro, electricity, gas, internet, mobile, and television expense data
-    """
-    hydro = models.DecimalField(max_digits=8, decimal_places=2)
-    electricity = models.DecimalField(max_digits=8, decimal_places=2)
-    gas = models.DecimalField(max_digits=8, decimal_places=2)
-    internet = models.DecimalField(max_digits=8, decimal_places=2)
-    mobile = models.DecimalField(max_digits=8, decimal_places=2)
-    television = models.DecimalField(max_digits=8, decimal_places=2)
-
-
-class Transportation(models.Model):
-    """
-    Transportation model, containing fuel, parking, and public expense data
-    """
-    fuel = models.DecimalField(max_digits=8, decimal_places=2)
-    parking = models.DecimalField(max_digits=8, decimal_places=2)
-    public = models.DecimalField(max_digits=8, decimal_places=2)
-
-
-class Insurance(models.Model):
-    """
-    Insurance model, containing health, household, and car expense data
-    """
-    health = models.DecimalField(max_digits=8, decimal_places=2)
-    household = models.DecimalField(max_digits=8, decimal_places=2)
-    car = models.DecimalField(max_digits=8, decimal_places=2)
-
-
-class Clothes(models.Model):
-    """
-    Clothes model, containing clothing expense data
-    """
-    clothing = models.DecimalField(max_digits=8, decimal_places=2)
-
-
-class Entertainment(models.Model):
-    """
-    Entertainment model, containing electronics, games, movies, and bar expense data
-    """
-    electronics = models.DecimalField(max_digits=8, decimal_places=2)
-    games = models.DecimalField(max_digits=8, decimal_places=2)
-    movies = models.DecimalField(max_digits=8, decimal_places=2)
-    bar = models.DecimalField(max_digits=8, decimal_places=2)
-
-
-class Savings(models.Model):
-    """
-    Savings model, containing deposit expense data
-    """
-    deposit = models.DecimalField(max_digits=8, decimal_places=2)
-
-
-class Miscellaneous(models.Model):
-    """
-    Miscellaneous model, containing other expense data
-    """
-    other = models.DecimalField(max_digits=8, decimal_places=2)
+from tracker_backend.trackerAPI.accounts.models import User
 
 
 class Expense(models.Model):
-    # Date for user expenses in ISO 8601 format
-    # Defaults to server's date value today
-    date = models.DateField(default=date.today, blank=True)
+    """
+    Expense model with customizable category/type/value/currency values
+    Defined by the date and user submitting the request
+    """
+    # TODO: figure out how to implement default date to today
+    date = models.DateField(blank=True, null=True)
 
-    # Various user expense types
-    food = models.OneToOneField(Food)
-    housing = models.OneToOneField(Housing)
-    utilities = models.OneToOneField(Utilities)
-    transportation = models.OneToOneField(Transportation)
-    insurance = models.OneToOneField(Insurance)
-    clothes = models.OneToOneField(Clothes)
-    entertainment = models.OneToOneField(Entertainment)
-    savings = models.OneToOneField(Savings)
-    miscellaneous = models.OneToOneField(Miscellaneous)
+    # TODO: hide this from expense response
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
+    category = models.CharField(max_length=32, blank=False, null=False)
+    type = models.CharField(max_length=32, blank=False, null=False)
+    value = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    currency = models.CharField(max_length=3, blank=True, null=True, default='CAD')

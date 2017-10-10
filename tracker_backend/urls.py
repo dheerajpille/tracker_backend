@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from tracker_backend.trackerAPI.accounts.views import *
+from tracker_backend.trackerAPI.views import LoginView, SignupView
 
 urlpatterns = [
     # Admin URL for Django

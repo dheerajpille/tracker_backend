@@ -1,31 +1,12 @@
 from django.conf.urls import url, include
 
-from .views import *
+from tracker_backend.trackerAPI.accounts.views import *
 
 urlpatterns = [
-    # User index, which directs to UserDetail view
-    url(r'^weeklylist/$', WeeklyExpenseList.as_view()),
-    url(r'^monthlylist/$', MonthlyExpenseList.as_view()),
-    url(r'^yearlylist/$', YearlyExpenseList.as_view()),
-    url(r'^$', UserDetail.as_view(), name='userDetail'),
 
-    # Creates an expense for current User with given details
-    url(r'^create/$', CreateExpense.as_view(), name='createExpense'),
+    url(r'^(?P<pk>[0-9]+)/$', UserDetail.as_view(), name='userDetail'),
 
-    # Gets all expenses ever created for a user
-    url(r'^expenselist/$', ExpenseList.as_view(), name='expenseList'),
+    url(r'^(?P<pk>[0-9]+)/expense/', include('tracker_backend.trackerAPI.expenses.urls')),
 
-    # TODO: configure this for reporting purposes
-    url(r'^(?P<date>\d{4}-\d{2}-\d{2})/$', ExpenseDateList.as_view(), name='expenseDateList'),
-
-    # TODO: comment these
-    url(r'^(?P<date>\d{4}-\d{2}-\d{2})/(?P<category>\w{0,32})/$', ExpenseDateCategoryList.as_view()),
-    url(r'^(?P<date>\d{4}-\d{2}-\d{2})/(?P<category>\w{0,32})/(?P<type>\w{0,32})/$', ExpenseDateTypeList.as_view()),
-
-    # TODO: also figure this out, please and thank you!
-    # Category expense list
-    url(r'^(?P<category>\w{0,32})/$', ExpenseCategoryList.as_view(), name='expenseCategoryList'),
-
-    # Type expense list
-    url(r'^(?P<category>\w{0,32})/(?P<type>\w{0,32})/$', ExpenseTypeList.as_view(), name='expenseTypeList'),
+    url(r'^(?P<pk>[0-9]+)/report/', include('tracker_backend.trackerAPI.reports.urls')),
 ]

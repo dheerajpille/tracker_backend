@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-# TODO: implement token for security purposes
 OAUTH2_PROVIDER = {
     # List of available scopes
     'SCOPES': {'read': 'Read scope', 'write': 'Write scope'}
@@ -171,5 +170,5 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'accounts.User'
 
 # OAuth ID and SECRET derived from /o/applications
-CLIENT_ID: 'VWHDqmXqmkiwbJx2h1IowFWI5LzL5JpXsQBj06KQ'
-CLIENT_SECRET = 'epWxmvTisHlqpxjfDWS1BxsuOhtx34KmmsQYGyYk4BSUHXhl6VZbpCjyeOA6Ub5zvFt2uOwVsFiNdtyjQRbqXOdN9nPGdeNt3ENCTkZZBAamA3WpXQd62NlCIvo0UGxi'
+CLIENT_ID: 'WGDszWfdpja9J5PUPwbZNRtvJaL0UtGtdNFGAZsR'
+CLIENT_SECRET = 'x1Z7QhT5msXH8rM9zIaAFmhbmM5nCIsV0i5P5yt7KlsGGrOzu15vnmXjzSw4YdRASF3bLQFgLAIVZY9NKWwh7V8z77Jopoa4N5pvs16181w828ATYVjXh568xa47IRIG'
