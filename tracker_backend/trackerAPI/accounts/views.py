@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .serializers import *
-from datetime import date
+from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
 from django.utils.timezone import now
 
@@ -244,12 +244,15 @@ class WeeklyExpenseList(ListAPIView):
 
     def get(self, request, pk):
         today = date.today()
-        week_ago = today - relativedelta(weeks=1)
+        week_start = today - timedelta(days=today.isoweekday() % 7)
 
-        queryset = self.model.objects.filter(user=self.request.user, date__range=(week_ago, today))
-        serializer = ExpenseSerializer(queryset, many=True)
+        queryset = self.model.objects.filter(user=self.request.user, date__range=(week_start, today))
 
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        if queryset.exists():
+            serializer = ExpenseSerializer(queryset, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(data={"message": "No expenses found in the past week."}, status=status.HTTP_204_NO_CONTENT)
 
 
 class MonthlyExpenseList(ListAPIView):
@@ -263,8 +266,12 @@ class MonthlyExpenseList(ListAPIView):
         month_start = today.replace(day=1)
 
         queryset = self.model.objects.filter(user=self.request.user, date__range=[month_start, today])
-        serializer = ExpenseSerializer(queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+
+        if queryset.exists():
+            serializer = ExpenseSerializer(queryset, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(data={"message": "No expenses found in the past month."}, status=status.HTTP_204_NO_CONTENT)
 
 
 class YearlyExpenseList(ListAPIView):
@@ -278,5 +285,9 @@ class YearlyExpenseList(ListAPIView):
         year_start = today.replace(month=1, day=1)
 
         queryset = self.model.objects.filter(user=self.request.user, date__range=[year_start, today])
-        serializer = ExpenseSerializer(queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+
+        if queryset.exists():
+            serializer = ExpenseSerializer(queryset, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(data={"message": "No expenses found in the past year."}, status=status.HTTP_204_NO_CONTENT)
