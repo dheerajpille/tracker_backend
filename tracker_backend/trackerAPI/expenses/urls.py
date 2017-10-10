@@ -4,10 +4,10 @@ from .views import *
 
 urlpatterns = [
     # Creates an expense for current User with given details
-    url(r'^(?P<pk>[0-9]+)/create/$', CreateExpense.as_view(), name='createExpense'),
+    url(r'^create/$', CreateExpense.as_view(), name='create-expense'),
 
     # Gets all expenses ever created for a user
-    url(r'^(?P<pk>[0-9]+)/expenselist/$', ExpenseList.as_view(), name='expenseList'),
+    url(r'^expenselist/$', ExpenseList.as_view(), name='expense-list'),
 
     # TODO: configure this for reporting purposes
     url(r'^(?P<date>\d{4}-\d{2}-\d{2})/$', ExpenseDateList.as_view(), name='expenseDateList'),
