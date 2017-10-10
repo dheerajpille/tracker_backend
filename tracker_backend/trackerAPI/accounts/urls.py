@@ -20,4 +20,7 @@ urlpatterns = [
 
     # Category expense list
     url(r'^(?P<category>\w{0,32})/$', ExpenseCategoryList.as_view(), name='expenseCategoryList'),
+
+    # Type expense list
+    url(r'^(?P<category>\w{0,32})/(?P<type>\w{0,32})', ExpenseTypeList.as_view(), name='expenseTypeList'),
 ]
