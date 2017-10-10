@@ -1,3 +1,5 @@
+import simplejson
+
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
@@ -106,9 +108,9 @@ class ExpenseSerializer(serializers.ModelSerializer):
     """
     Standard serializer for expense model
     """
-    date = serializers.DateField(required=True)
+    date = serializers.DateField(required=False)
 
-    user = UserSerializer(required=False)
+    user = UserSerializer(read_only=True, required=False)
 
     category = serializers.CharField(max_length=32, required=True)
     type = serializers.CharField(max_length=32, required=True)

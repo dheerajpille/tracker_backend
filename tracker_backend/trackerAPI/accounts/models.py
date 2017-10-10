@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from datetime import date
-from django.utils import timezone
+from django.utils.timezone import now
 
 
 # Create your models here.
@@ -18,8 +17,10 @@ class Expense(models.Model):
     Expense model with customizable category/type/value/currency values
     Defined by the date and user submitting the request
     """
-    date = models.DateField(blank=False, null=False)
+    # TODO: figure out how to implement default date to today
+    date = models.DateField(blank=True, null=True, default=now().date())
 
+    # TODO: hide this from expense response
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     category = models.CharField(max_length=32, blank=False, null=False)

@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .serializers import *
-import json
+from django.utils.timezone import now
 
 # Create your views here.
 class LoginView(APIView):
@@ -173,6 +173,7 @@ class ExpenseList(ListAPIView):
         # Sorts printed response by date chronologically and by category/type alphabetically
         return queryset
 
+
 class ExpenseDateList(ListAPIView):
     pagination_class = None
 
@@ -206,5 +207,30 @@ class ExpenseTypeList(ListAPIView):
     def get(self, request, pk, category, type):
         queryset = self.model.objects.filter(user=self.request.user, category__iexact=category, type__iexact=type)\
             .order_by('-date')
+        serializer = ExpenseSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class ExpenseDateCategoryList(ListAPIView):
+    pagination_class = None
+
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    def get(self, request, pk, date, category):
+        queryset = self.model.objects.filter(user=self.request.user, date=date, category__iexact=category)\
+            .order_by('-date')
+        serializer = ExpenseSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ExpenseDateTypeList(ListAPIView):
+    pagination_class = None
+
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    def get(self, request, pk, date, category, type):
+        queryset = self.model.objects.filter(user=self.request.user, date=date, category__iexact=category,
+                                             type__iexact=type).order_by('-date')
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
