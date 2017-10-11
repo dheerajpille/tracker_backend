@@ -3,15 +3,15 @@ from django.conf.urls import url, include
 from tracker_backend.trackerAPI.views import UserDetail, UserList
 
 urlpatterns = [
-    # User detail derived from pk/id
+    # User detail based on pk/id value
     url(r'^user/(?P<pk>[0-9]+)/$', UserDetail.as_view(), name='user-detail'),
 
-    # Registered user list in database, only accessible by superuser/admin
+    # User list in database, only accessible to superuser/admin accounts
     url(r'^user/list/$', UserList.as_view(), name='user-list'),
 
-    # Lead to expense application
+    # Leads to expense application
     url(r'^user/(?P<pk>[0-9]+)/expense/', include('tracker_backend.trackerAPI.expenses.urls')),
 
-    # Lead to report application
+    # Leads to report application
     url(r'^user/(?P<pk>[0-9]+)/report/', include('tracker_backend.trackerAPI.reports.urls')),
 ]
