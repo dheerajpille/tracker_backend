@@ -1,11 +1,11 @@
+from django.contrib.auth.models import User
+
 from rest_framework import status
 from rest_framework.generics import ListAPIView
-from rest_framework.permissions import AllowAny, IsAdminUser
-from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from tracker_backend.trackerAPI.expenses.models import Expense
-from django.contrib.auth.models import User
 from tracker_backend.trackerAPI.expenses.serializers import ExpenseSerializer
 
 
@@ -71,6 +71,7 @@ class ExpenseList(ListAPIView):
 
         # Checks if any expenses exist for current User
         if not queryset.exists():
+
             # Returns error if no expenses are found for current User in database
             return Response(data={"error": "No expenses found."}, status=status.HTTP_404_NOT_FOUND)
 
@@ -80,7 +81,7 @@ class ExpenseList(ListAPIView):
 
 class ExpenseDateList(ListAPIView):
     """
-    Gets User their Expense list on a specified date
+    Gets User's Expense list on a specified date
     """
 
     # Disables pagination for GET call
@@ -96,23 +97,49 @@ class ExpenseDateList(ListAPIView):
         # Filters all Expense objects that were created by current User with the specified date
         queryset = self.model.objects.filter(user=self.request.user, date=date)
 
+        # Checks if any expenses exist on this date for current User
         if not queryset.exists():
+
+            # Returns error if no expenses are found on this date for current User in database
             return Response(data={"error": "No expenses found."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Serializes queryset data into ExpenseSerializer, where multiple Expenses are allowed/expected
         serializer = ExpenseSerializer(queryset, many=True)
+
+        # Returns specified list of expenses
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ExpenseCategoryList(ListAPIView):
+    """
+    Gets User's expense list for a certain category
+    """
+
+    # Disables pagination for GET call
     pagination_class = None
 
+    # Specifies serializer and model types
     serializer_class = ExpenseSerializer
     model = Expense
 
+    # Gets all Expense objects for a certain category
     def get(self, request, pk, category):
+
+        # Filters all Expense objects that were created by current User in a certain category
+        # Converts slugs in category URL to spaces for filtering purposes
         queryset = self.model.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '))\
             .order_by('-date')
+
+        # Checks if any expenses exist in this category for current User
+        if not queryset.exists():
+
+            # Returns error if no expenses are found in this category for current User in database
+            return Response(data={"error": "No expenses found."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Serializes queryset data into Expense serializer, where multiple Expenses are allowed/expected
         serializer = ExpenseSerializer(queryset, many=True)
+
+        # Returns specified list of expenses
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -125,6 +152,13 @@ class ExpenseTypeList(ListAPIView):
     def get(self, request, pk, category, type):
         queryset = self.model.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '),
                                              type__iexact=type.replace('-', ' ')).order_by('-date')
+
+        # Checks if any expenses exist in this category for current User
+        if not queryset.exists():
+
+            # Returns error if no expenses are found in this category for current User in database
+            return Response(data={"error": "No expenses found."}, status=status.HTTP_404_NOT_FOUND)
+
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -178,3 +212,37 @@ class ExpenseDetail(APIView):
         expense.delete()
 
         return Response(data={"message": "Expense deleted."}, status=status.HTTP_204_NO_CONTENT)
+
+
+class DateList(ListAPIView):
+
+    def get(self, request, pk):
+        queryset = Expense.objects.order_by('-date').values('date').distinct()
+
+        if not queryset.exists():
+            return Response(data={"error": "No dates found."}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response(queryset, status=status.HTTP_200_OK)
+
+
+class CategoryList(ListAPIView):
+
+    def get(self, request, pk):
+        queryset = Expense.objects.order_by('category').values('category').distinct()
+
+        if not queryset.exists():
+            return Response(data={"error": "No categories found."}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response(queryset, status=status.HTTP_200_OK)
+
+
+class TypeList(ListAPIView):
+
+    def get(self, request, pk, category):
+        queryset = Expense.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '))\
+            .order_by('type').values('type').distinct()
+
+        if not queryset.exists():
+            return Response(data={"error": "No types found."}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response(queryset, status=status.HTTP_200_OK)
