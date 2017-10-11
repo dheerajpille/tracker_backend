@@ -4,6 +4,19 @@ from rest_framework.exceptions import ValidationError
 
 from django.contrib.auth.models import User
 
+
+class UserSerializer(serializers.ModelSerializer):
+    """
+    Standard serializer for standard User model
+    """
+
+    class Meta:
+        model = User
+
+        # Displays the following fields as response body
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', )
+
+
 class LoginSerializer(serializers.Serializer):
     """
     Login serializer, which validates client's username and password with database

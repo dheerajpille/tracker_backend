@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from tracker_backend.trackerAPI.expenses.models import Expense
-from tracker_backend.trackerAPI.accounts.serializers import UserSerializer
+from tracker_backend.trackerAPI.serializers import UserSerializer
 
 
 class ExpenseSerializer(serializers.ModelSerializer):

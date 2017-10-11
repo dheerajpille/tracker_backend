@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from tracker_backend.trackerAPI.expenses.models import Expense
 from django.contrib.auth.models import User
-from tracker_backend.trackerAPI.accounts.serializers import UserSerializer
+from tracker_backend.trackerAPI.serializers import UserSerializer
 from tracker_backend.trackerAPI.expenses.serializers import ExpenseSerializer
 from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
@@ -15,7 +15,7 @@ from django.utils.timezone import now
 # Create your views here.
 
 
-class CreateExpense(APIView):
+class POSTExpense(APIView):
     # TODO: remove this later, it was useful for the most frustrating problem
     def get_serializer_context(self):
         """
@@ -29,24 +29,24 @@ class CreateExpense(APIView):
 
     def post(self, request, pk):
 
-        create_expense = ExpenseSerializer(data=request.data, context={'request': request})
+        post_expense = ExpenseSerializer(data=request.data, context={'request': request})
 
-        if create_expense.is_valid():
+        if post_expense.is_valid():
 
-            # Creates an Expense if it does not expect in database
+            # Creates Expense if not existing in database
             if not Expense.objects.filter(date__exact=self.request.data['date'],
                                           category__iexact=self.request.data['category'],
                                           type__iexact=self.request.data['type']).exists():
 
-                create_expense.save()
-                serializer = ExpenseSerializer(create_expense.data)
+                post_expense.save()
+                serializer = ExpenseSerializer(post_expense.data)
 
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             else:
 
                 return Response(data={"message": "Expense already created."}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response(create_expense.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(post_expense.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ExpenseList(ListAPIView):
@@ -126,6 +126,8 @@ class ExpenseDateTypeList(ListAPIView):
     serializer_class = ExpenseSerializer
     model = Expense
 
+    # TODO: fix spaces to work in url
+    # https://stackoverflow.com/questions/8238268/how-to-pass-variables-with-spaces-through-url-in-django
     def get(self, request, pk, date, category, type):
         expense = self.model.objects.filter(user=self.request.user, date=date, category__iexact=category,
                                             type__iexact=type).first()

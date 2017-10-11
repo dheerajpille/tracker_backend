@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     # Creates an expense for current User with given details
-    url(r'^create/$', CreateExpense.as_view(), name='create-expense'),
+    url(r'^create/$', POSTExpense.as_view(), name='post-expense'),
 
     # Gets all expenses ever created for a user
     url(r'^expenselist/$', ExpenseList.as_view(), name='expense-list'),
