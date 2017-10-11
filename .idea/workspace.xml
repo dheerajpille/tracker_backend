@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7a8df52-0b93-4281-ac53-2d95db8fcf4e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/urls.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,8 +66,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="278" column="83" lean-forward="false" selection-start-line="278" selection-start-column="83" selection-end-line="278" selection-end-column="83" />
+            <state relative-caret-position="639">
+              <caret line="344" column="0" lean-forward="true" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
                 <element signature="e#395#2033#0" expanded="false" />
@@ -76,6 +76,7 @@
                 <element signature="e#4112#5348#0" expanded="false" />
                 <element signature="e#5391#6754#0" expanded="false" />
                 <element signature="e#6805#8143#0" expanded="false" />
+                <element signature="e#8181#11333#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -408,7 +409,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -808,8 +809,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="278" column="83" lean-forward="false" selection-start-line="278" selection-start-column="83" selection-end-line="278" selection-end-column="83" />
+        <state relative-caret-position="639">
+          <caret line="344" column="0" lean-forward="true" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
             <element signature="e#395#2033#0" expanded="false" />
@@ -818,6 +819,7 @@
             <element signature="e#4112#5348#0" expanded="false" />
             <element signature="e#5391#6754#0" expanded="false" />
             <element signature="e#6805#8143#0" expanded="false" />
+            <element signature="e#8181#11333#0" expanded="false" />
           </folding>
         </state>
       </provider>

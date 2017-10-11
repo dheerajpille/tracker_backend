@@ -281,34 +281,64 @@ class ExpenseDetail(APIView):
 
 
 class DateList(ListAPIView):
+    """
+    Gets User's distinct dates for expenses
+    """
 
+    # Gets distinct dates for current User
     def get(self, request, pk):
+
+        # Filters queryset for distinct dates in reverse chronological order
         queryset = Expense.objects.order_by('-date').values('date').distinct()
 
+        # Checks if queryset is not empty
         if not queryset.exists():
+
+            # Returns error if no dates are found (no expenses created)
             return Response(data={"error": "No dates found."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Returns list of distinct dates
         return Response(queryset, status=status.HTTP_200_OK)
 
 
 class CategoryList(ListAPIView):
+    """
+    Gets User's distinct categories for expenses
+    """
 
+    # Gets distinct categories for current User
     def get(self, request, pk):
+
+        # Filters queryset for distinct dates in alphabetical order
         queryset = Expense.objects.order_by('category').values('category').distinct()
 
+        # Checks if queryset is not empty
         if not queryset.exists():
+
+            # Returns error if no categories are found (no expenses created)
             return Response(data={"error": "No categories found."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Returns list of distinct categories
         return Response(queryset, status=status.HTTP_200_OK)
 
 
 class TypeList(ListAPIView):
+    """
+    Gets User's distinct types from a certain category for expenses
+    """
 
+    # Gets distinct types of a certain category for current User
     def get(self, request, pk, category):
+
+        # Filters queryset for distinct types in a certain category in alphabetical order
         queryset = Expense.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '))\
             .order_by('type').values('type').distinct()
 
+        # Checks if queryset is not empty
         if not queryset.exists():
+
+            # Returns error if no categories are found (no expenses created)
             return Response(data={"error": "No types found."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Returns list of distinct types from a certain category
         return Response(queryset, status=status.HTTP_200_OK)
