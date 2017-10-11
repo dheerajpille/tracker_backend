@@ -1,16 +1,12 @@
-from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAdminUser
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from django.http import Http404
 from rest_framework import status
 from rest_framework.generics import ListAPIView
-from rest_framework.permissions import IsAdminUser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from django.contrib.auth.models import User
-from tracker_backend.trackerAPI.serializers import LoginSerializer, SignupSerializer, UserSerializer
+from tracker_backend.trackerAPI.serializers import UserSerializer, LoginSerializer, SignupSerializer
 
 
 class LoginView(APIView):
@@ -35,7 +31,7 @@ class LoginView(APIView):
 class SignupView(APIView):
     """
     Allows client to signup with user credentials (username/email/password)
-    Other fields are optional
+    Fields can be partial
     """
 
     # Gives any user permission to POST for signup
@@ -65,7 +61,7 @@ class UserDetail(APIView):
         except User.DoesNotExist:
             raise Http404
 
-    # View the User object
+    # Get the User object
     def get(self, request, pk):
         user = self.get_object(pk)
         if request.user.is_superuser or request.user == user:

@@ -10,6 +10,7 @@ class ExpenseSerializer(serializers.ModelSerializer):
     """
     date = serializers.DateField(required=False)
 
+    # TODO: make this not show up in response body
     user = UserSerializer(read_only=True, required=False)
 
     category = serializers.CharField(max_length=32, required=True)
@@ -17,11 +18,10 @@ class ExpenseSerializer(serializers.ModelSerializer):
     value = serializers.DecimalField(max_digits=8, decimal_places=2, required=True)
     currency = serializers.CharField(max_length=3, required=False)
 
+    # Creates Expense object with POST data
     def create(self, validated_data):
         date = self.validated_data['date']
-
         user = self.context['request'].user
-
         category = self.validated_data['category']
         type = self.validated_data['type']
         value = self.validated_data['value']

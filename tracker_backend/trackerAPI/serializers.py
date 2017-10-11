@@ -61,7 +61,6 @@ class SignupSerializer(serializers.Serializer):
     first_name = serializers.CharField(required=False)
     last_name = serializers.CharField(required=False)
     email = serializers.CharField(style={'input_type': 'email'}, required=True)
-    budget = serializers.DecimalField(max_digits=8, decimal_places=2, required=False)
     currency = serializers.CharField(required=False)
     password = serializers.CharField(style={'input_type': 'password'}, write_only=True, required=True)
 

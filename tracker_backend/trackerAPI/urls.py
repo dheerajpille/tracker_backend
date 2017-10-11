@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^user/(?P<pk>[0-9]+)/$', UserDetail.as_view(), name='user-detail'),
 
     # Registered user list in database, only accessible by superuser/admin
-    url(r'^userlist/$', UserList.as_view(), name='user-list'),
+    url(r'^user/list/$', UserList.as_view(), name='user-list'),
 
     # Lead to expense application
     url(r'^user/(?P<pk>[0-9]+)/expense/', include('tracker_backend.trackerAPI.expenses.urls')),

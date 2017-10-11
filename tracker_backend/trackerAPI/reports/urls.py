@@ -11,7 +11,4 @@ urlpatterns = [
 
     # List of expenses from last year
     url(r'^yearly/$', YearlyExpenseReport.as_view(), name='yearly-report'),
-
-    # List of expenses from last year
-    url(r'^wtr/$', WeeklyTotalReport.as_view(), name='yearly-report'),
 ]
