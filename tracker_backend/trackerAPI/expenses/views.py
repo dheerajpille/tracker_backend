@@ -144,12 +144,22 @@ class ExpenseCategoryList(ListAPIView):
 
 
 class ExpenseTypeList(ListAPIView):
+    """
+    Gets User's expense list for a certain type in a certain category
+    """
+
+    # Disables pagination for GET call
     pagination_class = None
 
+    # Specifies serializer and model types
     serializer_class = ExpenseSerializer
     model = Expense
 
+    # Gets all Expense objects for a cetain type in a certain category
     def get(self, request, pk, category, type):
+
+        # Filters all Expense objects that were created by current User in a certain type in a certain category
+        # Converts slugs in category URL to spaces for filtering purposes
         queryset = self.model.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '),
                                              type__iexact=type.replace('-', ' ')).order_by('-date')
 
@@ -159,58 +169,114 @@ class ExpenseTypeList(ListAPIView):
             # Returns error if no expenses are found in this category for current User in database
             return Response(data={"error": "No expenses found."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Serializes queryset data into Expense serializer, where multiple Expenses are allowed/expected
         serializer = ExpenseSerializer(queryset, many=True)
+
+        # Returns specified list of expenses
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ExpenseDateCategoryList(ListAPIView):
+    """
+    Gets User's expense list for a certain category on a specified date
+    """
+
+    # Disables pagination for GET call
     pagination_class = None
 
+    # Specifies serializer and model types
     serializer_class = ExpenseSerializer
     model = Expense
 
+    # Gets all Expense objects for a certain category on a specified date
     def get(self, request, pk, date, category):
+
+        # Filters all Expense objects that were created by current User in a certain category on a specified date
+        # Converts slugs in category URL to spaces for filtering purposes
         queryset = Expense.objects.filter(user=self.request.user, date=date,
                                           category__iexact=category.replace('-', ' ')).order_by('-date')
+
+        # Checks if any expenses exist in this category for current User
+        if not queryset.exists():
+
+            # Returns error if no expenses are found in this category for current User in database
+            return Response(data={"error": "No expenses found."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Serializes queryset data into Expense serializer, where multiple Expenses are allowed/expected
         serializer = ExpenseSerializer(queryset, many=True)
+
+        # Returns specified list of expenses
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ExpenseDetail(APIView):
+
+    # Gets the specific Expense object defined by date, category, and type
     def get(self, request, pk, date, category, type):
+
+        # Filters the Expense object with date, category, and type to get the object in question
+        # Converts slugs in category URL to spaces for filtering purposes
         expense = Expense.objects.filter(user=self.request.user, date=date, category__iexact=category.replace('-', ' '),
                                          type__iexact=type.replace('-', ' ')).first()
 
+        # Checks if expense exists
         if expense is None:
+
+            # Returns error if expense is not found
             return Response(data={"error": "Expense not found."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Serializes expense into ExpenseSerializer
         serializer = ExpenseSerializer(expense)
 
+        # Returns specified expense
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    # Updates the specific Expense object defined by date, category, and type
     def put(self, request, pk, date, category, type):
+
+        # Filters the Expense object with date, category, and type to get the object in question
+        # Converts slugs in category URL to spaces for filtering purposes
         expense = Expense.objects.filter(user=self.request.user, date=date, category__iexact=category.replace('-', ' '),
                                          type__iexact=type.replace('-', ' ')).first()
+
+        # Checks if expense exists
         if expense is None:
+
+            # Returns error if expense is not found
             return Response(data={"error": "Expense not found."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Serializes expense into ExpenseSerializer
         serializer = ExpenseSerializer(expense, data=request.data, partial=True, context={'request': request})
 
+        # Checks if serializer is valid
         if serializer.is_valid():
+
             serializer.save()
 
+            # Returns updated specified expense
             return Response(serializer.data)
+
+        # Returns errors that occur when attempting to update Expense
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    # Deletes the specific Expense object defined by date, category, and type
     def delete(self, request, pk, date, category, type):
+
+        # Filters the Expense object with date, category, and type to get the object in question
+        # Converts slugs in category URL to spaces for filtering purposes
         expense = Expense.objects.filter(user=self.request.user, date=date, category__iexact=category.replace('-', ' '),
                                          type__iexact=type.replace('-', ' ')).first()
 
+        # Checks if expense exists
         if expense is None:
+
+            # Returns error if expense is not f ound
             return Response(data={"error": "Expense not found."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Deletes Expense object if found
         expense.delete()
 
+        # Returns a statement displaying that expense has been successfully deleted
         return Response(data={"message": "Expense deleted."}, status=status.HTTP_204_NO_CONTENT)
 
 

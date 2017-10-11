@@ -3,8 +3,6 @@ from django.conf.urls import url
 from tracker_backend.trackerAPI.expenses.views import *
 
 urlpatterns = [
-
-
     # Creates new Expense for current User
     url(r'^create/$', CreateExpenseView.as_view(), name='create-expense'),
 
