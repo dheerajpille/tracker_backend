@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7a8df52-0b93-4281-ac53-2d95db8fcf4e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/apps.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/tests.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/settings.py" afterPath="$PROJECT_DIR$/tracker_backend/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/views.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/urls.py" afterPath="$PROJECT_DIR$/tracker_backend/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,13 +52,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tracker_backend/urls.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="31" column="28" lean-forward="true" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
+            <state relative-caret-position="238">
+              <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
-                <element signature="e#649#690#0" expanded="true" />
+                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#440#1282#0" expanded="false" />
+                <element signature="e#1316#2251#0" expanded="false" />
+                <element signature="e#2285#4916#0" expanded="false" />
+                <element signature="e#4952#5369#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -123,14 +120,12 @@
       <list>
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/v1/urls.py" />
         <option value="$PROJECT_DIR$/templates/login.html" />
-        <option value="$PROJECT_DIR$/tracker_backend/urls.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/admin.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/models.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/models.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/serializers.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/admin.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/serializers.py" />
-        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/views.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/reports/views.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/reports/urls.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/urls.py" />
@@ -141,6 +136,8 @@
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/admin.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/accounts/views.py" />
         <option value="$PROJECT_DIR$/tracker_backend/settings.py" />
+        <option value="$PROJECT_DIR$/tracker_backend/urls.py" />
+        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/views.py" />
       </list>
     </option>
   </component>
@@ -151,10 +148,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1948" />
+    <option name="x" value="1358" />
     <option name="y" value="-8" />
-    <option name="width" value="983" />
-    <option name="height" value="521" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -355,9 +352,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21630435" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21630435" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12686567" sideWeight="0.49041095" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="manage.py@tracker_backend" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3728261" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" x="-37" y="92" width="1366" height="728" />
+      <window_info id="manage.py@tracker_backend" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3728261" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" x="-37" y="92" width="1366" height="728" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23676248" sideWeight="0.509589" order="2" side_tool="true" content_ui="tabs" />
@@ -383,17 +380,12 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/views.py</url>
-          <line>30</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py</url>
           <line>53</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="14" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -659,19 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="57" column="4" lean-forward="false" selection-start-line="57" selection-start-column="4" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-            <element signature="e#439#1009#0" expanded="false" />
-            <element signature="e#1043#1665#0" expanded="false" />
-            <element signature="e#3389#3766#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -689,7 +668,7 @@
         <state relative-caret-position="255">
           <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -786,10 +765,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="31" column="28" lean-forward="true" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
+        <state relative-caret-position="323">
+          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
           <folding>
-            <element signature="e#649#690#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#440#1282#0" expanded="false" />
+            <element signature="e#1316#2251#0" expanded="false" />
+            <element signature="e#2285#4916#0" expanded="false" />
+            <element signature="e#4952#5369#0" expanded="false" />
           </folding>
         </state>
       </provider>
