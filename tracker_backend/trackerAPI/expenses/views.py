@@ -6,14 +6,11 @@ from rest_framework.response import Response
 
 from tracker_backend.trackerAPI.expenses.models import Expense
 from django.contrib.auth.models import User
-from tracker_backend.trackerAPI.serializers import UserSerializer
 from tracker_backend.trackerAPI.expenses.serializers import ExpenseSerializer
-from datetime import date, timedelta
-from dateutil.relativedelta import relativedelta
-from django.utils.timezone import now
 
 
 class CreateExpenseView(APIView):
+
     def get_object(self, pk):
         try:
             return User.objects.get(pk=pk)
@@ -53,12 +50,15 @@ class ExpenseList(ListAPIView):
     serializer_class = ExpenseSerializer
     model = Expense
 
-    # TODO: make an error for empty queryset
     def get_queryset(self):
         # Filters all expense objects that were created by the current user
         queryset = self.model.objects.filter(user=self.request.user).order_by('-date')
 
-        # Sorts printed response by date chronologically and by category/type alphabetically
+        # Checks if expenses exist for user, and returns error if none are found
+        if not queryset.exists():
+            return Response(data={"error": "No expense found."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Sorts printed response by date chronologically
         return queryset
 
 
@@ -81,7 +81,8 @@ class ExpenseCategoryList(ListAPIView):
     model = Expense
 
     def get(self, request, pk, category):
-        queryset = self.model.objects.filter(user=self.request.user, category__iexact=category).order_by('-date')
+        queryset = self.model.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '))\
+            .order_by('-date')
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -93,8 +94,8 @@ class ExpenseTypeList(ListAPIView):
     model = Expense
 
     def get(self, request, pk, category, type):
-        queryset = self.model.objects.filter(user=self.request.user, category__iexact=category, type__iexact=type)\
-            .order_by('-date')
+        queryset = self.model.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '),
+                                             type__iexact=type.replace('-', ' ')).order_by('-date')
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -106,20 +107,16 @@ class ExpenseDateCategoryList(ListAPIView):
     model = Expense
 
     def get(self, request, pk, date, category):
-        queryset = Expense.objects.filter(user=self.request.user, date=date, category__iexact=category)\
-            .order_by('-date')
+        queryset = Expense.objects.filter(user=self.request.user, date=date,
+                                          category__iexact=category.replace('-', ' ')).order_by('-date')
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ExpenseDetail(APIView):
-    # TODO: fix spaces to work in url
-    # https://stackoverflow.com/questions/8238268/how-to-pass-variables-with-spaces-through-url-in-django
     def get(self, request, pk, date, category, type):
-        expense = Expense.objects.filter(user=self.request.user, date=  date, category__iexact=category,
-                                         type=type).first()
-
-        print(type)
+        expense = Expense.objects.filter(user=self.request.user, date=date, category__iexact=category.replace('-', ' '),
+                                         type__iexact=type.replace('-', ' ')).first()
 
         if expense is None:
             return Response(data={"error": "Expense not found."}, status=status.HTTP_404_NOT_FOUND)
@@ -129,8 +126,8 @@ class ExpenseDetail(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk, date, category, type):
-        expense = Expense.objects.filter(user=self.request.user, date=date, category__iexact=category,
-                                         type__iexact=type).first()
+        expense = Expense.objects.filter(user=self.request.user, date=date, category__iexact=category.replace('-', ' '),
+                                         type__iexact=type.replace('-', ' ')).first()
         if expense is None:
             return Response(data={"error": "Expense not found."}, status=status.HTTP_404_NOT_FOUND)
 
@@ -143,8 +140,9 @@ class ExpenseDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, date, category, type):
-        expense = Expense.objects.filter(user=self.request.user, date=date, category__iexact=category,
-                                         type__iexact=type).first()
+        expense = Expense.objects.filter(user=self.request.user, date=date, category__iexact=category.replace('-', ' '),
+                                         type__iexact=type.replace('-', ' ')).first()
+
         if expense is None:
             return Response(data={"error": "Expense not found."}, status=status.HTTP_404_NOT_FOUND)
 
