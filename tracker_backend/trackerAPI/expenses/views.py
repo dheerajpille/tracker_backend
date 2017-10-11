@@ -10,66 +10,95 @@ from tracker_backend.trackerAPI.expenses.serializers import ExpenseSerializer
 
 
 class CreateExpenseView(APIView):
+    """
+    Creates new Expense object for current User
+    """
 
+    # Gets User object by pk/id value
+    # Returns user or 404, if not found
     def get_object(self, pk):
         try:
             return User.objects.get(pk=pk)
         except User.DoesNotExist:
             raise Http404
 
+    # Creates new Expense object
     def post(self, request, pk):
+
+        # Gets current User
         user = self.get_object(pk)
+
+        # Gets data from POST request
         create_expense = ExpenseSerializer(data=request.data, context={'request': request})
 
+        # Checks if data is valid
         if create_expense.is_valid():
-
-            # Creates Expense if not existing in database
+            # Creates Expense object if it does not exist in database for current User
             if not Expense.objects.filter(user=user, date__exact=self.request.data['date'],
                                           category__iexact=self.request.data['category'],
                                           type__iexact=self.request.data['type']).exists():
-
                 create_expense.save()
+
+                # Serializes data to ExpenseSerializer for JSON response
                 serializer = ExpenseSerializer(create_expense.data)
 
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             else:
-
+                # Returns error upon attempting to create an expense that has already been found in database
                 return Response(data={"error": "Expense already created."}, status=status.HTTP_400_BAD_REQUEST)
         else:
+            # Lists various errors found with POST data
             return Response(create_expense.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ExpenseList(ListAPIView):
     """
-    Allows user to view their own expense list
+    Gets User their all-time Expense list
     """
 
-    # Disables pagination for GET calls
+    # Disables pagination for GET call
     pagination_class = None
 
+    # Specifies serializer and model types
     serializer_class = ExpenseSerializer
     model = Expense
 
+    # Gets queryset of all of current User's expenses
     def get_queryset(self):
-        # Filters all expense objects that were created by the current user
+
+        # Filters all Expense objects created by current User, sorted in reverse chronological order
         queryset = self.model.objects.filter(user=self.request.user).order_by('-date')
 
-        # Checks if expenses exist for user, and returns error if none are found
+        # Checks if any expenses exist for current User
         if not queryset.exists():
-            return Response(data={"error": "No expense found."}, status=status.HTTP_404_NOT_FOUND)
+            # Returns error if no expenses are found for current User in database
+            return Response(data={"error": "No expenses found."}, status=status.HTTP_404_NOT_FOUND)
 
-        # Sorts printed response by date chronologically
+        # Returns queryset of all Expense objects found for current User
         return queryset
 
 
 class ExpenseDateList(ListAPIView):
+    """
+    Gets User their Expense list on a specified date
+    """
+
+    # Disables pagination for GET call
     pagination_class = None
 
+    # Specifies serializer and model types
     serializer_class = ExpenseSerializer
     model = Expense
 
+    # Gets all Expense objects for a specified date
     def get(self, request, pk, date):
+
+        # Filters all Expense objects that were created by current User with the specified date
         queryset = self.model.objects.filter(user=self.request.user, date=date)
+
+        if not queryset.exists():
+            return Response(data={"error": "No expenses found."}, status=status.HTTP_404_NOT_FOUND)
+
         serializer = ExpenseSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
