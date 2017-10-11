@@ -41,7 +41,6 @@ INSTALLED_APPS = [
 
     # Created Django applications
     'tracker_backend.trackerAPI',
-    'tracker_backend.trackerAPI.accounts',
     'tracker_backend.trackerAPI.expenses',
     'tracker_backend.trackerAPI.reports',
 
