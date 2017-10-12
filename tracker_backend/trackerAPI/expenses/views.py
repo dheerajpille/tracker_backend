@@ -292,6 +292,9 @@ class DateList(ListAPIView):
     # Gets distinct dates for current User
     def get(self, request, pk):
 
+        # Initializes an empty list for distinct dates
+        date_list = []
+
         # Filters queryset for distinct dates in reverse chronological order
         queryset = Expense.objects.order_by('-date').values('date').distinct()
 
@@ -301,8 +304,14 @@ class DateList(ListAPIView):
             # Returns error if no dates are found (no expenses created)
             return Response(data={"error": "No dates found."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Iterates through distinct dates in queryset
+        for q in queryset:
+
+            # Appends distinct date values to date_list
+            date_list.append(q['date'])
+
         # Returns list of distinct dates
-        return Response(queryset, status=status.HTTP_200_OK)
+        return Response(date_list, status=status.HTTP_200_OK)
 
 
 class CategoryList(ListAPIView):
@@ -313,6 +322,9 @@ class CategoryList(ListAPIView):
     # Gets distinct categories for current User
     def get(self, request, pk):
 
+        # Initializes an empty list for distinct categories
+        category_list = []
+
         # Filters queryset for distinct dates in alphabetical order
         queryset = Expense.objects.order_by('category').values('category').distinct()
 
@@ -322,8 +334,14 @@ class CategoryList(ListAPIView):
             # Returns error if no categories are found (no expenses created)
             return Response(data={"error": "No categories found."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Iterates through distinct categories in queryset
+        for q in queryset:
+
+            # Appends distinct category values to category_list
+            category_list.append(q['category'])
+
         # Returns list of distinct categories
-        return Response(queryset, status=status.HTTP_200_OK)
+        return Response(category_list, status=status.HTTP_200_OK)
 
 
 class TypeList(ListAPIView):
@@ -334,9 +352,13 @@ class TypeList(ListAPIView):
     # Gets distinct types of a certain category for current User
     def get(self, request, pk, category):
 
+        # Initializes an empty list for distinct types in a certain category
+        type_list = []
+
         # Filters queryset for distinct types in a certain category in alphabetical order
-        queryset = Expense.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' ')
-                                          .order_by('type').values('type').distinct())
+
+        queryset = Expense.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '))\
+            .order_by('type').values('type').distinct()
 
         # Checks if queryset is not empty
         if not queryset.exists():
@@ -344,8 +366,14 @@ class TypeList(ListAPIView):
             # Returns error if no categories are found (no expenses created)
             return Response(data={"error": "No types found."}, status=status.HTTP_404_NOT_FOUND)
 
+        # Iterates through distinct types in certain category in queryset
+        for q in queryset:
+
+            # Appends distinct type values to type_list
+            type_list.append(q['type'])
+
         # Returns list of distinct types from a certain category
-        return Response(queryset, status=status.HTTP_200_OK)
+        return Response(type_list, status=status.HTTP_200_OK)
 
 
 class WeeklyExpenseList(ListAPIView):
