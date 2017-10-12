@@ -1,10 +1,16 @@
+import json, simplejson
+
+from datetime import date, timedelta
+
+from django.db.models import Sum
+
 from rest_framework import status
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from tracker_backend.trackerAPI.expenses.serializers import ExpenseSerializer
 from tracker_backend.trackerAPI.expenses.models import Expense
-from datetime import date, timedelta
+from tracker_backend.trackerAPI.expenses.serializers import ExpenseSerializer
 
 
 class WeeklyExpenseReport(ListAPIView):
@@ -65,3 +71,46 @@ class YearlyExpenseReport(ListAPIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(data={"message": "No expenses found in the past year."}, status=status.HTTP_204_NO_CONTENT)
+
+
+class WeeklyTotal(APIView):
+
+    def get(self, request, pk):
+        # Checks for
+        today = date.today()
+        week_start = today - timedelta(days=today.isoweekday() % 7)
+
+        report_data = {}
+
+        queryset = Expense.objects.filter(user=self.request.user, date__range=[week_start, today])
+        report_data.update({"expense_total": queryset.aggregate(Sum('value'))['value__sum']})
+
+        category_data = {}
+        category_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today]).values('category').distinct()
+
+        # TODO: get type total to show properly
+        for category in category_set:
+            week_category_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today], category__iexact=category['category'])
+
+            category_data.update({category['category']: week_category_set.aggregate(Sum('value'))['value__sum']})
+
+            type_data = {}
+            type_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today], category__iexact=category['category']).values('type').distinct()
+
+            for type in type_set:
+
+                week_type_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today], category__iexact=category['category'], type=type['type'])
+
+                type_data.update({type['type']: week_type_set.aggregate(Sum('value'))['value__sum']})
+
+            print(category['category'])
+            print(type_data)
+
+            category_data.update({category['category']+'_type_total': type_data})
+
+            print(category_data)
+            print(" ")
+
+        report_data.update({'category_total': category_data})
+
+        return Response(data=report_data, status=status.HTTP_200_OK)

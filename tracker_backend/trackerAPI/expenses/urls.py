@@ -9,10 +9,15 @@ urlpatterns = [
     # List of all Expenses created for current User
     url(r'^list/$', ExpenseList.as_view(), name='expense-list'),
 
-    # TODO: comment this
+    # TODO: change these, fits better in expenses than reports
+    url(r'^list/weekly/$', ExpenseList.as_view(), name='expense-list'),
+    url(r'^list/monthly/$', ExpenseList.as_view(), name='expense-list'),
+    url(r'^list/yearly/$', ExpenseList.as_view(), name='expense-list'),
+
+    # List of all distinct dates for current User
     url(r'^date/list/$', DateList.as_view(), name='date-list'),
 
-    # TODO: comment this
+    # List of all distinct categories for current User
     url(r'^category/list/$', CategoryList.as_view(), name='category-list'),
 
     # List of all Expenses created on a specified date
@@ -21,7 +26,7 @@ urlpatterns = [
     # List of all Expenses created for a certain category
     url(r'^(?P<category>\w{0,32})/$', ExpenseCategoryList.as_view(), name='expense-category-list'),
 
-    # TODO: comment this
+    # List of all distinct types in a certain category for current User
     url(r'^(?P<category>\w{0,32})/type/list/$', TypeList.as_view(), name='type-list'),
 
     # List of all Expenses created for a certain type in a certain category

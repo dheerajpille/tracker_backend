@@ -42,6 +42,7 @@ class CreateExpenseView(APIView):
                 # Serializes data to ExpenseSerializer for JSON response
                 serializer = ExpenseSerializer(create_expense.data)
 
+                # Returns created expense data as JSON response
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             else:
                 # Returns error upon attempting to create an expense that has already been found in database
