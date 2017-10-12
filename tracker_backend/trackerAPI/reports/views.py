@@ -92,7 +92,7 @@ class WeeklyTotal(APIView):
         for category in category_set:
             week_category_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today], category__iexact=category['category'])
 
-            category_data.update({category['category']: week_category_set.aggregate(Sum('value'))['value__sum']})
+            category_data.update({str(category['category']).lower(): week_category_set.aggregate(Sum('value'))['value__sum']})
 
             type_data = {}
             type_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today], category__iexact=category['category']).values('type').distinct()
@@ -101,12 +101,9 @@ class WeeklyTotal(APIView):
 
                 week_type_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today], category__iexact=category['category'], type=type['type'])
 
-                type_data.update({type['type']: week_type_set.aggregate(Sum('value'))['value__sum']})
+                type_data.update({str(type['type']).lower(): week_type_set.aggregate(Sum('value'))['value__sum']})
 
-            print(category['category'])
-            print(type_data)
-
-            category_data.update({category['category']+'_type_total': type_data})
+            category_data.update({str(category['category']+'_type_total').lower(): type_data})
 
             print(category_data)
             print(" ")
