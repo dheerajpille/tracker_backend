@@ -1,18 +1,14 @@
 from django.conf.urls import url
 
-from tracker_backend.trackerAPI.reports.views import *
+from tracker_backend.trackerAPI.reports.views import WeeklyReport, MonthlyReport, YearlyReport
 
 urlpatterns = [
-    # TODO: move these to expenses, since they fit there better!
-    # List of expenses from last week
-    url(r'^weeklya/$', WeeklyExpenseReport.as_view(), name='weekly-report'),
+    # Report of expenses in current week
+    url(r'^weekly/$', WeeklyReport.as_view(), name='weekly-report'),
 
-    # List of expenses from last month
-    url(r'^monthly/$', MonthlyExpenseReport.as_view(), name='monthly-report'),
+    # Report of expenses in current month
+    url(r'^monthly/$', MonthlyReport.as_view(), name='monthly-report'),
 
-    # List of expenses from last year
-    url(r'^yearly/$', YearlyExpenseReport.as_view(), name='yearly-report'),
-
-    # TODO: these are real reports
-    url(r'^weekly/$', WeeklyReport.as_view()),
+    # Report of expenses in current year
+    url(r'^yearly/$', YearlyReport.as_view(), name='yearly-report'),
 ]
