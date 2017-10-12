@@ -14,5 +14,5 @@ urlpatterns = [
     url(r'^yearly/$', YearlyExpenseReport.as_view(), name='yearly-report'),
 
     # TODO: these are real reports
-    url(r'^we/$', WeeklyTotal.as_view()),
+    url(r'^weekly/$', WeeklyReport.as_view()),
 ]

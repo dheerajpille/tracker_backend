@@ -73,41 +73,69 @@ class YearlyExpenseReport(ListAPIView):
             return Response(data={"message": "No expenses found in the past year."}, status=status.HTTP_204_NO_CONTENT)
 
 
-class WeeklyTotal(APIView):
+class WeeklyReport(APIView):
+    """
+    Gets a report of your total expenses for the current week
+    """
 
+    # TODO: determine whether to give error if there are no expenses created
     def get(self, request, pk):
-        # Checks for
+        # Determines the today's and the week's start (Sunday of current week) ISO-8601 values
         today = date.today()
         week_start = today - timedelta(days=today.isoweekday() % 7)
 
+        # Initializes an empty dict for storing report data
         report_data = {}
 
+        # Queryset of all Expense objects from specified date range
         queryset = Expense.objects.filter(user=self.request.user, date__range=[week_start, today])
+
+        # Updates the total amount of money spent on expenses in specified date range
         report_data.update({"expense_total": queryset.aggregate(Sum('value'))['value__sum']})
 
+        # Initializes an empty dict for storing each category found in specified date range
         category_data = {}
-        category_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today]).values('category').distinct()
 
-        # TODO: get type total to show properly
+        # Queryset of all distinct categories in specified date range
+        category_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today])\
+            .values('category').distinct()
+
+        # Iterates through all distinct categories determined above
         for category in category_set:
-            week_category_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today], category__iexact=category['category'])
 
-            category_data.update({str(category['category']).lower(): week_category_set.aggregate(Sum('value'))['value__sum']})
+            # Queryset of all expenses made in a distinct category in specified date range
+            week_category_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today],
+                                                       category__iexact=category['category'])
 
+            # Updates the total amount of money spent on distinct category in specified date range
+            # Key turned to lowercase string for readability purposes
+            category_data.update({str(category['category']).lower(): week_category_set.aggregate(Sum('value'))
+            ['value__sum']})
+
+            # Initializes an empty dict for storing each type found in a certain category found in specified date range
             type_data = {}
-            type_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today], category__iexact=category['category']).values('type').distinct()
 
+            # Queryset of all distinct types in a certain category found in specified date range
+            type_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today],
+                                              category__iexact=category['category']).values('type').distinct()
+
+            # Iterates through all distinct types in a certain category found in specified date range
             for type in type_set:
 
-                week_type_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today], category__iexact=category['category'], type=type['type'])
+                # Queryset of all expenses made in a distinct type in a certain category in specified date range
+                week_type_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today],
+                                                       category__iexact=category['category'], type=type['type'])
 
+                # Updates the total amount of money spent on distinct type in a certain category in specified date range
+                # Key turned to lowercase string for readability purposes
                 type_data.update({str(type['type']).lower(): week_type_set.aggregate(Sum('value'))['value__sum']})
 
+            # Updates category_data with type_data
+            # Key turned to lowercase string for readability purposes
             category_data.update({str(category['category']+'_type_total').lower(): type_data})
 
-            print(category_data)
-            print(" ")
-
+        # Updates report_data with category_data
         report_data.update({'category_total': category_data})
 
+        # Returns report_data as JSON response
         return Response(data=report_data, status=status.HTTP_200_OK)
