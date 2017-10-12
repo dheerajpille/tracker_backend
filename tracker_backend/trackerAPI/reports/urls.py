@@ -5,7 +5,7 @@ from tracker_backend.trackerAPI.reports.views import *
 urlpatterns = [
     # TODO: move these to expenses, since they fit there better!
     # List of expenses from last week
-    url(r'^weekly/$', WeeklyExpenseReport.as_view(), name='weekly-report'),
+    url(r'^weeklya/$', WeeklyExpenseReport.as_view(), name='weekly-report'),
 
     # List of expenses from last month
     url(r'^monthly/$', MonthlyExpenseReport.as_view(), name='monthly-report'),

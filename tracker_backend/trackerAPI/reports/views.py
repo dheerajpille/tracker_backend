@@ -1,5 +1,3 @@
-import json, simplejson
-
 from datetime import date, timedelta
 
 from django.db.models import Sum
@@ -101,15 +99,15 @@ class WeeklyReport(APIView):
             .values('category').distinct()
 
         # Iterates through all distinct categories determined above
-        for category in category_set:
+        for c in category_set:
 
             # Queryset of all expenses made in a distinct category in specified date range
             week_category_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today],
-                                                       category__iexact=category['category'])
+                                                       category__iexact=c['category'])
 
             # Updates the total amount of money spent on distinct category in specified date range
             # Key turned to lowercase string for readability purposes
-            category_data.update({str(category['category']).lower(): week_category_set.aggregate(Sum('value'))
+            category_data.update({str(c['category']).lower(): week_category_set.aggregate(Sum('value'))
             ['value__sum']})
 
             # Initializes an empty dict for storing each type found in a certain category found in specified date range
@@ -117,25 +115,45 @@ class WeeklyReport(APIView):
 
             # Queryset of all distinct types in a certain category found in specified date range
             type_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today],
-                                              category__iexact=category['category']).values('type').distinct()
+                                              category__iexact=c['category']).values('type').distinct()
 
             # Iterates through all distinct types in a certain category found in specified date range
-            for type in type_set:
+            for t in type_set:
 
                 # Queryset of all expenses made in a distinct type in a certain category in specified date range
                 week_type_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today],
-                                                       category__iexact=category['category'], type=type['type'])
+                                                       category__iexact=c['category'], type=t['type'])
 
                 # Updates the total amount of money spent on distinct type in a certain category in specified date range
                 # Key turned to lowercase string for readability purposes
-                type_data.update({str(type['type']).lower(): week_type_set.aggregate(Sum('value'))['value__sum']})
+                type_data.update({str(t['type']).lower(): week_type_set.aggregate(Sum('value'))['value__sum']})
 
             # Updates category_data with type_data
             # Key turned to lowercase string for readability purposes
-            category_data.update({str(category['category']+'_type_total').lower(): type_data})
+            category_data.update({str(c['category']+'_type_total').lower(): type_data})
 
         # Updates report_data with category_data
         report_data.update({'category_total': category_data})
+
+        # Initializes an empty dict for storing each date found in specified date range
+        date_data = {}
+
+        # Queryset of all distinct dates in specified date range
+        date_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today]).values('date')\
+            .distinct().order_by('date')
+
+        # Iterates through all distinct dates in specified date range
+        for d in date_set:
+
+            # Queryset of all expenses made on a certain date in specified date range
+            week_date_set = Expense.objects.filter(user=self.request.user, date=d['date'])
+
+            # Updates the total amount of money spent on distinct date in specified date range
+            # Key turned to string for dict purposes
+            date_data.update({str(d['date']): week_date_set.aggregate(Sum('value'))['value__sum']})
+
+        # Updates report_data with date_data
+        report_data.update(({'date_total': date_data}))
 
         # Returns report_data as JSON response
         return Response(data=report_data, status=status.HTTP_200_OK)
