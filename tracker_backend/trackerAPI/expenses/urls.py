@@ -9,9 +9,13 @@ urlpatterns = [
     # List of all Expenses created for current User
     url(r'^list/$', ExpenseList.as_view(), name='expense-list'),
 
-    # TODO: comment these later
+    # List of all Expenses made in current week
     url(r'^list/weekly/$', WeeklyExpenseList.as_view(), name='weekly-expense-list'),
+
+    # List of all Expenses made in current month
     url(r'^list/monthly/$', MonthlyExpenseList.as_view(), name='monthly-expense-list'),
+
+    # List of all Expenses made in current year
     url(r'^list/yearly/$', YearlyExpenseList.as_view(), name='yearly-expense-list'),
 
     # List of all distinct dates for current User
@@ -30,13 +34,15 @@ urlpatterns = [
     url(r'^(?P<category>\w{0,32})/type/list/$', TypeList.as_view(), name='type-list'),
 
     # List of all Expenses created for a certain type in a certain category
-    url(r'^(?P<category>\w{0,32})/(?P<type>\w{0,32})/$', ExpenseTypeList.as_view(), name='expenseTypeList'),
+    url(r'^(?P<category>\w{0,32})/(?P<type>\w{0,32})/$', ExpenseTypeList.as_view(), name='expense-type-list'),
 
     # List of all Expenses created on a specified date for a specified category
-    url(r'^(?P<date>\d{4}-\d{2}-\d{2})/(?P<category>\w{0,32})/$', ExpenseDateCategoryList.as_view()),
+    url(r'^(?P<date>\d{4}-\d{2}-\d{2})/(?P<category>\w{0,32})/$', ExpenseDateCategoryList.as_view(),
+        name='expense-date-category-list'),
 
     # List of all Expenses created on a specified date for a specified type in a specified category
     # This results in the response being the only Expense that is specific enough to fit the criteria, due to the logic
     # behind the creation of Expense objects
-    url(r'^(?P<date>\d{4}-\d{2}-\d{2})/(?P<category>\w{0,32})/(?P<type>\w{0,32})/$', ExpenseDetail.as_view()),
+    url(r'^(?P<date>\d{4}-\d{2}-\d{2})/(?P<category>\w{0,32})/(?P<type>\w{0,32})/$', ExpenseDetail.as_view(),
+        name='expense-detail'),
 ]
