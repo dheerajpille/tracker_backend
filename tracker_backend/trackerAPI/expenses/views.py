@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 from django.contrib.auth.models import User
 
 from rest_framework import status
@@ -68,13 +70,14 @@ class ExpenseList(ListAPIView):
     def get_queryset(self):
 
         # Filters all Expense objects created by current User, sorted in reverse chronological order
-        queryset = self.model.objects.filter(user=self.request.user).order_by('-date')
+        queryset = Expense.objects.filter(user=self.request.user).order_by('-date')
 
         # Checks if any expenses exist for current User
         if not queryset.exists():
 
+            # TODO: fix this, returns "response content must be rendered before it can be iterated over"
             # Returns error if no expenses are found for current User in database
-            return Response(data={"error": "No expenses found."}, status=status.HTTP_404_NOT_FOUND)
+            return Response(data={"error": "No types found."}, status=status.HTTP_404_NOT_FOUND)
 
         # Returns queryset of all Expense objects found for current User
         return queryset
@@ -96,7 +99,7 @@ class ExpenseDateList(ListAPIView):
     def get(self, request, pk, date):
 
         # Filters all Expense objects that were created by current User with the specified date
-        queryset = self.model.objects.filter(user=self.request.user, date=date)
+        queryset = Expense.objects.filter(user=self.request.user, date=date)
 
         # Checks if any expenses exist on this date for current User
         if not queryset.exists():
@@ -128,7 +131,7 @@ class ExpenseCategoryList(ListAPIView):
 
         # Filters all Expense objects that were created by current User in a certain category
         # Converts slugs in category URL to spaces for filtering purposes
-        queryset = self.model.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '))\
+        queryset = Expense.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '))\
             .order_by('-date')
 
         # Checks if any expenses exist in this category for current User
@@ -161,7 +164,7 @@ class ExpenseTypeList(ListAPIView):
 
         # Filters all Expense objects that were created by current User in a certain type in a certain category
         # Converts slugs in category URL to spaces for filtering purposes
-        queryset = self.model.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '),
+        queryset = Expense.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '),
                                              type__iexact=type.replace('-', ' ')).order_by('-date')
 
         # Checks if any expenses exist in this category for current User
@@ -332,8 +335,8 @@ class TypeList(ListAPIView):
     def get(self, request, pk, category):
 
         # Filters queryset for distinct types in a certain category in alphabetical order
-        queryset = Expense.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '))\
-            .order_by('type').values('type').distinct()
+        queryset = Expense.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' ')
+                                          .order_by('type').values('type').distinct())
 
         # Checks if queryset is not empty
         if not queryset.exists():
@@ -343,3 +346,107 @@ class TypeList(ListAPIView):
 
         # Returns list of distinct types from a certain category
         return Response(queryset, status=status.HTTP_200_OK)
+
+
+class WeeklyExpenseList(ListAPIView):
+    """
+    Gets User's list of expenses for current week
+    """
+
+    # Disables pagination for GET calls
+    pagination_class = None
+
+    # Specifies serializer and model types
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    # Gets list of expenses made in current week
+    def get(self, request, pk):
+        
+        # Determines the today's and the week's start (Sunday of current week) ISO-8601 values
+        today = date.today()
+        week_start = today - timedelta(days=today.isoweekday() % 7)
+            
+        # Queryset of expenses within specified date range
+        queryset = Expense.objects.filter(user=self.request.user, date__range=(week_start, today))
+
+        # Checks if queryset is not empty
+        if not queryset.exists():
+
+            # Returns error if no expenses are found in current week for current User in database
+            return Response(data={"error": "No expenses found in current week."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Serializes queryset data into Expense serializer, where multiple Expenses are allowed/expected
+        serializer = ExpenseSerializer(queryset, many=True)
+
+        # Returns list of expenses in current week
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class MonthlyExpenseList(ListAPIView):
+    """
+    Gets User's list of expenses for current month
+    """
+
+    # Disables pagination for GET calls
+    pagination_class = None
+
+    # Specifies serializer and model types
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    # Gets list of expenses made in current month
+    def get(self, request, pk):
+
+        # Determines the today's and the month's start (1st of current month) ISO-8601 values
+        today = date.today()
+        month_start = today.replace(day=1)
+
+        # Queryset of expenses within specified date range
+        queryset = Expense.objects.filter(user=self.request.user, date__range=[month_start, today])
+
+        # Checks if queryset is not empty
+        if not queryset.exists():
+            # Returns error if no expenses are found in current month for current User in database
+            return Response(data={"error": "No expenses found in current month."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Serializes queryset data into Expense serializer, where multiple Expenses are allowed/expected
+        serializer = ExpenseSerializer(queryset, many=True)
+
+        # Returns list of expenses in current month
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class YearlyExpenseList(ListAPIView):
+    """
+    Gets User's list of expenses for current year
+    """
+
+    # Disables pagination for GET calls
+    pagination_class = None
+
+    # Specifies serializer and model types
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    # Gets list of expenses made in current year
+    def get(self, request, pk):
+
+        # Determines the today's and the year's start (1st of current year) ISO-8601 values
+        today = date.today()
+        year_start = today.replace(month=1, day=1)
+
+        # Queryset of expenses within specified date range
+        queryset = Expense.objects.filter(user=self.request.user, date__range=[year_start, today])
+
+        # Checks if queryset is not empty
+        if not queryset.exists():
+
+            # Returns error if no expenses are found in current year for current User in database
+            return Response(data={"error": "No expenses found in current year."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Serializes queryset data into Expense serializer, where multiple Expenses are allowed/expected
+        serializer = ExpenseSerializer(queryset, many=True)
+
+        # Returns list of expenses in current year
+        return Response(serializer.data, status=status.HTTP_200_OK)

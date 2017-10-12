@@ -9,10 +9,10 @@ urlpatterns = [
     # List of all Expenses created for current User
     url(r'^list/$', ExpenseList.as_view(), name='expense-list'),
 
-    # TODO: change these, fits better in expenses than reports
-    url(r'^list/weekly/$', ExpenseList.as_view(), name='expense-list'),
-    url(r'^list/monthly/$', ExpenseList.as_view(), name='expense-list'),
-    url(r'^list/yearly/$', ExpenseList.as_view(), name='expense-list'),
+    # TODO: comment these later
+    url(r'^list/weekly/$', WeeklyExpenseList.as_view(), name='weekly-expense-list'),
+    url(r'^list/monthly/$', MonthlyExpenseList.as_view(), name='monthly-expense-list'),
+    url(r'^list/yearly/$', YearlyExpenseList.as_view(), name='yearly-expense-list'),
 
     # List of all distinct dates for current User
     url(r'^date/list/$', DateList.as_view(), name='date-list'),
@@ -39,7 +39,4 @@ urlpatterns = [
     # This results in the response being the only Expense that is specific enough to fit the criteria, due to the logic
     # behind the creation of Expense objects
     url(r'^(?P<date>\d{4}-\d{2}-\d{2})/(?P<category>\w{0,32})/(?P<type>\w{0,32})/$', ExpenseDetail.as_view()),
-
-
-
 ]
