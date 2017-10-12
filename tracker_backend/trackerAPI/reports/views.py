@@ -168,7 +168,7 @@ class MonthlyReport(APIView):
     def get(self, request, pk):
         # Determines the today's and the month's start (1st of current month) ISO-8601 values
         today = date.today()
-        month_start = today.replace(month=1, day=1)
+        month_start = today.replace(day=1)
 
         # Initializes an empty dict for storing report data
         report_data = {}
@@ -190,12 +190,12 @@ class MonthlyReport(APIView):
         for c in category_set:
 
             # Queryset of all expenses made in a distinct category in specified date range
-            week_category_set = Expense.objects.filter(user=self.request.user, date__range=[month_start, today],
-                                                       category__iexact=c['category'])
+            month_category_set = Expense.objects.filter(user=self.request.user, date__range=[month_start, today],
+                                                        category__iexact=c['category'])
 
             # Updates the total amount of money spent on distinct category in specified date range
             # Key turned to lowercase string for readability purposes
-            category_data.update({str(c['category']).lower(): week_category_set.aggregate(Sum('value'))
+            category_data.update({str(c['category']).lower(): month_category_set.aggregate(Sum('value'))
             ['value__sum']})
 
             # Initializes an empty dict for storing each type found in a certain category found in specified date range
@@ -209,12 +209,12 @@ class MonthlyReport(APIView):
             for t in type_set:
 
                 # Queryset of all expenses made in a distinct type in a certain category in specified date range
-                week_type_set = Expense.objects.filter(user=self.request.user, date__range=[month_start, today],
-                                                       category__iexact=c['category'], type=t['type'])
+                month_type_set = Expense.objects.filter(user=self.request.user, date__range=[month_start, today],
+                                                        category__iexact=c['category'], type=t['type'])
 
                 # Updates the total amount of money spent on distinct type in a certain category in specified date range
                 # Key turned to lowercase string for readability purposes
-                type_data.update({str(t['type']).lower(): week_type_set.aggregate(Sum('value'))['value__sum']})
+                type_data.update({str(t['type']).lower(): month_type_set.aggregate(Sum('value'))['value__sum']})
 
             # Updates category_data with type_data
             # Key turned to lowercase string for readability purposes
@@ -234,11 +234,11 @@ class MonthlyReport(APIView):
         for d in date_set:
 
             # Queryset of all expenses made on a certain date in specified date range
-            week_date_set = Expense.objects.filter(user=self.request.user, date=d['date'])
+            month_date_set = Expense.objects.filter(user=self.request.user, date=d['date'])
 
             # Updates the total amount of money spent on distinct date in specified date range
             # Key turned to string for dict purposes
-            date_data.update({str(d['date']): week_date_set.aggregate(Sum('value'))['value__sum']})
+            date_data.update({str(d['date']): month_date_set.aggregate(Sum('value'))['value__sum']})
 
         # Updates report_data with date_data
         report_data.update(({'date_total': date_data}))
@@ -278,12 +278,12 @@ class YearlyReport(APIView):
         for c in category_set:
 
             # Queryset of all expenses made in a distinct category in specified date range
-            week_category_set = Expense.objects.filter(user=self.request.user, date__range=[year_start, today],
+            year_category_set = Expense.objects.filter(user=self.request.user, date__range=[year_start, today],
                                                        category__iexact=c['category'])
 
             # Updates the total amount of money spent on distinct category in specified date range
             # Key turned to lowercase string for readability purposes
-            category_data.update({str(c['category']).lower(): week_category_set.aggregate(Sum('value'))
+            category_data.update({str(c['category']).lower(): year_category_set.aggregate(Sum('value'))
             ['value__sum']})
 
             # Initializes an empty dict for storing each type found in a certain category found in specified date range
@@ -297,12 +297,12 @@ class YearlyReport(APIView):
             for t in type_set:
 
                 # Queryset of all expenses made in a distinct type in a certain category in specified date range
-                week_type_set = Expense.objects.filter(user=self.request.user, date__range=[year_start, today],
+                year_type_set = Expense.objects.filter(user=self.request.user, date__range=[year_start, today],
                                                        category__iexact=c['category'], type=t['type'])
 
                 # Updates the total amount of money spent on distinct type in a certain category in specified date range
                 # Key turned to lowercase string for readability purposes
-                type_data.update({str(t['type']).lower(): week_type_set.aggregate(Sum('value'))['value__sum']})
+                type_data.update({str(t['type']).lower(): year_type_set.aggregate(Sum('value'))['value__sum']})
 
             # Updates category_data with type_data
             # Key turned to lowercase string for readability purposes
@@ -322,11 +322,11 @@ class YearlyReport(APIView):
         for d in date_set:
 
             # Queryset of all expenses made on a certain date in specified date range
-            week_date_set = Expense.objects.filter(user=self.request.user, date=d['date'])
+            year_date_set = Expense.objects.filter(user=self.request.user, date=d['date'])
 
             # Updates the total amount of money spent on distinct date in specified date range
             # Key turned to string for dict purposes
-            date_data.update({str(d['date']): week_date_set.aggregate(Sum('value'))['value__sum']})
+            date_data.update({str(d['date']): year_date_set.aggregate(Sum('value'))['value__sum']})
 
         # Updates report_data with date_data
         report_data.update(({'date_total': date_data}))
