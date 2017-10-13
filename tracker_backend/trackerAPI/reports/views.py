@@ -14,6 +14,7 @@ class WeeklyReport(APIView):
     Gets a report of your total expenses for the current week
     """
 
+    # Gets a report of expenses in current week
     def get(self, request, pk):
 
         # Determines the today's and the week's start (Sunday of current week) ISO-8601 values
@@ -29,7 +30,7 @@ class WeeklyReport(APIView):
         # Checks if queryset is not empty
         if not queryset.exists():
 
-            # Returns error if no expenses are found in current year for current User in database
+            # Returns error if no expenses are found in current week for current User in database
             return Response(data={"error": "Report cannot be generated. No expenses found in current week."},
                             status=status.HTTP_404_NOT_FOUND)
 
@@ -109,6 +110,7 @@ class MonthlyReport(APIView):
     Gets a report of your total expenses for the current month
     """
 
+    # Gets a report of expenses in current month
     def get(self, request, pk):
 
         # Determines the today's and the month's start (1st of current month) ISO-8601 values
@@ -123,7 +125,8 @@ class MonthlyReport(APIView):
 
         # Checks if queryset is not empty
         if not queryset.exists():
-            # Returns error if no expenses are found in current year for current User in database
+
+            # Returns error if no expenses are found in current month for current User in database
             return Response(data={"error": "Report cannot be generated. No expenses found in current month."},
                             status=status.HTTP_404_NOT_FOUND)
 
@@ -203,6 +206,7 @@ class YearlyReport(APIView):
     Gets a report of your total expenses for the current year
     """
 
+    # Gets a report of expenses in current year
     def get(self, request, pk):
 
         # Determines the today's and the year's start (1st of current year) ISO-8601 values
@@ -217,6 +221,7 @@ class YearlyReport(APIView):
 
         # Checks if queryset is not empty
         if not queryset.exists():
+
             # Returns error if no expenses are found in current year for current User in database
             return Response(data={"error": "Report cannot be generated. No expenses found in current year."},
                             status=status.HTTP_404_NOT_FOUND)

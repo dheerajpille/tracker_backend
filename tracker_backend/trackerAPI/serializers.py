@@ -75,7 +75,7 @@ class SignupSerializer(serializers.Serializer):
     # Creates new User in database with given data
     def create(self, validated_data):
 
-        # TODO: add in email check and verification
+        # TODO: add email verification
         # Checks whether username already exists in database
         try:
             username = User.objects.get(username__iexact=self.validated_data['username'])
