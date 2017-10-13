@@ -79,7 +79,7 @@ class WeeklyReport(APIView):
 
         # Queryset of all distinct dates in specified date range
         date_set = Expense.objects.filter(user=self.request.user, date__range=[week_start, today]).values('date')\
-            .distinct().order_by('date')
+            .distinct().order_by('-date')
 
         # Iterates through all distinct dates in specified date range
         for d in date_set:
@@ -168,7 +168,7 @@ class MonthlyReport(APIView):
 
         # Queryset of all distinct dates in specified date range
         date_set = Expense.objects.filter(user=self.request.user, date__range=[month_start, today]).values('date')\
-            .distinct().order_by('date')
+            .distinct().order_by('-date')
 
         # Iterates through all distinct dates in specified date range
         for d in date_set:
@@ -257,7 +257,7 @@ class YearlyReport(APIView):
 
         # Queryset of all distinct dates in specified date range
         date_set = Expense.objects.filter(user=self.request.user, date__range=[year_start, today]).values('date')\
-            .distinct().order_by('date')
+            .distinct().order_by('-date')
 
         # Iterates through all distinct dates in specified date range
         for d in date_set:
