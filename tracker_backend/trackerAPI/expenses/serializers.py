@@ -2,7 +2,6 @@ from datetime import date
 
 from rest_framework import serializers
 
-from tracker_backend.trackerAPI.serializers import UserSerializer
 from tracker_backend.trackerAPI.expenses.models import Expense
 
 
@@ -13,10 +12,6 @@ class ExpenseSerializer(serializers.ModelSerializer):
 
     # Determines each fields types and defaults, if applicable
     date = serializers.DateField(required=False, default=date.today())
-
-    # TODO: hide this from response body
-    user = UserSerializer(read_only=True, required=False)
-
     category = serializers.CharField(max_length=32, required=True)
     type = serializers.CharField(max_length=32, required=True)
     value = serializers.DecimalField(max_digits=8, decimal_places=2, required=True)
@@ -36,17 +31,16 @@ class ExpenseSerializer(serializers.ModelSerializer):
         # Creates the Expense object with aforementioned validated data
         expense = Expense.objects.create(date=date, user=user, category=category, type=type, value=value,
                                          currency=currency, )
+
         expense.save()
 
         # Returns the Expense's data as JSON response and saves it to database
         return expense
 
     class Meta:
+
         # Specifies model
         model = Expense
 
         # List of fields that were shown in JSON response
-        fields = ('date', 'user', 'category', 'type', 'value', 'currency', )
-
-        # TODO: determine whether to delete this or not
-        depth = 1
+        fields = ('date', 'category', 'type', 'value', 'currency', )
