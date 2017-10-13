@@ -126,7 +126,7 @@ class UserDetail(APIView):
         return Response(data={"message": "Not authorized to edit this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
     # Delete the User object
-    def delete(self, pk):
+    def delete(self, request, pk):
 
         # Finds current User in database
         user = self.get_object(pk)
@@ -137,9 +137,10 @@ class UserDetail(APIView):
             # Deletes User object from database
             user.delete()
 
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            # Returns a statement displaying that user has been successfully deleted
+            return Response(data={"message": "User deleted."}, status=status.HTTP_204_NO_CONTENT)
 
-        # Returns when unauthorized access to User's data occurss
+        # Returns when unauthorized access to User's data occurs
         return Response(data={"message": "Not authorized to delete this user."}, status=status.HTTP_401_UNAUTHORIZED)
 
 
