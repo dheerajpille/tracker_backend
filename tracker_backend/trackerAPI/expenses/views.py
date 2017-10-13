@@ -67,7 +67,7 @@ class ExpenseList(ListAPIView):
     model = Expense
 
     # Gets queryset of all of current User's expenses
-    def get_queryset(self):
+    def get(self, request, pk):
 
         # Filters all Expense objects created by current User, sorted in reverse chronological order
         queryset = Expense.objects.filter(user=self.request.user).order_by('-date')
@@ -75,12 +75,14 @@ class ExpenseList(ListAPIView):
         # Checks if any expenses exist for current User
         if not queryset.exists():
 
-            # TODO: fix this, returns "response content must be rendered before it can be iterated over"
             # Returns error if no expenses are found for current User in database
-            return Response(data={"error": "No types found."}, status=status.HTTP_404_NOT_FOUND)
+            return Response(data={"error": "No expenses found."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Serializes queryset data into ExpenseSerializer, where multiple Expenses are allowed/expected
+        serializer = ExpenseSerializer(queryset, many=True)
 
         # Returns queryset of all Expense objects found for current User
-        return queryset
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ExpenseDateList(ListAPIView):
@@ -165,7 +167,7 @@ class ExpenseTypeList(ListAPIView):
         # Filters all Expense objects that were created by current User in a certain type in a certain category
         # Converts slugs in category URL to spaces for filtering purposes
         queryset = Expense.objects.filter(user=self.request.user, category__iexact=category.replace('-', ' '),
-                                             type__iexact=type.replace('-', ' ')).order_by('-date')
+                                          type__iexact=type.replace('-', ' ')).order_by('-date')
 
         # Checks if any expenses exist in this category for current User
         if not queryset.exists():
