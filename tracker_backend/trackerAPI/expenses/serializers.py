@@ -1,3 +1,5 @@
+from datetime import date
+
 from rest_framework import serializers
 
 from tracker_backend.trackerAPI.serializers import UserSerializer
@@ -9,8 +11,8 @@ class ExpenseSerializer(serializers.ModelSerializer):
     Standard serializer for expense model
     """
 
-    # TODO: change this to be default/required=False
-    date = serializers.DateField(required=True)
+    # Determines each fields types and defaults, if applicable
+    date = serializers.DateField(required=False, default=date.today())
 
     # TODO: hide this from response body
     user = UserSerializer(read_only=True, required=False)
@@ -18,14 +20,12 @@ class ExpenseSerializer(serializers.ModelSerializer):
     category = serializers.CharField(max_length=32, required=True)
     type = serializers.CharField(max_length=32, required=True)
     value = serializers.DecimalField(max_digits=8, decimal_places=2, required=True)
-
-    # TODO: same here
-    currency = serializers.CharField(max_length=3, required=False)
+    currency = serializers.CharField(max_length=3, required=False, default='CAD')
 
     # Creates Expense object with POST data
     def create(self, validated_data):
 
-        # Determines each field from given POST data
+        # Determines each field from given POST data or defaults
         date = self.validated_data['date']
         user = self.context['request'].user
         category = self.validated_data['category']

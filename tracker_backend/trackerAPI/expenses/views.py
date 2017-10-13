@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date, timedelta, timezone
 
 from django.contrib.auth.models import User
 
@@ -35,10 +35,19 @@ class CreateExpenseView(APIView):
 
         # Checks if data is valid
         if create_expense.is_valid():
+
+            # Checks if date value was passed in POST request to check if expense already exists in database
+            # Passes today's date if no date value was passed
+            try:
+                date_val = self.request.data['date']
+            except:
+                date_val = date.today()
+
             # Creates Expense object if it does not exist in database for current User
-            if not Expense.objects.filter(user=user, date__exact=self.request.data['date'],
+            if not Expense.objects.filter(user=user, date__exact=date_val,
                                           category__iexact=self.request.data['category'],
                                           type__iexact=self.request.data['type']).exists():
+
                 create_expense.save()
 
                 # Serializes data to ExpenseSerializer for JSON response
@@ -47,9 +56,11 @@ class CreateExpenseView(APIView):
                 # Returns created expense data as JSON response
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             else:
+
                 # Returns error upon attempting to create an expense that has already been found in database
                 return Response(data={"error": "Expense already created."}, status=status.HTTP_400_BAD_REQUEST)
         else:
+
             # Lists various errors found with POST data
             return Response(create_expense.errors, status=status.HTTP_400_BAD_REQUEST)
 

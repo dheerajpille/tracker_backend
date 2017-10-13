@@ -18,4 +18,4 @@ class Expense(models.Model):
     value = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
     # TODO: implement field not being required for POST
-    currency = models.CharField(max_length=3, blank=True, null=True, default='CAD')
+    currency = models.CharField(max_length=3, blank=True, null=True)
