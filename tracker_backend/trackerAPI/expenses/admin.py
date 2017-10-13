@@ -9,7 +9,7 @@ class ExpenseAdmin(admin.ModelAdmin):
     """
 
     # List of fields to be displayed in Expense admin panel
-    list_display = ('date', 'user', 'category', 'type', 'value', 'currency', )
+    list_display = ('date', 'user', 'category', 'type', 'value', )
 
 
 # Registers Expense model with ExpenseAdmin panel

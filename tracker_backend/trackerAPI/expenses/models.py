@@ -13,4 +13,3 @@ class Expense(models.Model):
     category = models.CharField(max_length=32, blank=False, null=False)
     type = models.CharField(max_length=32, blank=False, null=False)
     value = models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    currency = models.CharField(max_length=3, blank=True, null=True)

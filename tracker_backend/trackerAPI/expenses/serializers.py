@@ -15,7 +15,6 @@ class ExpenseSerializer(serializers.ModelSerializer):
     category = serializers.CharField(max_length=32, required=True)
     type = serializers.CharField(max_length=32, required=True)
     value = serializers.DecimalField(max_digits=8, decimal_places=2, required=True)
-    currency = serializers.CharField(max_length=3, required=False, default='CAD')
 
     # Creates Expense object with POST data
     def create(self, validated_data):
@@ -26,11 +25,9 @@ class ExpenseSerializer(serializers.ModelSerializer):
         category = self.validated_data['category']
         type = self.validated_data['type']
         value = self.validated_data['value']
-        currency = self.validated_data['currency']
 
         # Creates the Expense object with aforementioned validated data
-        expense = Expense.objects.create(date=date, user=user, category=category, type=type, value=value,
-                                         currency=currency, )
+        expense = Expense.objects.create(date=date, user=user, category=category, type=type, value=value, )
 
         expense.save()
 
@@ -43,4 +40,4 @@ class ExpenseSerializer(serializers.ModelSerializer):
         model = Expense
 
         # List of fields that were shown in JSON response
-        fields = ('date', 'category', 'type', 'value', 'currency', )
+        fields = ('date', 'category', 'type', 'value', )
