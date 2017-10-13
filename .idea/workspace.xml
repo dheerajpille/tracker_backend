@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7a8df52-0b93-4281-ac53-2d95db8fcf4e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/reports/views.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/reports/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,33 +52,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/urls.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/reports/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="292" column="0" lean-forward="true" selection-start-line="292" selection-start-column="0" selection-end-line="292" selection-end-column="0" />
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#291#5030#0" expanded="false" />
+                <element signature="e#5067#9795#0" expanded="false" />
+                <element signature="e#9831#14549#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/reports/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="222" column="48" lean-forward="true" selection-start-line="222" selection-start-column="48" selection-end-line="222" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="466" column="58" lean-forward="true" selection-start-line="466" selection-start-column="58" selection-end-line="466" selection-end-column="58" />
+            <state relative-caret-position="470">
+              <caret line="469" column="8" lean-forward="false" selection-start-line="469" selection-start-column="8" selection-end-line="473" selection-end-column="115" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#433#2135#0" expanded="false" />
@@ -89,6 +83,8 @@
                 <element signature="e#11561#12458#0" expanded="false" />
                 <element signature="e#12498#13452#0" expanded="false" />
                 <element signature="e#13488#14615#0" expanded="false" />
+                <element signature="e#14660#15945#0" expanded="false" />
+                <element signature="e#15991#17235#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -180,8 +176,8 @@
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/reports/models.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/reports/urls.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/urls.py" />
-        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/reports/views.py" />
         <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py" />
+        <option value="$PROJECT_DIR$/tracker_backend/trackerAPI/reports/views.py" />
       </list>
     </option>
   </component>
@@ -438,7 +434,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="22" />
+      <option name="time" value="24" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -703,11 +699,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/reports/views.py">
+    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="222" column="48" lean-forward="true" selection-start-line="222" selection-start-column="48" selection-end-line="222" selection-end-column="48" />
-          <folding />
+        <state relative-caret-position="470">
+          <caret line="469" column="8" lean-forward="false" selection-start-line="469" selection-start-column="8" selection-end-line="473" selection-end-column="115" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#433#2135#0" expanded="false" />
+            <element signature="e#2174#3143#0" expanded="false" />
+            <element signature="e#3186#4263#0" expanded="false" />
+            <element signature="e#4310#5543#0" expanded="false" />
+            <element signature="e#5586#6946#0" expanded="false" />
+            <element signature="e#6997#8335#0" expanded="false" />
+            <element signature="e#8373#11525#0" expanded="false" />
+            <element signature="e#11561#12458#0" expanded="false" />
+            <element signature="e#12498#13452#0" expanded="false" />
+            <element signature="e#13488#14615#0" expanded="false" />
+            <element signature="e#14660#15945#0" expanded="false" />
+            <element signature="e#15991#17235#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -721,22 +731,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py">
+    <entry file="file://$PROJECT_DIR$/tracker_backend/trackerAPI/reports/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="466" column="58" lean-forward="true" selection-start-line="466" selection-start-column="58" selection-end-line="466" selection-end-column="58" />
+        <state relative-caret-position="170">
+          <caret line="292" column="0" lean-forward="true" selection-start-line="292" selection-start-column="0" selection-end-line="292" selection-end-column="0" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
-            <element signature="e#433#2135#0" expanded="false" />
-            <element signature="e#2174#3143#0" expanded="false" />
-            <element signature="e#3186#4263#0" expanded="false" />
-            <element signature="e#4310#5543#0" expanded="false" />
-            <element signature="e#5586#6946#0" expanded="false" />
-            <element signature="e#6997#8335#0" expanded="false" />
-            <element signature="e#8373#11525#0" expanded="false" />
-            <element signature="e#11561#12458#0" expanded="false" />
-            <element signature="e#12498#13452#0" expanded="false" />
-            <element signature="e#13488#14615#0" expanded="false" />
+            <element signature="e#291#5030#0" expanded="false" />
+            <element signature="e#5067#9795#0" expanded="false" />
+            <element signature="e#9831#14549#0" expanded="false" />
           </folding>
         </state>
       </provider>
