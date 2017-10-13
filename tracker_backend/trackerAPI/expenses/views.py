@@ -396,7 +396,7 @@ class WeeklyExpenseList(ListAPIView):
         week_start = today - timedelta(days=today.isoweekday() % 7)
             
         # Queryset of expenses within specified date range
-        queryset = Expense.objects.filter(user=self.request.user, date__range=(week_start, today))
+        queryset = Expense.objects.filter(user=self.request.user, date__range=(week_start, today)).order_by('-date')
 
         # Checks if queryset is not empty
         if not queryset.exists():
@@ -431,7 +431,7 @@ class MonthlyExpenseList(ListAPIView):
         month_start = today.replace(day=1)
 
         # Queryset of expenses within specified date range
-        queryset = Expense.objects.filter(user=self.request.user, date__range=[month_start, today])
+        queryset = Expense.objects.filter(user=self.request.user, date__range=[month_start, today]).order_by('-date')
 
         # Checks if queryset is not empty
         if not queryset.exists():
@@ -465,7 +465,7 @@ class YearlyExpenseList(ListAPIView):
         year_start = today.replace(month=1, day=1)
 
         # Queryset of expenses within specified date range
-        queryset = Expense.objects.filter(user=self.request.user, date__range=[year_start, today])
+        queryset = Expense.objects.filter(user=self.request.user, date__range=[year_start, today]).order_by('-date')
 
         # Checks if queryset is not empty
         if not queryset.exists():
