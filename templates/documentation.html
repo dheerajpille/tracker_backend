@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>API Documentation</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha256-m/h/cUDAhf6/iBRixTbuc8+Rg2cIETQtPcH9D3p2Kg0=" crossorigin="anonymous" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.js" integrity="sha256-hXuDaAC8aHuyio7vCzqV4WkFt8ZD09fAvxvi7hs2ghU=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism-okaidia.min.css" integrity="sha256-Xd/oN7fJaAoVq6T+MSWamYuXPoDZ1pT8J4UuOUpOQMs=" crossorigin="anonymous"/>
+		<style>
+            /* Space out content a bit */
+            body {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+			}
+			/* Everything but the jumbotron gets side spacing for mobile first views */
+			.header,
+			.marketing,
+			.footer {
+                padding-right: 1rem;
+                padding-left: 1rem;
+			}
+			/* Custom page header */
+			.header {
+                padding-bottom: 1rem;
+                border-bottom: .05rem solid #e5e5e5;
+			}
+			/* Make the masthead heading the same height as the navigation */
+			.header h3 {
+                margin-top: 0;
+                margin-bottom: 0;
+                line-height: 3rem;
+			}
+			/* Custom page footer */
+			.footer {
+                padding-top: 1.5rem;
+                color: #777;
+                border-top: .05rem solid #e5e5e5;
+			}
+			/* Main marketing message and sign up button */
+			.jumbotron {
+                text-align: center;
+                border-bottom: .05rem solid #e5e5e5;
+			}
+			.jumbotron .btn {
+                padding: .75rem 1.5rem;
+                font-size: 1.5rem;
+			}
+			/* Supporting marketing content */
+			.marketing {
+                margin: 3rem 0;
+			}
+            .marketing p + h4 {
+                margin-top: 1.5rem;
+			}
+			/* Responsive: Portrait tablets and up */
+            @media screen and (min-width: 48em) {
+                /* Remove the padding we set earlier */
+                .header,
+                .marketing,
+                .footer {
+                    padding-right: 0;
+                    padding-left: 0;
+                }
+                /* Space out the masthead */
+			     .header {
+			         margin-bottom: 2rem;
+                }   
+                /* Remove the bottom border on the jumbotron for visual effect */
+                .jumbotron {
+                    border-bottom: 0;
+                }
+            }
+			pre {
+                max-height: 400px;
+                overflow-y: auto;
+			}
+			.col-lg-12 > .row {
+                margin-bottom: 1rem;
+                border-bottom: 1px dotted grey;
+			}
+			.col-lg-4 {
+                word-break: break-word;
+			}
+            /* Custom nav CSS for Github favicon */
+            .nav-link.tracker {
+                background-color: antiquewhite;
+                border-color: transparent;
+                border-style: solid;
+                border-width: .25rem;
+                border-radius: 5rem;
+                display: block;
+                -webkit-transition: all .5s;
+                -moz-transition: all .5s;
+                -o-transition: all .5s;
+                -ms-transition: all .5s;
+                transition: all .5s;
+            }
+            /* Simple nav hover */
+            .nav-link.tracker:hover {
+                border-color: lightslategray;
+                -webkit-transition: all .5s;
+                -moz-transition: all .5s;
+                -o-transition: all .5s;
+                transition: all .5s;
+            }
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header clearfix">
+                
+				<nav>
+					<ul class="nav nav-pills float-right">
+						<li class="nav-item">
+							<a class="nav-link tracker" href="https://github.com/dheerajpille/tracker_backend/">
+                                <img src="https://assets-cdn.github.com/favicon.ico">
+                            </a>
+						</li>
+					</ul>
+				</nav>
+                
+				<h1 class="text-muted"><b>trackerAPI Documentation</b></h1>
+			</div>
+            
+			<!-- Project Resources -->    
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>A list of REST API endpoints provided by trackerAPI.</h4>
+					<br>
+					<h2><b>Project Resources</b></h2>
+					<br>
+					
+                    <!-- POST Login -->
+					<div class="row">
+						<div class="col-lg-4">
+                            <h4><b>POST</b></h4>
+                            <h4>/login/</h4>
+                            <pre class="language-javascript">
+                            <code class="language-javascript">
+{
+    "username": "john_smith",
+    "password": "ilovejelly"
+}
+                            </code>
+                            </pre>
+						</div>
+						<div class="col-lg-8">
+							<h4><b>Response</b></h4>
+                            <h4>200 OK</h4>
+							<pre class="language-javascript">
+                            <code class="language-javascript">
+{
+    "id": 1,
+    "username": "john_smith",
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "johnsmith@email.com",
+}
+                            </code>
+                            </pre>
+						</div>
+					</div>
+                    
+					<!-- POST Signup -->
+					<div class="row">
+						<div class="col-lg-4">
+							<h4><b>POST</b></h4>
+                            <h4>/signup/</h4>
+							<pre class="language-javascript">
+                            <code class="language-javascript">
+{
+    "username": "jane_doe",
+    "email": "janedoe@email.com",
+    "password": "ilovejam"
+}  
+                            </code>
+                            </pre>
+						</div>
+						<div class="col-lg-8">
+							<h4><b>Response</b></h4>
+                            <h4>201 Created</h4>
+							<pre class="language-javascript">
+                            <code class="language-javascript">
+{
+    "id": 2,
+    "username": "jane_doe",
+    "first_name": "",
+    "last_name": "",
+    "email": "janedoe@email.com",
+}
+                            </code>
+                            </pre>
+						</div>
+					</div>
+                    
+					<!-- POST /o/token/ -->
+					<div class="row">
+						<div class="col-lg-4">
+							<h4><b>POST</b></h4>
+                            <h4>/o/token/</h4>
+							<pre class="language-javascript">
+                            <code class="language-javascript">
+{
+    "client_id": "NV0nvNM8TwpXSxgqgPewxU85ywT5BgBlzedpX3nh",
+    "client_secret": "NFFwKxjxjnE1pgGYlzx583kL45c1kKPmCkS44CvM89P0EVcaBD8fiYiDLsudSU5FX9Ee35Gp3AjXu5B2KtlYzKGwdJhW2wLDmSbNiwyMgV8YMAl1tfY5R7eAtU5ALsir",
+    "username": "jane_doe",
+    "password": "ilovejelly",
+    "grant_type": "password"
+}
+                            </code>
+                            </pre>
+						</div>
+						<div class="col-lg-8">
+							<h4><b>Response</b></h4>
+                            <h4>200 OK</h4>
+							<pre class="language-javascript">
+                            <code class="language-javascript">
+{
+    "access_token": "hSCmazPDdGf7SNAaSObAcLgTDgvRUD",
+    "expires_in": 36000,
+    "token_type": "Bearer",
+    "scope": "read write",
+    "refresh_token": "U9Qt7Hl4TwcogH9GhHcLBhBb40YFdx"
+}
+                            </code>
+                            </pre>
+						</div>
+					</div>
+                </div>
+            </div>
+                
+            <!-- User Resources -->
+            <div class="col-lg-12">
+                <h2><b>User Resources</b></h2>
+                <h4>Prefix: /tracker/user</h4>
+                <br>
+
+                <!-- GET /tracker/user/{id}/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/{id}/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+"id": 2,
+"username": "jane_doe",
+"first_name": "",
+"last_name": "",
+"email": "janedoe@email.com",
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- PUT: /tracker/user/{id}/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>PUT</b></h4>
+                        <h4>/{id}/</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+"first_name": "Jane",
+"last_name": "Doe"
+}
+                        </code>
+                        </pre>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+"id": 2,
+"username": "jane_doe",
+"first_name": "Jane",
+"last_name": "Doe",
+"email": "janedoe@email.com",
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- DELETE: /tracker/user/{id}/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>DELETE</b></h4>
+                        <h4>/{id}/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>204 No Content</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+"message": "User deleted."
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/list/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/list/</h4>
+                        <p><em>Only accessible to admin/superuser</em></p>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+[
+{
+    "id": 1,
+    "username": "john_smith",
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "johnsmith@email.com"
+},
+{
+    "id": 2,
+    "username": "jane_doe",
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "email": "janedoe@email.com"
+}    
+]
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expense Resources -->
+            <div class="col-lg-12">
+                <h2><b>Expense Resources</b></h2>
+                <h4>Prefix: /tracker/user/{id}/expense</h4>
+                <br>
+
+                <!-- POST /tracker/user/{id}/expense/create/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>POST</b></h4>
+                        <h4>/create/</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+"category": "Food",
+"type": "Groceries",
+"value": 79.99
+}
+                        </code>
+                        </pre>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>201 Created</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+"date": "2017-12-31",
+"category": "Food",
+"type": "Groceries",
+"value": "79.99"
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/list/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/list/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+REPLACE ME
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/list/weekly/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/list/weekly/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+REPLACE ME
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/list/monthly/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/list/monthly/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+REPLACE ME
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/list/yearly/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/list/yearly/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+REPLACE ME
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/date/list/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/date/list/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>    200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+[
+"2017-12-31",
+"2017-11-10",
+"2017-10-13",
+"2017-01-10"
+]
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/category/list/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/category/list/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+[    
+"Education",
+"Entertainment",
+"Food",
+"Utilities"
+]
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/{date}/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/{date}/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+[    
+"Education",
+"Entertainment",
+"Food",
+"Utilities"
+]
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/{date}/{category}/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/{date}/{category}/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+[    
+"Education",
+"Entertainment",
+"Food",
+"Utilities"
+]
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/{date}/{category}/{type}/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/{date}/{category}/{type}/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+[    
+"Education",
+"Entertainment",
+"Food",
+"Utilities"
+]
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/{category}/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/{category}/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+[    
+"Education",
+"Entertainment",
+"Food",
+"Utilities"
+]
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/{category}/type/list/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/{category}/type/list/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+[    
+"Education",
+"Entertainment",
+"Food",
+"Utilities"
+]
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/expense/{category}/{type}/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/{category}/{type}/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+[    
+"Education",
+"Entertainment",
+"Food",
+"Utilities"
+]
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Resources -->
+            <div class="col-lg-12">
+                <h2><b>Report Resources</b></h2>
+                <h4>Prefix: /tracker/user/{id}/report</h4>
+                <br>
+
+                <!-- GET /tracker/user/{id}/report/weekly/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/weekly/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+"id": 2,
+"username": "jane_doe",
+"first_name": "",
+"last_name": "",
+"email": "janedoe@email.com",
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/report/monthly/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/monthly/</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+"first_name": "Jane",
+"last_name": "Doe"
+}
+                        </code>
+                        </pre>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+"id": 2,
+"username": "jane_doe",
+"first_name": "Jane",
+"last_name": "Doe",
+"email": "janedoe@email.com",
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- GET: /tracker/user/{id}/report/yearly/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/yearly/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>204 No Content</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+"message": "User deleted."
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="footer">
+							<p>Created by dheerajpille</p>
+						</footer>
+        </div>
+	</body>
+</html>
