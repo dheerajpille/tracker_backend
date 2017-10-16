@@ -43,6 +43,10 @@ class CreateExpenseView(APIView):
             except:
                 date_val = date.today()
 
+            print(date_val)
+            print(Expense.objects.filter(user=user, date__exact=date_val,
+                                          category__iexact=self.request.data['category'],
+                                          type__iexact=self.request.data['type']))
             # Creates Expense object if it does not exist in database for current User
             if not Expense.objects.filter(user=user, date__exact=date_val,
                                           category__iexact=self.request.data['category'],
@@ -232,9 +236,9 @@ class ExpenseDetail(APIView):
     def get(self, request, pk, date, category, type):
 
         # Filters the Expense object with date, category, and type to get the object in question
-        # Converts slugs in category URL to spaces for filtering purposes
-        expense = Expense.objects.filter(user=self.request.user, date=date, category__iexact=category.replace('-', ' '),
-                                         type__iexact=type.replace('-', ' ')).first()
+        # Converts underscores in category and type URLs to spaces for filtering purposes
+        expense = Expense.objects.filter(user=self.request.user, date=date, category__iexact=category.replace('_', ' '),
+                                         type__iexact=type.replace('_', ' ')).first()
 
         # Checks if expense exists
         if expense is None:
