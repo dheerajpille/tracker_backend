@@ -165,5 +165,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # OAuth ID and SECRET derived from /o/applications
-CLIENT_ID: '0c41QZpqu1fpSAmn3uOHBFnuWMNgFysuqdNg40X9'
-CLIENT_SECRET = '0wxHAQZU9JDSgIKyxF0WS1ry9DvwJZdrtYsIxN7F9cwzDCcSjWNYaG2YNpwxsPvsMgbppuwrda816FC11uZEv4zskkJUxTQ3negrX4lNbx9A3UlHAZdeKK6bzKunK4hK'
+CLIENT_ID: 'YEMQIoakg3emWdY6oz04Ze3l0tlg7xnvQrtwAbkk'
+CLIENT_SECRET = 'xGJ5lie7vynO1cudkPFex1KR5248IaQxmybiRgjTbsGV5YV8RcERW61H8MlGiH9zAdZikpcvPweImIuiNO9JOldSHfeGeLMIoO1hpOaBt0aq7s14u84SsjPTiH63SKKR'
