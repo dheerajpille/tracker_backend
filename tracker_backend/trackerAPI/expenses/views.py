@@ -389,6 +389,39 @@ class TypeList(ListAPIView):
         return Response(type_list, status=status.HTTP_200_OK)
 
 
+class DailyExpenseList(ListAPIView):
+    """
+    Gets User's list of expenses for current week
+    """
+
+    # Disables pagination for GET calls
+    pagination_class = None
+
+    # Specifies serializer and model types
+    serializer_class = ExpenseSerializer
+    model = Expense
+
+    # Gets list of expenses made in current day
+    def get(self, request, pk):
+        # Determines the today's ISO-8601 value
+        today = date.today()
+
+        # Queryset of expenses within specified date range
+        queryset = Expense.objects.filter(user=self.request.user, date=today)
+
+        # Checks if queryset is not empty
+        if not queryset.exists():
+
+            # Returns error if no expenses are found in current week for current User in database
+            return Response(data={"error": "No expenses found today."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Serializes queryset data into Expense serializer, where multiple Expenses are allowed/expected
+        serializer = ExpenseSerializer(queryset, many=True)
+
+        # Returns list of expenses in current week
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 class WeeklyExpenseList(ListAPIView):
     """
     Gets User's list of expenses for current week

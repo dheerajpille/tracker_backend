@@ -10,6 +10,9 @@ urlpatterns = [
     url(r'^list/$', ExpenseList.as_view(), name='expense-list'),
 
     # List of all Expenses made in current week
+    url(r'^list/daily/$', DailyExpenseList.as_view(), name='daily-expense-list'),
+
+    # List of all Expenses made in current week
     url(r'^list/weekly/$', WeeklyExpenseList.as_view(), name='weekly-expense-list'),
 
     # List of all Expenses made in current month

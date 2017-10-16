@@ -9,6 +9,79 @@ from rest_framework.views import APIView
 from tracker_backend.trackerAPI.expenses.models import Expense
 
 
+class DailyReport(APIView):
+    """
+    Gets a report of your total expenses for today
+    """
+
+    # Gets a report of expenses today
+    def get(self, request, pk):
+
+        # Determines the today's ISO-8601 value
+        today = date.today()
+
+        # Initializes an empty dict for storing report data
+        report_data = {}
+
+        # Queryset of all Expense objects from specified date range
+        queryset = Expense.objects.filter(user=self.request.user, date=today)
+
+        # Checks if queryset is not empty
+        if not queryset.exists():
+
+            # Returns error if no expenses are found in current week for current User in database
+            return Response(data={"error": "Report cannot be generated. No expenses found today."},
+                            status=status.HTTP_404_NOT_FOUND)
+
+        # Updates the total amount of money spent on expenses in specified date range
+        report_data.update({"expense_total": queryset.aggregate(Sum('value'))['value__sum']})
+
+        # Initializes an empty dict for storing each category found in specified date range
+        category_data = {}
+
+        # Queryset of all distinct categories in specified date range
+        category_set = Expense.objects.filter(user=self.request.user, date=today).values('category').distinct()
+
+        # Iterates through all distinct categories determined above
+        for c in category_set:
+
+            # Queryset of all expenses made in a distinct category in specified date range
+            day_category_set = Expense.objects.filter(user=self.request.user, date=today,
+                                                      category__iexact=c['category'])
+
+            # Updates the total amount of money spent on distinct category in specified date range
+            # Key turned to lowercase string for readability purposes
+            category_data.update({str(c['category']).lower(): day_category_set.aggregate(Sum('value'))['value__sum']})
+
+            # Initializes an empty dict for storing each type found in a certain category found in specified date range
+            type_data = {}
+
+            # Queryset of all distinct types in a certain category found in specified date range
+            type_set = Expense.objects.filter(user=self.request.user, date=today,
+                                              category__iexact=c['category']).values('type').distinct()
+
+            # Iterates through all distinct types in a certain category found in specified date range
+            for t in type_set:
+
+                # Queryset of all expenses made in a distinct type in a certain category in specified date range
+                day_type_set = Expense.objects.filter(user=self.request.user, date=today,
+                                                      category__iexact=c['category'], type=t['type'])
+
+                # Updates the total amount of money spent on distinct type in a certain category in specified date range
+                # Key turned to lowercase string for readability purposes
+                type_data.update({str(t['type']).lower(): day_type_set.aggregate(Sum('value'))['value__sum']})
+
+            # Updates category_data with type_data
+            # Key turned to lowercase string for readability purposes
+            category_data.update({str(c['category']+'_type_total').lower(): type_data})
+
+        # Updates report_data with category_data
+        report_data.update({'category_total': category_data})
+
+        # Returns report_data as JSON response
+        return Response(data=report_data, status=status.HTTP_200_OK)
+
+
 class WeeklyReport(APIView):
     """
     Gets a report of your total expenses for the current week

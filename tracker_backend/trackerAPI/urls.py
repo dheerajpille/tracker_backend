@@ -4,6 +4,7 @@ from tracker_backend.trackerAPI.utils import documentation
 from tracker_backend.trackerAPI.views import UserDetail, UserList
 
 urlpatterns = [
+    # Documentation page for trackerAPI
     url(r'^documentation/$', documentation, name='documentation'),
 
     # User detail based on pk/id value
