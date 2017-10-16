@@ -438,7 +438,37 @@
                         </pre>
                     </div>
                 </div>
-
+                
+                <!-- GET: /tracker/user/{id}/expense/list/daily/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/list/daily/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+[
+    {
+        "date": "2017-10-15",
+        "category": "Food",
+        "type": "Groceries",
+        "value": "63.13"
+    },
+    {
+        "date": "2017-10-15",
+        "category": "Entertainment",
+        "type": "Books",
+        "value": "16.94"
+    }
+]
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+                
                 <!-- GET: /tracker/user/{id}/expense/list/weekly/ -->
                 <div class="row">
                     <div class="col-lg-4">
@@ -775,6 +805,35 @@
                 <h2><b>Report Resources</b></h2>
                 <h4>Prefix: /tracker/user/{id}/report</h4>
                 <br>
+                
+                <!-- GET /tracker/user/{id}/report/daily/ -->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4><b>GET</b></h4>
+                        <h4>/daily/</h4>
+                    </div>
+                    <div class="col-lg-8">
+                        <h4><b>Response</b></h4>
+                        <h4>200 OK</h4>
+                        <pre class="language-javascript">
+                        <code class="language-javascript">
+{
+    "expense_total": 80.07,
+    "category_total": {
+        "food": 63.13,
+        "food_type_total": {
+            "groceries": 63.13
+        },
+        "entertainment": 16.94,
+        "entertainment_type_total": {
+            "books": 16.94
+        }
+    }
+}
+                        </code>
+                        </pre>
+                    </div>
+                </div>
 
                 <!-- GET /tracker/user/{id}/report/weekly/ -->
                 <div class="row">
