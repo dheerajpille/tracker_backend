@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^signup/$', SignupView.as_view(), name='signup'),
 
     # OAuth 2.0 verification for Django
-    # Primarily used for o/token/ or o/applications/
+    # Primarily used for o/token/, o/revoke_token/, and o/applications/
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 
     # URL for project's resources
