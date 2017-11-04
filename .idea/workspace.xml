@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7a8df52-0b93-4281-ac53-2d95db8fcf4e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/settings.py" afterPath="$PROJECT_DIR$/tracker_backend/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/expenses/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker_backend/trackerAPI/utils.py" afterPath="$PROJECT_DIR$/tracker_backend/trackerAPI/utils.py" />
-    </list>
+    <list default="true" id="d7a8df52-0b93-4281-ac53-2d95db8fcf4e" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +51,7 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tracker_backend/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
+            <state relative-caret-position="330">
               <caret line="165" column="26" lean-forward="true" selection-start-line="165" selection-start-column="26" selection-end-line="165" selection-end-column="26" />
               <folding />
             </state>
@@ -776,7 +771,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tracker_backend/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
+        <state relative-caret-position="330">
           <caret line="165" column="26" lean-forward="true" selection-start-line="165" selection-start-column="26" selection-end-line="165" selection-end-column="26" />
           <folding />
         </state>
