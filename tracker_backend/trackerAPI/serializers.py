@@ -78,12 +78,14 @@ class SignupSerializer(serializers.Serializer):
         # TODO: add email verification
         # Checks whether username already exists in database
         try:
+
             username = User.objects.get(username__iexact=self.validated_data['username'])
 
         except User.DoesNotExist:
 
             # Checks whether email already exists in database
             try:
+
                 email = User.objects.get(email__iexact=self.validated_data['email'])
 
             except User.DoesNotExist:
