@@ -8,6 +8,8 @@ djangorestframework==3.7.1
 gunicorn==19.7.1
 idna==2.6
 oauthlib==2.0.6
+postgres==2.2.1
+psycopg2==2.7.3.2
 pytz==2017.3
 requests==2.18.4
 urllib3==1.22

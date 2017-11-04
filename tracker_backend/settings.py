@@ -115,12 +115,12 @@ WSGI_APPLICATION = 'tracker_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',
+                         'NAME': 'postgres',
+                         'HOST': '',
+                         'PORT': 5432,
+                         'USER': 'postgres',
+                         'PASSWORD': 'password'}}
 
 # OAuth authentication backend
 AUTHENTICATION_BACKENDS = (
@@ -174,5 +174,5 @@ STATICFILES_DIRS = []
 
 
 # OAuth ID and SECRET derived from /o/applications
-CLIENT_ID: 'YEMQIoakg3emWdY6oz04Ze3l0tlg7xnvQrtwAbkk'
-CLIENT_SECRET = 'xGJ5lie7vynO1cudkPFex1KR5248IaQxmybiRgjTbsGV5YV8RcERW61H8MlGiH9zAdZikpcvPweImIuiNO9JOldSHfeGeLMIoO1hpOaBt0aq7s14u84SsjPTiH63SKKR'
+CLIENT_ID: '1vz9IbOTMaFwV5WwVPlQkR9LYSqUWxw1N8nIUkH5'
+CLIENT_SECRET = 'njefcJg412cQokqJqnSKOFBw5cB7siDVCEsNNn23STIqR2wkB9gSy2vlzKL9Tt1bAsL01pCriNOxc5UVXECjDvitNCgPM7wjBgemcJFsxWhTP5M2qaiIwwkr4gLncSBO'
