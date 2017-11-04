@@ -40,7 +40,7 @@ class CreateExpenseView(APIView):
             # Passes today's date if no date value was passed
             try:
                 date_val = self.request.data['date']
-            except:
+            except  :
                 date_val = date.today()
 
             # Creates Expense object if it does not exist in database for current User
