@@ -1,0 +1,1 @@
+web: gunicorn tracker_backend.wsgi --log-file
