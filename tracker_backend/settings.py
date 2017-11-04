@@ -84,7 +84,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
 
-    # Whitenoise middleware for staticfiles
+    # WhiteNoise staticfiles handler middleware
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
@@ -167,12 +167,11 @@ USE_TZ = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = []
+
 
 # OAuth ID and SECRET derived from /o/applications
 CLIENT_ID: 'YEMQIoakg3emWdY6oz04Ze3l0tlg7xnvQrtwAbkk'
