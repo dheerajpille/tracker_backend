@@ -25,7 +25,7 @@ SECRET_KEY = 'a2yae*gjq*ie*osw9n$92ac%6-%@i23vbkl1x5-h#s5@ltr=ji'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://tracker-dheerajpille.herokuapp.com']
 
 
 # Application definition
