@@ -166,7 +166,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/static_root')
 STATIC_URL = '/static/'
 
 # OAuth ID and SECRET derived from /o/applications
