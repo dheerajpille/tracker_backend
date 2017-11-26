@@ -178,5 +178,5 @@ db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
 # OAuth ID and SECRET derived from /o/applications
-CLIENT_ID: 'iulHMYsNYKc9swHJvJlWvz8WMJWwbWbscF1OuUMr'
-CLIENT_SECRET = 'aOOzlyOQZW5GhSa8yQczlgzN9QcHeCDl5QSp7HTp2G587X5Y56jucR7wbblHYkS0dVoqULhAzhYTFhX46YL7aJ29qpCR3vkJOPwAM8ngPuNLsyzSh35wDHXGBNr7ZTDJ'
+CLIENT_ID: os.environ.get('CLIENT_ID', 'iulHMYsNYKc9swHJvJlWvz8WMJWwbWbscF1OuUMr')
+CLIENT_SECRET = os.environ.get('CLIENT_SECRET', 'aOOzlyOQZW5GhSa8yQczlgzN9QcHeCDl5QSp7HTp2G587X5Y56jucR7wbblHYkS0dVoqULhAzhYTFhX46YL7aJ29qpCR3vkJOPwAM8ngPuNLsyzSh35wDHXGBNr7ZTDJ')
