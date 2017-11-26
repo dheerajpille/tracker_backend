@@ -89,11 +89,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-
-CORS_ORIGIN_WHITELIST = {
-    'localhost:3000',
-}
+CORS_ORIGIN_ALLOW_ALL = False
 
 ROOT_URLCONF = 'tracker_backend.urls'
 
