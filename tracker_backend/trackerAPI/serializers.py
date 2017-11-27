@@ -67,8 +67,8 @@ class SignupSerializer(serializers.Serializer):
     # Only username/email/password fields required, id is automatically created, rest are optional
     id = serializers.ReadOnlyField()
     username = serializers.CharField(style={'input_type': 'username'}, required=True)
-    first_name = serializers.CharField(required=False)
-    last_name = serializers.CharField(required=False)
+    first_name = serializers.CharField(required=False, allow_blank=True)
+    last_name = serializers.CharField(required=False, allow_blank=True)
     email = serializers.CharField(style={'input_type': 'email'}, required=True)
     password = serializers.CharField(style={'input_type': 'password'}, write_only=True, required=True)
 
