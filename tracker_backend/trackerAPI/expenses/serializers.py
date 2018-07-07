@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date as import_date
 
 from rest_framework import serializers
 
@@ -11,7 +11,7 @@ class ExpenseSerializer(serializers.ModelSerializer):
     """
 
     # Determines each fields types and defaults, if applicable
-    date = serializers.DateField(required=False, default=date.today())
+    date = serializers.DateField(required=False, default=import_date.today())
     category = serializers.CharField(max_length=32, required=True)
     type = serializers.CharField(max_length=32, required=True)
     value = serializers.DecimalField(max_digits=8, decimal_places=2, required=True)
@@ -20,7 +20,7 @@ class ExpenseSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
 
         # Determines each field from given POST data or defaults
-        date = self.validated_data['date']
+        date = self.validated_data['date'] or import_date.today()
         user = self.context['request'].user
         category = self.validated_data['category']
         type = self.validated_data['type']
