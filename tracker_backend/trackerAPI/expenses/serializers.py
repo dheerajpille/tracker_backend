@@ -18,9 +18,12 @@ class ExpenseSerializer(serializers.ModelSerializer):
 
     # Creates Expense object with POST data
     def create(self, validated_data):
-
+        print(import_date.today())
+        print(self.validated_data)
         # Determines each field from given POST data or defaults
         date = self.validated_data['date'] or import_date.today()
+        print("The date should be here, right?")
+        print(date)
         user = self.context['request'].user
         category = self.validated_data['category']
         type = self.validated_data['type']
