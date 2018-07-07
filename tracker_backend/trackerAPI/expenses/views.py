@@ -39,8 +39,11 @@ class CreateExpenseView(APIView):
             # Checks if date value was passed in POST request to check if expense already exists in database
             # Passes today's date if no date value was passed
             try:
-                date_val = self.request.data['date']
-            except MultiValueDictKeyError or ValueError:
+                if 'date' in self.request.data:
+                    date_val = self.request.data['date']
+                else:
+                    raise ValueError
+            except ValueError:
                 date_val = date.today()
 
             # Creates Expense object if it does not exist in database for current User
